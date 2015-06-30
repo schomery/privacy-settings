@@ -1,0 +1,30 @@
+body {
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+body, table {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+
+h1 {
+  font-size: 110%;
+  padding: 10px 0 2px 0;
+  margin: 0 5px;
+}
+
+.button {
+  width: 50px;
+  cursor: pointer;
+  -moz-user-select: none;
+}
+.button:before {
+  padding-right: 5px;
+}
+
+.pref {
+  text-indent: 15px;
+}

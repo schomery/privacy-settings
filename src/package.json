@@ -1,0 +1,11 @@
+{
+  "name": "ipsettings",
+  "title": "Privacy Settings",
+  "id": "jid1-CKHySAadH4nL6Q",
+  "description": "Alter Firefox's built-in privacy settings with a toolbar panel.",
+  "author": "Jeremy Schomery",
+  "license": "MPL 2.0",
+  "version": "0.1.0",
+  "icon": "data/icons/32.png",
+  "icon64": "data/icons/64.png"
+}
