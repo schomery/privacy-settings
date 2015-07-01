@@ -27,4 +27,20 @@ h1 {
 
 .pref {
   text-indent: 15px;
+  position: relative;
+}
+.pref:hover:after {
+  font-size: 90%;
+  top: 20px;
+  content: attr(title);
+  left: 30px;
+  padding: 3px;
+  position: absolute;
+  z-index: 98;
+  background-color: #EEE;
+  border: solid 1px #ccc;
+  border-radius: 1px;
+  box-shadow: 0 0 1px #ccc;
+  text-indent: 0;
+  max-width: 400px;
 }

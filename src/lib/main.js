@@ -4,6 +4,9 @@ var {ToggleButton} = require('sdk/ui/button/toggle');
 var panels = require('sdk/panel');
 var self = require('sdk/self');
 var prefs = require('sdk/preferences/service');
+var sp = require('sdk/simple-prefs');
+var timers = require('sdk/timers');
+var tabs = require('sdk/tabs');
 
 var button = new ToggleButton({
   id: 'privacy-settings',
@@ -24,7 +27,7 @@ var button = new ToggleButton({
 
 var panel = panels.Panel({
   width: 400,
-  height: 490,
+  height: 670,
   contentURL: self.data.url('popover/index.html'),
   contentScriptFile: self.data.url('popover/index.js'),
   onHide: function () {
@@ -48,3 +51,20 @@ panel.port.on('pref', function (obj) {
     value: prefs.get(obj.pref)
   });
 });
+
+exports.main = function (options) {
+  if (options.loadReason === 'install' || options.loadReason === 'startup') {
+    var version = sp.prefs.version;
+    if (self.version !== version) {
+      if (sp.prefs.welcome) {
+        timers.setTimeout(function () {
+          tabs.open(
+            'http://firefox.add0n.com/privacy-settings.html?v=' + self.version +
+            (version ? '&p=' + version + '&type=upgrade' : '&type=install')
+          );
+        }, 3000);
+      }
+      sp.prefs.version = self.version;
+    }
+  }
+};
