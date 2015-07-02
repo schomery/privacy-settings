@@ -1,25 +1,26 @@
 body {
   background-color: #fff;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   overflow: hidden;
+  min-width: 400px;
 }
 body, table {
   font-family: sans-serif;
   font-size: 12px;
 }
 
-
 h1 {
   font-size: 110%;
   padding: 10px 0 2px 0;
-  margin: 0 5px;
+  margin: 0;
 }
 
 .button {
-  width: 50px;
+  width: 1px;
   cursor: pointer;
   -moz-user-select: none;
+  white-space: nowrap;
 }
 .button:before {
   padding-right: 5px;

@@ -12,6 +12,12 @@
     "private-browsing": true
   },
   "preferences": [{
+    "type": "integer",
+    "name": "font",
+    "value": 12,
+    "title": "Font size of the panel:"
+  },
+  {
     "type": "bool",
     "name": "welcome",
     "value": true,

@@ -36,3 +36,16 @@ self.port.on('show', function () {
   });
 });
 
+function size () {
+  self.port.emit('size', {
+    width: Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.body.clientWidth, document.documentElement.clientWidth),
+    height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight)
+  });
+}
+function font (f) {
+  document.querySelector('table').style['font-size'] = (f || self.options.font) + 'px';
+  size();
+}
+
+self.port.on('font', font);
+font();

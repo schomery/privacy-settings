@@ -26,8 +26,11 @@ var button = new ToggleButton({
 });
 
 var panel = panels.Panel({
-  width: 400,
-  height: 670,
+  width: 100,
+  height: 170,
+  contentScriptOptions: {
+    font: sp.prefs.font
+  },
   contentURL: self.data.url('popover/index.html'),
   contentScriptFile: self.data.url('popover/index.js'),
   onHide: function () {
@@ -37,6 +40,10 @@ var panel = panels.Panel({
 panel.on('show', function () {
   panel.port.emit('show');
 });
+panel.port.on('size', function (obj) {
+  panel.width = obj.width;
+  panel.height = obj.height + 20;
+});
 panel.port.on('update', function (pref) {
   panel.port.emit('pref', {
     pref: pref,
@@ -44,12 +51,20 @@ panel.port.on('update', function (pref) {
   });
 });
 panel.port.on('pref', function (obj) {
-  console.error(obj);
   prefs.set(obj.pref, obj.value);
   panel.port.emit('pref', {
     pref: obj.pref,
     value: prefs.get(obj.pref)
   });
+});
+sp.on('font', function () {
+  if (sp.prefs.font < 10) {
+    sp.prefs.font = 10;
+  }
+  if (sp.prefs.font > 16) {
+    sp.prefs.font = 16;
+  }
+  panel.port.emit('font', sp.prefs.font);
 });
 
 exports.main = function (options) {
