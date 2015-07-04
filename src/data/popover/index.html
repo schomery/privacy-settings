@@ -5,45 +5,90 @@
     <link rel="stylesheet" href="fontello.css">
   </head>
   <body>
-    <table width=100%>
-      <tr><td colspan="2"><h1>Network:</h1></td></tr>
-      <tr><td class="pref" title="Websockets can cause some dns requests to not be send over the active proxy.">network.websocket.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Tells the server which https page the user came from.">network.http.sendSecureXSiteReferrer</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Browser:</h1></td></tr>
-      <tr><td class="pref" title="Websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected.">dom.event.clipboardevents.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement.">browser.safebrowsing.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement.">browser.safebrowsing.downloads.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Disable Google Safe Browsing malware checks. Security risk, but privacy improvement.">browser.safebrowsing.malware.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Allows websites to track users clicks.">browser.send_pings</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Geolocation:</h1></td></tr>
-      <tr><td class="pref" title="Disables geolocation.">geo.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Disables logging geolocation requests.">geo.wifi.logging.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Tracking:</h1></td></tr>
-      <tr><td class="pref" title="This is Mozilla’s new built in tracking protection.">privacy.trackingprotection.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Stats Collecting:</h1></td></tr>
-      <tr><td class="pref" title="Stability and performance reports.">datareporting.healthreport.service.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Stability and performance reports.">datareporting.healthreport.uploadEnabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="Usage statistics reports.">toolkit.telemetry.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Encrypted Media Extensions (DRM):</h1></td></tr>
-      <tr><td class="pref" title="A binary plugin that enables playback of encrypted media.">media.eme.enabled</td><td class="icon-toggle-on button">On</td></tr>
-      <tr><td class="pref" title="A binary plugin that enables playback of encrypted media.">media.gmp-eme-adobe.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Firefox Hello:</h1></td></tr>
-      <tr><td class="pref" title="Firefox connects to third-party (Telefonica) servers without asking for permission.">loop.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>Pocket Integration:</h1></td></tr>
-      <tr><td class="pref" title="A third-party service for managing a reading list of articles.">browser.pocket.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>WebRTC:</h1></td></tr>
-      <tr><td class="pref" title="WebRTC can leak a users IP address from behind a VPN or proxy.">media.peerconnection.enabled</td><td class="icon-toggle-on button">On</td></tr>
-
-      <tr><td colspan="2"><h1>WebGL:</h1></td></tr>
-      <tr><td class="pref" title="WebGL is a potential security risk.">webgl.disabled</td><td class="icon-toggle-on button">On</td></tr>
+    <table id="list">
+      <tr>
+        <td><h1>Network:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="Websockets can cause some dns requests to not be send over the active proxy.">network.websocket.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Tells the server which https page the user came from.">network.http.sendSecureXSiteReferrer</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Browser:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="Websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected.">dom.event.clipboardevents.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement.">browser.safebrowsing.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement.">browser.safebrowsing.downloads.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Disable Google Safe Browsing malware checks. Security risk, but privacy improvement.">browser.safebrowsing.malware.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Allows websites to track users clicks.">browser.send_pings</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Geolocation:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="Disables geolocation.">geo.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Disables logging geolocation requests.">geo.wifi.logging.enabled</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Tracking:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="This is Mozilla’s new built in tracking protection.">privacy.trackingprotection.enabled</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Stats Collection:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="Stability and performance reports.">datareporting.healthreport.service.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Stability and performance reports.">datareporting.healthreport.uploadEnabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Usage statistics reports.">toolkit.telemetry.enabled</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Integration:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="Firefox Hello: Firefox connects to third-party (Telefonica) servers.">loop.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="Pocket Integration: A third-party service for managing a reading list of articles.">browser.pocket.enabled</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Media:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="WebRTC can leak a users IP address from behind a VPN or proxy.">media.peerconnection.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="A binary plugin that enables playback of encrypted media.">media.eme.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="A binary plugin that enables playback of encrypted media.">media.gmp-eme-adobe.enabled</td><td class="icon-toggle-on button">On</td></tr>
+            <tr><td class="pref" title="WebGL is a potential security risk.">webgl.disabled</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><h1>Scripts:</h1></td>
+        <td>
+          <table width="100%">
+            <tr><td class="pref" title="It is not recommended to disable JavaScript.">javascript.enabled</td><td class="icon-toggle-on button">On</td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <table id="toolbar">
+      <tr>
+        <td><button data-cmd="privacy" title="To bring maximum privacy (this option disables Google Safe browsing)">Full Privacy</button></td>
+        <td align="center"><button data-cmd="security" title="To bring maximum privacy while keeping Google Safe Browsing enabled.">Protect Privacy & Security</button></td>
+        <td align="right"><button data-cmd="reset" title="Reset all preferences back to factory defaults">Reset to Defaults</button></td>
+      </tr>
     </table>
   </body>
 </html>

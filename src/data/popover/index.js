@@ -11,6 +11,16 @@ document.addEventListener('click', function (e) {
     value: target.classList.contains('icon-toggle-off')
   });
 }, false);
+document.addEventListener('click', function (e) {
+  var target = e.target;
+  var cmd = target.dataset.cmd;
+  if (cmd) {
+    self.port.emit('command', {
+      cmd: cmd,
+      prefs: [].map.call(document.querySelectorAll('td[class=pref]'), td => td.textContent)
+    });
+  }
+}, false);
 
 self.port.on('pref', function (obj) {
   [].filter.call(document.querySelectorAll('td[class=pref]'), function (td) {
@@ -43,7 +53,12 @@ function size () {
   });
 }
 function font (f) {
-  document.querySelector('table').style['font-size'] = (f || self.options.font) + 'px';
+  function change (e) {
+    e.style['font-size'] = (f || self.options.font) + 'px';
+  }
+  change(document.body);
+  [].forEach.call(document.querySelectorAll('table'), change);
+  [].forEach.call(document.querySelectorAll('button'), change);
   size();
 }
 

@@ -7,14 +7,18 @@ var prefs = require('sdk/preferences/service');
 var sp = require('sdk/simple-prefs');
 var timers = require('sdk/timers');
 var tabs = require('sdk/tabs');
+var core = require('sdk/view/core');
+var runtime = require('sdk/system/runtime');
+
+var path = './icons/' + (runtime.OS === 'Darwin' ? 'mac/' : '');
 
 var button = new ToggleButton({
   id: 'privacy-settings',
   label: 'Privacy Settings\n\nEasily alter Firefox\'s built-in privacy settings',
   icon: {
-    '16': './icons/16.png',
-    '32': './icons/32.png',
-    '64': './icons/64.png',
+    '16': path + '16.png',
+    '32': path + '32.png',
+    '64': path + '64.png',
   },
   onChange: function (state) {
     if (state.checked) {
@@ -26,8 +30,6 @@ var button = new ToggleButton({
 });
 
 var panel = panels.Panel({
-  width: 100,
-  height: 170,
   contentScriptOptions: {
     font: sp.prefs.font
   },
@@ -37,12 +39,14 @@ var panel = panels.Panel({
     button.state('window', {checked: false});
   }
 });
+core.getActiveView(panel).setAttribute('tooltip', 'aHTMLTooltip');
+
 panel.on('show', function () {
   panel.port.emit('show');
 });
 panel.port.on('size', function (obj) {
   panel.width = obj.width;
-  panel.height = obj.height + 20;
+  panel.height = obj.height;
 });
 panel.port.on('update', function (pref) {
   panel.port.emit('pref', {
@@ -55,6 +59,31 @@ panel.port.on('pref', function (obj) {
   panel.port.emit('pref', {
     pref: obj.pref,
     value: prefs.get(obj.pref)
+  });
+});
+panel.port.on('command', function (obj) {
+  if (obj.cmd === 'reset') {
+    obj.prefs.forEach(function (pref) {
+      prefs.reset(pref);
+    });
+  }
+  if (obj.cmd === 'security') {
+    obj.prefs.forEach(function (pref) {
+      var bol = pref.indexOf('browser.safebrowsing') !== -1 || pref.indexOf('privacy.trackingprotection') !== -1 || pref.indexOf('javascript.enabled') !== -1;
+      prefs.set(pref,  bol);
+    });
+  }
+  if (obj.cmd === 'privacy') {
+    obj.prefs.forEach(function (pref) {
+      var bol = pref.indexOf('privacy.trackingprotection') !== -1 || pref.indexOf('javascript.enabled') !== -1;
+      prefs.set(pref,  bol);
+    });
+  }
+  obj.prefs.forEach(function (pref) {
+    panel.port.emit('pref', {
+      pref: pref,
+      value: prefs.get(pref)
+    });
   });
 });
 sp.on('font', function () {
