@@ -3,39 +3,101 @@
 var {ToggleButton} = require('sdk/ui/button/toggle');
 var panels = require('sdk/panel');
 var self = require('sdk/self');
+var prefs = require('sdk/preferences/service');
 var sp = require('sdk/simple-prefs');
-var prefs = sp.prefs;
+var timers = require('sdk/timers');
 var tabs = require('sdk/tabs');
 var core = require('sdk/view/core');
-var unload = require('sdk/system/unload');
 var runtime = require('sdk/system/runtime');
-var pageMod = require('sdk/page-mod');
-var policy = require('./policy');
+var unload = require('sdk/system/unload');
+var {Cc, Ci} = require('chrome');
+var _ = require('sdk/l10n').get;
+var prefService = Cc['@mozilla.org/preferences-service;1']
+  .getService(Ci.nsIPrefService);
 
 var path = './icons/' + (runtime.OS === 'Darwin' ? 'mac/' : '');
 
-var filters = {
-  read: function () {
-    return JSON.parse(prefs.filters || '[]');
+// observer
+
+function observe (pref, callback) {
+  var branch = prefService.getBranch(pref);
+  var observer = {
+    observe: function () {
+      callback(pref);
+    }
+  };
+  branch.addObserver('', observer, false);
+  unload.when(function () {
+    branch.removeObserver('', observer);
+  });
+}
+
+var suggestions = {
+  'privacy': {
+    'security.ssl.require_safe_negotiation': true,
+    'security.ssl.treat_unsafe_negotiation_as_broken': true,
+    'privacy.trackingprotection.enabled': true
   },
-  write: function (val) {
-    var fs = this.read();
-    fs.push(val);
-    prefs.filters = JSON.stringify(fs);
-    policy.filters(fs);
-  },
-  remove: function (id) {
-    var fs = this.read();
-    prefs.filters = JSON.stringify(fs.filter(o => o.id !== +id));
-    policy.filters(this.read());
+  'security': {
+    'security.ssl.require_safe_negotiation': true,
+    'security.ssl.treat_unsafe_negotiation_as_broken': true,
+    'browser.safebrowsing.enabled': true,
+    'browser.safebrowsing.downloads.enabled': true,
+    'browser.safebrowsing.malware.enabled': true,
+    'privacy.trackingprotection.enabled': true
   }
 };
 
-var states = [];
+var ui = {
+  'network': {
+    'network.websocket.enabled': {type: 'bol'},
+    'network.http.sendSecureXSiteReferrer': {type: 'bol'}
+  },
+  'browser': {
+    'dom.event.clipboardevents.enabled': {type: 'bol'},
+    'browser.safebrowsing.enabled': {type: 'bol'},
+    'browser.safebrowsing.downloads.enabled': {type: 'bol'},
+    'browser.safebrowsing.malware.enabled': {type: 'bol'},
+    'browser.send_pings': {type: 'bol'},
+  },
+  'geolocation': {
+    'geo.enabled': {type: 'bol'},
+    'geo.wifi.logging.enabled': {type: 'bol'},
+  },
+  'tracking': {
+    'privacy.trackingprotection.enabled': {type: 'bol'}
+  },
+  'stats-collection': {
+    'datareporting.healthreport.service.enabled': {type: 'bol'},
+    'datareporting.healthreport.uploadEnabled': {type: 'bol'},
+    'toolkit.telemetry.enabled': {type: 'bol'}
+  },
+  'integration': {
+    'loop.enabled': {type: 'bol'},
+    'browser.pocket.enabled': {type: 'bol'}
+  },
+  'media': {
+    'media.peerconnection.enabled': {type: 'bol'},
+    'media.eme.enabled': {type: 'bol'},
+    'media.gmp-eme-adobe.enabled': {type: 'bol'},
+    'webgl.disabled': {type: 'bol'}
+  },
+  'devices': {
+    'camera.control.face_detection.enabled': {type: 'bol'},
+    'camera.control.autofocus_moving_callback.enabled': {type: 'bol'},
+    'device.sensors.enabled': {type: 'bol'}
+  },
+  'encryption': {
+    'security.tls.unrestricted_rc4_fallback': {type: 'bol'},
+    'security.tls.insecure_fallback_hosts.use_static_list': {type: 'bol'},
+    'security.ssl.require_safe_negotiation': {type: 'bol'},
+    'security.ssl.treat_unsafe_negotiation_as_broken': {type: 'bol'}
+  }
+};
 
 var button = new ToggleButton({
-  id: 'policy-control',
-  label: 'Policy Control',
+  id: 'privacy-settings',
+  label: 'Privacy Settings',
   icon: {
     '16': path + '16.png',
     '32': path + '32.png',
@@ -50,9 +112,32 @@ var button = new ToggleButton({
   }
 });
 
+var locale = {};
+var values = {};
+var locked = {};
+for (let category in ui) {
+  locale[category] = _(category);
+  for (let pref in ui[category]) {
+    locale[pref] = _(pref);
+    values[pref] = prefs.get(pref);
+    values[pref] = prefs.get(pref);
+    locked[pref] = prefService.getBranch(pref).prefIsLocked('');
+    observe(pref, function (p) {
+      panel.port.emit('pref', {
+        pref: p,
+        value: prefs.get(p)
+      });
+    });
+  }
+}
+
 var panel = panels.Panel({
   contentScriptOptions: {
-    font: sp.prefs.font
+    font: sp.prefs.font,
+    ui: ui,
+    locale: locale,
+    values: values,
+    locked: locked
   },
   contentURL: self.data.url('popover/index.html'),
   contentScriptFile: self.data.url('popover/index.js'),
@@ -67,123 +152,49 @@ panel.port.on('size', function (obj) {
   panel.height = obj.height;
 });
 
-
-panel.port.on('get-preference', function (name) {
-  panel.port.emit('set-preference', {
-    name,
-    value: prefs[name]
-  });
-});
-panel.port.on('set-preference', function (obj) {
-  prefs[obj.name] = obj.value;
-});
-sp.on('*', function (name) {
-  if (name) {
-    panel.port.emit('set-preference', {
-      name,
-      value: prefs[name]
-    });
-  }
+panel.port.on('pref', function (obj) {
+  prefs.set(obj.pref, obj.value);
 });
 panel.port.on('command', function (obj) {
-  if (obj.cmd === 'options') {
-    options();
-    panel.hide();
+  if (obj.cmd === 'reset') {
+    obj.prefs.forEach(function (pref) {
+      prefs.reset(pref);
+    });
   }
-  if (obj.cmd.indexOf('log-') === 0 || obj.cmd === 'private') {
-    prefs[obj.cmd] = obj.value;
-  }
-  if (obj.cmd === 'enable') {
-    if (obj.value === 'true') {
-      states = obj.states;
-      states.forEach(function (obj) {
-        prefs[obj.name] = false;
-      });
-      panel.port.emit('enabled', false);
-    }
-    else {
-      states.forEach(function (obj) {
-        prefs[obj.name] = obj.status;
-      });
-      panel.port.emit('enabled', true);
-    }
-    if (obj.enabled === 'false') {
-      states = [];
-    }
-  }
-});
-
-unload.when(function () {
-  if (states.length) {
-    states.forEach(function (obj) {
-      prefs[obj.name] = obj.status;
+  if (obj.cmd === 'privacy' || obj.cmd === 'security') {
+    obj.prefs.forEach(function (pref) {
+      if (pref in suggestions[obj.cmd]) {
+        prefs.set(pref, suggestions[obj.cmd][pref]);
+      }
+      else {
+        prefs.set(pref, false);
+      }
     });
   }
 });
-/* badge */
-var counts = {};
-var badge = (function () {
-  var cache = {id: null, count: 0};
-  return function () {
-    var id = tabs.activeTab.id;
-    var count = counts[id];
-    if (count === cache.count) {
-      return;
-    }
-    cache.id = id;
-    cache.count = count;
-    button.badge = count ? count : '';
-  };
-})();
-tabs.on('activate', badge);
-
-function counter (id) {
-  if (id) {
-    counts[id] = (isNaN(counts[id]) ? 0 : counts[id]) + 1;
-    badge();
+sp.on('font', function () {
+  if (sp.prefs.font < 10) {
+    sp.prefs.font = 10;
   }
-}
-
-/* policy */
-policy.reset(function (id) {
-  counts[id] = 0;
-  badge(id);
+  if (sp.prefs.font > 16) {
+    sp.prefs.font = 16;
+  }
+  panel.port.emit('font', sp.prefs.font);
 });
-policy.counter(counter);
-policy.filters(filters.read());
 
-/* settings page */
-function closeOptions () {
-  for (let tab of tabs) {
-    if (tab.url.indexOf(self.data.url('settings/index.html')) === 0) {
-      tab.close();
+exports.main = function (options) {
+  if (options.loadReason === 'install' || options.loadReason === 'startup') {
+    var version = sp.prefs.version;
+    if (self.version !== version) {
+      if (sp.prefs.welcome) {
+        timers.setTimeout(function () {
+          tabs.open(
+            'http://firefox.add0n.com/privacy-settings.html?v=' + self.version +
+            (version ? '&p=' + version + '&type=upgrade' : '&type=install')
+          );
+        }, 3000);
+      }
+      sp.prefs.version = self.version;
     }
   }
-}
-function options () {
-  closeOptions();
-  tabs.open(self.data.url('settings/index.html'));
-}
-unload.when(closeOptions);
-pageMod.PageMod({
-  include: self.data.url('settings/index.html'),
-  contentScriptFile: self.data.url('settings/index.js'),
-  contentScriptWhen: 'ready',
-  onAttach: function (worker) {
-    worker.port.on('list', function () {
-      worker.port.emit('list', filters.read());
-    });
-    worker.port.on('delete', function (id) {
-      filters.remove(id);
-      worker.port.emit('delete', id);
-    });
-    worker.port.on('insert', function (obj) {
-      var id = (prefs.id || 0) + 1;
-      prefs.id = id;
-      obj.id = id;
-      filters.write(obj);
-      worker.port.emit('insert', obj);
-    });
-  }
-});
-sp.on('options', options);
+};

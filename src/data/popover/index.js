@@ -1,115 +1,103 @@
 /* globals self */
 'use strict';
 
-function size () {
-  self.port.emit('size', {
-    width: Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.body.clientWidth, document.documentElement.clientWidth),
-    height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight)
-  });
+function html (name, parent, attrbs) {
+  var elem = document.createElement(name);
+  for (var i in (attrbs || {})) {
+    elem.setAttribute(i, attrbs[i]);
+  }
+  if (parent) {
+    parent.appendChild(elem);
+  }
+  return elem;
 }
-size();
 
-var dom = {
-  get policies () {
-    return [].slice.call(document.querySelectorAll('[data-policy]'));
-  },
-  policy: function (name) {
-    return document.querySelector('[data-policy=' + name + ']').querySelector('.button');
-  },
-  mod: function (name) {
-    return document.querySelector('[data-policy=' + name + ']').querySelector('a');
-  },
-  get checkboxes () {
-    return [].slice.call(document.querySelectorAll('input[type=checkbox]'));
-  },
-  cmd: function (name) {
-    return document.querySelector('[data-cmd="' + name + '"]');
-  }
-};
-
-self.port.on('set-preference', function (obj) {
-  if (obj.name.indexOf('policy-') === 0) {
-    var policy = dom.policy(obj.name.substr(7));
-    if (policy) {
-      if (obj.value) {
-        policy.textContent = 'On';
-        policy.classList.remove('icon-toggle-off');
-        policy.classList.add('icon-toggle-on');
-      }
-      else {
-        policy.textContent = 'Off';
-        policy.classList.remove('icon-toggle-on');
-        policy.classList.add('icon-toggle-off');
-      }
-    }
-  }
-  if (obj.name.indexOf('mod-') === 0) {
-    var mod = dom.mod(obj.name.substr(4));
-    if (mod) {
-      mod.dataset.mod = obj.value;
-      mod.textContent = obj.value === 'p' ? 'third-party' : 'all';
-    }
-  }
-  if (obj.name.indexOf('log-') === 0 || obj.name === 'private') {
-    var log = dom.cmd(obj.name);
-    log.checked = obj.value;
-  }
-});
-
-// init
-dom.policies.map(p => p.dataset.policy).forEach(function (name) {
-  self.port.emit('get-preference', 'policy-' + name);
-  self.port.emit('get-preference', 'mod-' + name);
-});
-dom.checkboxes.map(e => e.dataset.cmd).forEach(p => self.port.emit('get-preference', p));
-// click
 document.addEventListener('click', function (e) {
   var target = e.target;
-  if (target.classList.contains('button')) {
-    var pref = 'policy-' + target.parentNode.dataset.policy;
-    self.port.emit('set-preference', {
-      name: pref,
-      value: target.classList.contains('icon-toggle-off')
-    });
+  if ([].indexOf.call(target.classList, 'button') === -1) {
+    return;
   }
-}, false);
-document.addEventListener('click', function (e) {
-  var target = e.target;
-  var mod = target.dataset.mod;
-  var policy = target.parentNode.dataset.policy;
-  if (mod && policy) {
-    self.port.emit('set-preference', {
-      name: 'mod-' + policy,
-      value: mod === 'p' ? 'f' : 'p'
-    });
-  }
+  self.port.emit('pref', {
+    pref: target.previousSibling.textContent,
+    value: target.classList.contains('icon-toggle-off')
+  });
 }, false);
 document.addEventListener('click', function (e) {
   var target = e.target;
   var cmd = target.dataset.cmd;
-  if (cmd === 'enable') {
+  if (cmd) {
     self.port.emit('command', {
       cmd: cmd,
-      value: target.dataset.value,
-      states: dom.policies.map(function (elem) {
-        var policy = elem.dataset.policy;
-        return {
-          status: dom.policy(policy).classList.contains('icon-toggle-on'),
-          name: 'policy-' + policy
-        };
-      })
-    });
-  }
-  else if (cmd) {
-    self.port.emit('command', {
-      cmd: cmd,
-      value: target.checked
+      prefs: [].map.call(document.querySelectorAll('td[class=pref]'), td => td.textContent)
     });
   }
 }, false);
 
-self.port.on('enabled', function (b) {
-  var button = document.querySelector('[data-cmd=enable]');
-  button.value = b ? 'Disable all filters temporarily' : 'Enable filters rules';
-  button.dataset.value = b;
+self.port.on('pref', function (obj) {
+  [].filter.call(document.querySelectorAll('td[class=pref]'), function (td) {
+    return td.textContent === obj.pref;
+  }).forEach(function (td) {
+    var target = td.nextSibling;
+    if (obj.value) {
+      target.classList.remove('icon-toggle-off');
+      target.classList.add('icon-toggle-on');
+      target.textContent = 'On';
+    }
+    else {
+      target.classList.add('icon-toggle-off');
+      target.classList.remove('icon-toggle-on');
+      target.textContent = 'Off';
+    }
+  });
 });
+
+self.port.on('show', function () {
+  [].filter.call(document.querySelectorAll('td[class=pref]'), function (td) {
+    self.port.emit('update', td.textContent);
+  });
+});
+
+function size () {
+  self.port.emit('size', {
+    width: parseInt(window.getComputedStyle(document.getElementById('list'), null).width) + 30,
+    height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight)
+  });
+}
+function font (f) {
+  function change (e) {
+    e.style['font-size'] = (f || self.options.font) + 'px';
+  }
+  change(document.body);
+  [].forEach.call(document.querySelectorAll('table'), change);
+  [].forEach.call(document.querySelectorAll('button'), change);
+  size();
+}
+
+self.port.on('font', font);
+
+for (var category in self.options.ui) {
+  var table = (function (tr) {
+    html('h1', tr).textContent = self.options.locale[category];
+    return html('table', html('td', tr), {
+      'width': '100%'
+    });
+  })(html('tr', document.querySelector('#list tbody')));
+
+  for (var pref in self.options.ui[category]) {
+    var tr = html('tr', table);
+    html('td', tr, {
+      'class': 'pref',
+      'title': self.options.locale[pref],
+    }).textContent = pref;
+    var value = self.options.values[pref] ? 'On' : 'Off';
+    if (self.options.locked[pref]) {
+      html('td', tr).textContent = 'Locked, ' + (self.options.values[pref] ? 'On' : 'Off');
+    }
+    else {
+      html('td', tr, {
+        'class': 'icon-toggle-' + value.toLowerCase() + ' button'
+      }).textContent = value;
+    }
+  }
+}
+window.setTimeout(font, 1000);

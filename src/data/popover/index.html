@@ -1,40 +1,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="fontello.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="fontello.css">
   </head>
   <body>
-    <h1>Enable or Disable Policy Rules<sup>1</sup>:</h1>
-    <ul>
-      <li data-policy="font"><span title="Indicates a font loaded via @font-face rule">Font (@font-face) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="image"><span title="Indicates an image (for example, IMG elements)">Image on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="media"><span title="Indicates a video or audio load">Media (audio and video) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="object"><span title="Indicates a generic object (plugin-handled content typically falls under this category)">Object (plugin-handled content) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="script"><span title="Indicates an executable script (such as JavaScript)">Script (JavaScript) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="stylesheet"><span title="Indicates a stylesheet (for example, STYLE elements)">Stylesheet (CSS) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="subdomain"><span title="Indicates a document contained within another document (for example, IFRAMEs, FRAMES, and OBJECTs)">Sub Document (iframes and frames) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="request"><span title="Indicates an XMLHttpRequest. Also used for document.load">XMLHttpRequest on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="subrequest"><span title="Indicates a request by a plugin">Plugins on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="websocket"><span title="Indicates a WebSocket load. ">WebSocket on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-      <li data-policy="ping"><span title="Indicates a ping triggered by a click on <A PING='...'> element">Ping on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
-    </ul>
-    <center>
-      <input type="button" data-cmd='enable' data-value='true' value="Disable all filters temporarily">
-    </center>
-    <div>
-      <label><input type="checkbox" data-cmd="log-blocked">Log blocked URLs in the Error Console<sup>3</sup>.</label>
-      <br>
-      <label><input type="checkbox" data-cmd="log-passed">Log passed URLs in the Error Console<sup>2</sup>.</label>
-      <br>
-      <label><input type="checkbox" data-cmd="private">Do not apply policy rules in the private browsing mode<sup>4</sup>.</label>
-    </div>
-    <hr>
-    <div>
-      1: By enabling a rule, websites will NOT be able to access that particular resource anymore. However, you can still allow access of some resources using <a data-cmd="options" href="#">custom filtering rules</a>.
-      <br>
-      2, 3: Disable these options to increase performance.
-      <br>
-      4: Instead of temporary disabling all rules to be able to browse a website that is not loading while policy rules are enabled, it is recommended to turn off policy rules permanently in the private browsing mode.
+    <table id="list">
+      <tbody></tbody>
+    </table>
+    <table id="toolbar">
+      <tr>
+        <td><button data-cmd="privacy" title="To bring maximum privacy (this option disables Google Safe browsing)">Full Privacy</button></td>
+        <td align="center"><button data-cmd="security" title="To bring maximum privacy while keeping Google Safe Browsing enabled.">Protect Privacy & Security</button></td>
+        <td align="right"><button data-cmd="reset" title="Reset all preferences back to factory defaults">Reset to Defaults</button></td>
+      </tr>
+    </table>
   </body>
 </html>

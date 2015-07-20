@@ -1,20 +1,26 @@
 {
-  "name": "ipcontrol",
-  "title": "Policy Control (JavaScript, CSS, Media, ...)",
-  "id": "jid1-gHwvGmJ8Ii9oOq",
-  "description": "This extension helps you quickly disable and enable different types of resources such as JavaScript, CSS, and Media. The extension can be used to increase privacy as well as saving bandwidth by blocking unwanted contents.",
+  "name": "ipsettings",
+  "title": "Privacy Settings",
+  "id": "jid1-CKHySAadH4nL6Q",
+  "description": "Alter Firefox's built-in privacy settings with a toolbar panel.",
   "author": "Jeremy Schomery",
   "license": "MPL 2.0",
-  "version": "0.1.5.1",
+  "version": "0.1.3",
   "icon": "data/icons/mac/32.png",
   "icon64": "data/icons/mac/64.png",
   "permissions": {
     "private-browsing": true
   },
   "preferences": [{
-    "type": "control",
-    "label": "Options",
-    "name": "options",
-    "title": "Open options page:"
+    "type": "integer",
+    "name": "font",
+    "value": 12,
+    "title": "Font size of the panel:"
+  },
+  {
+    "type": "bool",
+    "name": "welcome",
+    "value": true,
+    "title": "Show welcome page on upgrade:"
   }]
 }
