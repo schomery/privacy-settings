@@ -1,94 +1,40 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="fontello.css">
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <table id="list">
-      <tr>
-        <td><h1>Network:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="Websockets can cause some dns requests to not be send over the active proxy.">network.websocket.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Tells the server which https page the user came from.">network.http.sendSecureXSiteReferrer</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Browser:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="Websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected.">dom.event.clipboardevents.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement.">browser.safebrowsing.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement.">browser.safebrowsing.downloads.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Disable Google Safe Browsing malware checks. Security risk, but privacy improvement.">browser.safebrowsing.malware.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Allows websites to track users clicks.">browser.send_pings</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Geolocation:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="Disables geolocation.">geo.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Disables logging geolocation requests.">geo.wifi.logging.enabled</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Tracking:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="This is Mozilla’s new built in tracking protection.">privacy.trackingprotection.enabled</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Stats Collection:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="Stability and performance reports.">datareporting.healthreport.service.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Stability and performance reports.">datareporting.healthreport.uploadEnabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Usage statistics reports.">toolkit.telemetry.enabled</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Integration:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="Firefox Hello: Firefox connects to third-party (Telefonica) servers.">loop.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="Pocket Integration: A third-party service for managing a reading list of articles.">browser.pocket.enabled</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Media:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="WebRTC can leak a users IP address from behind a VPN or proxy.">media.peerconnection.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="A binary plugin that enables playback of encrypted media.">media.eme.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="A binary plugin that enables playback of encrypted media.">media.gmp-eme-adobe.enabled</td><td class="icon-toggle-on button">On</td></tr>
-            <tr><td class="pref" title="WebGL is a potential security risk.">webgl.disabled</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><h1>Scripts:</h1></td>
-        <td>
-          <table width="100%">
-            <tr><td class="pref" title="It is not recommended to disable JavaScript.">javascript.enabled</td><td class="icon-toggle-on button">On</td></tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-    <table id="toolbar">
-      <tr>
-        <td><button data-cmd="privacy" title="To bring maximum privacy (this option disables Google Safe browsing)">Full Privacy</button></td>
-        <td align="center"><button data-cmd="security" title="To bring maximum privacy while keeping Google Safe Browsing enabled.">Protect Privacy & Security</button></td>
-        <td align="right"><button data-cmd="reset" title="Reset all preferences back to factory defaults">Reset to Defaults</button></td>
-      </tr>
-    </table>
+    <h1>Enable or Disable Policy Rules<sup>1</sup>:</h1>
+    <ul>
+      <li data-policy="font"><span title="Indicates a font loaded via @font-face rule">Font (@font-face) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="image"><span title="Indicates an image (for example, IMG elements)">Image on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="media"><span title="Indicates a video or audio load">Media (audio and video) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="object"><span title="Indicates a generic object (plugin-handled content typically falls under this category)">Object (plugin-handled content) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="script"><span title="Indicates an executable script (such as JavaScript)">Script (JavaScript) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="stylesheet"><span title="Indicates a stylesheet (for example, STYLE elements)">Stylesheet (CSS) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="subdomain"><span title="Indicates a document contained within another document (for example, IFRAMEs, FRAMES, and OBJECTs)">Sub Document (iframes and frames) on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="request"><span title="Indicates an XMLHttpRequest. Also used for document.load">XMLHttpRequest on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="subrequest"><span title="Indicates a request by a plugin">Plugins on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="websocket"><span title="Indicates a WebSocket load. ">WebSocket on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+      <li data-policy="ping"><span title="Indicates a ping triggered by a click on <A PING='...'> element">Ping on </span><a href='#' data-mod='f'>all</a><span class="button icon-toggle-off">On</span></li>
+    </ul>
+    <center>
+      <input type="button" data-cmd='enable' data-value='true' value="Disable all filters temporarily">
+    </center>
+    <div>
+      <label><input type="checkbox" data-cmd="log-blocked">Log blocked URLs in the Error Console<sup>3</sup>.</label>
+      <br>
+      <label><input type="checkbox" data-cmd="log-passed">Log passed URLs in the Error Console<sup>2</sup>.</label>
+      <br>
+      <label><input type="checkbox" data-cmd="private">Do not apply policy rules in the private browsing mode<sup>4</sup>.</label>
+    </div>
+    <hr>
+    <div>
+      1: By enabling a rule, websites will NOT be able to access that particular resource anymore. However, you can still allow access of some resources using <a data-cmd="options" href="#">custom filtering rules</a>.
+      <br>
+      2, 3: Disable these options to increase performance.
+      <br>
+      4: Instead of temporary disabling all rules to be able to browse a website that is not loading while policy rules are enabled, it is recommended to turn off policy rules permanently in the private browsing mode.
   </body>
 </html>

@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../icons/16.png">
+    <title>Filter Settings - Policy Control</title>
+  </head>
+  <body>
+    <h1>How to</h1>
+    <p>By enabling a policy rule in the toolbar panel, all resources matching the policy rule will be blocked. This might be annoying as some website might not work properly after a policy rule is active. Here you can add exceptions to the global policy rules defined in the toolbar panel by allowing individual resource either per domain or globally (*). To do so, simply add the URL of the resource you would like the extension to allow access, then press "Add" button. Rules section contains all the currently allowed resources (provided they are marked as enabled).</p>
+    <p>Note: If you are not sure the URL of the resource you would like to allow, open the Error Console (Ctrl + Shift +J), then clear it. Now open the toolbar panel and check "Log blocked URLs in the Error Console". If you refresh the page, you will see the list of all blocked resources in the Console. Make sure to uncheck logging, after the resource is found.</p>
+    <h1>Active Policy Rules</h1>
+    <table id="rules">
+      <thead>
+        <tr>
+          <td title="URL to pass the filtering rules">Request URL</td>
+          <td title="Type of the matching expression">Matching</td>
+          <td title="Use * to apply the matching expression to all domains">From Domain</td>
+          <td title="Type of the resource">Resource Type</td>
+          <td title="Is this filter enabled?">Enabled</td>
+          <td title="Is this filter enabled?">Delete</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-id="-1" class="hidden">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="button" value="Delete" data-cmd="delete"></td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>Add a new Policy Rule</h1>
+    <table id="add">
+      <thead>
+        <tr>
+          <td title="URL to pass the filtering rules">Request URL</td>
+          <td title="Type of the matching expression">Matching<sup>1,2,3</sup></td>
+          <td title="Use * to apply the matching expression to all domains">From Domain</td>
+          <td title="Type of the resource">Resource Type</td>
+          <td title="Is this filter enabled?">Enabled</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="http://..."></td>
+          <td>
+            <select>
+              <option value="WildCard">WildCard</option>
+              <option value="RegExp">RegExp</option>
+            </select>
+          </td>
+          <td><input type="text" data-type="domain" placeholder="*"></td>
+          <td>
+            <select data-type="type">
+              <option value="TYPE_SCRIPT">TYPE_SCRIPT</option>
+              <option value="TYPE_SUBDOCUMENT">TYPE_SUBDOCUMENT</option>
+              <option value="TYPE_XMLHTTPREQUEST">TYPE_XMLHTTPREQUEST</option>
+              <option value="TYPE_OBJECT_SUBREQUEST">TYPE_OBJECT_SUBREQUEST</option>
+              <option value="TYPE_FONT">TYPE_FONT</option>
+              <option value="TYPE_IMAGE">TYPE_IMAGE</option>
+              <option value="TYPE_MEDIA">TYPE_MEDIA</option>
+              <option value="TYPE_OBJECT">TYPE_OBJECT</option>
+              <option value="TYPE_STYLESHEET">TYPE_STYLESHEET</option>
+              <option value="TYPE_WEBSOCKET">TYPE_WEBSOCKET</option>
+              <option value="TYPE_PING">TYPE_PING</option>
+            </select>
+          </td>
+          <td align="center"><input type="checkbox" checked=true/></td>
+          <td><input type="button" data-cmd="add" value="Add" disabled="true"/></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      1: WildCard only accepts one asterisk.
+      <br>
+      2: In WildCard matching, a domain name prefixed with an asterisk and dot matches any URL of that domain or a subdomain, using any of http, https, ftp (e.g: "*.example.com")
+      <br>
+      3: In WildCard matching, a URL followed by an asterisk matches that URL and any URL prefixed with the pattern (e.g: "https://foo.com/*")
+    </p>
+  </body>
+</html>

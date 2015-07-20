@@ -1,25 +1,31 @@
 body {
-  background-color: #fff;
+  font-family: arial,sans-serif;
+  font-size: 12px;
   padding: 10px;
   margin: 0;
+  min-width: 400px;
   overflow: hidden;
-  min-width: 500px;
+  background-color: #fff;
 }
-body, table, button {
-  font-family: sans-serif;
-  font-size: 12px;
-  color: #444;
-}
-
 h1 {
-  font-size: 100%;
-  padding: 10px 0 2px 0;
-  margin: 0;
+  font-size: 110%;
+  font-weight: normal;
 }
-
-button {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 3px;
+ul {
+  list-style-type: none;
+  padding-left: 15px;
+}
+li {
+  position: relative;
+}
+li span:last-child {
+  position: absolute;
+  right: 0;
+  text-align: right;
+  width: 100px;
+}
+li:hover {
+  background-color: #eee;
 }
 .button {
   cursor: pointer;
@@ -27,32 +33,4 @@ button {
 }
 .button:before {
   padding-right: 5px;
-}
-
-.pref {
-  text-indent: 15px;
-}
-
-#list {
-  width: 100%;
-  vertical-align: middle;
-  border-collapse: collapse;
-}
-#list td:first-child {
-  width: 120px;
-  text-indent: 5px;
-}
-#list table td:last-child {
-  text-align: right;
-  white-space: nowrap;
-  width: 1%;
-}
-#list>tbody>tr:nth-child(odd) {
-  background-color: #eee;
-}
-
-#toolbar {
-  width: 100%;
-  vertical-align: middle;
-  height: 36px;
 }

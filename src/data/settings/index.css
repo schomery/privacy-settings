@@ -1,0 +1,67 @@
+body, table, input, select {
+  font-family: arial,sans-serif;
+  font-size: 12px;
+}
+h1 {
+  font-size: 120%;
+}
+h1:after {
+    content:' ';
+    display:block;
+    border:1px solid #d0d0d0;
+    border-radius:4px;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+table {
+  width: 100%;
+}
+table thead {
+  text-align: center;
+  font-size: 100%;
+  font-weight: bold;
+}
+input,
+select {
+  height: 22px;
+  border: solid 1px black;
+  margin: 2px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#rules tbody tr:nth-child(even) {
+  background-color: #ccc;
+}
+#rules td:nth-child(2),
+#rules td:nth-child(4),
+#rules td:nth-child(5),
+#rules td:nth-child(6) {
+  white-space: nowrap;
+  width: 1px;
+  padding: 0 5px;
+}
+#rules td:nth-child(3) {
+  width: 120px;
+}
+
+#add thead td:nth-child(2),
+#add thead td:nth-child(4),
+#add thead td:nth-child(5),
+#add thead td:nth-child(6) {
+  white-space: nowrap;
+  width: 1px;
+  padding: 0 5px;
+}
+#add td:nth-child(3) {
+  width: 150px;
+}
+#add input[type=text] {
+  width: 100%;
+}
+#add input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  -moz-appearance: none;
+}
