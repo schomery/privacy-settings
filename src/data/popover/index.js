@@ -60,7 +60,7 @@ self.port.on('show', function () {
 function size () {
   self.port.emit('size', {
     width: parseInt(window.getComputedStyle(document.getElementById('list'), null).width) + 30,
-    height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight)
+    height: 1 + document.documentElement.offsetHeight
   });
 }
 function font (f) {
