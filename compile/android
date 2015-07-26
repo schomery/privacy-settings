@@ -1,0 +1,1 @@
+cfx xpi --force-mobile && wget --post-file=ipsettings.xpi 192.168.1.10:8888/

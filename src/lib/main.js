@@ -1,24 +1,19 @@
 'use strict';
 
-var {ToggleButton} = require('sdk/ui/button/toggle');
-var panels = require('sdk/panel');
 var self = require('sdk/self');
 var prefs = require('sdk/preferences/service');
 var sp = require('sdk/simple-prefs');
 var timers = require('sdk/timers');
 var tabs = require('sdk/tabs');
-var core = require('sdk/view/core');
-var runtime = require('sdk/system/runtime');
 var unload = require('sdk/system/unload');
 var {Cc, Ci} = require('chrome');
 var _ = require('sdk/l10n').get;
+var platform = require('sdk/system').platform;
 var prefService = Cc['@mozilla.org/preferences-service;1']
   .getService(Ci.nsIPrefService);
-
-var path = './icons/' + (runtime.OS === 'Darwin' ? 'mac/' : '');
+var desktop = ['winnt', 'linux', 'darwin'].indexOf(platform) !== -1;
 
 // observer
-
 function observe (pref, callback) {
   var branch = prefService.getBranch(pref);
   var observer = {
@@ -36,7 +31,8 @@ var suggestions = {
   'privacy': {
     'security.ssl.require_safe_negotiation': true,
     'security.ssl.treat_unsafe_negotiation_as_broken': true,
-    'privacy.trackingprotection.enabled': true
+    'privacy.trackingprotection.enabled': true,
+    'webgl.disabled': true
   },
   'security': {
     'security.ssl.require_safe_negotiation': true,
@@ -44,7 +40,8 @@ var suggestions = {
     'browser.safebrowsing.enabled': true,
     'browser.safebrowsing.downloads.enabled': true,
     'browser.safebrowsing.malware.enabled': true,
-    'privacy.trackingprotection.enabled': true
+    'privacy.trackingprotection.enabled': true,
+    'webgl.disabled': true
   }
 };
 
@@ -95,23 +92,6 @@ var ui = {
   }
 };
 
-var button = new ToggleButton({
-  id: 'privacy-settings',
-  label: 'Privacy Settings',
-  icon: {
-    '16': path + '16.png',
-    '32': path + '32.png',
-    '64': path + '64.png',
-  },
-  onChange: function (state) {
-    if (state.checked) {
-      panel.show({
-        position: button
-      });
-    }
-  }
-});
-
 var locale = {};
 var values = {};
 var locked = {};
@@ -123,7 +103,7 @@ for (let category in ui) {
     values[pref] = prefs.get(pref);
     locked[pref] = prefService.getBranch(pref).prefIsLocked('');
     observe(pref, function (p) {
-      panel.port.emit('pref', {
+      inject.port.emit('pref', {
         pref: p,
         value: prefs.get(p)
       });
@@ -131,7 +111,8 @@ for (let category in ui) {
   }
 }
 
-var panel = panels.Panel({
+var module = desktop ? require('./desktop') : require('./android');
+var inject = module.panel({
   contentScriptOptions: {
     font: sp.prefs.font,
     ui: ui,
@@ -140,22 +121,18 @@ var panel = panels.Panel({
     locked: locked
   },
   contentURL: self.data.url('popover/index.html'),
-  contentScriptFile: self.data.url('popover/index.js'),
-  onHide: function () {
-    button.state('window', {checked: false});
-  }
+  contentScriptFile: self.data.url('popover/index.js')
 });
-core.getActiveView(panel).setAttribute('tooltip', 'aHTMLTooltip');
-
-panel.port.on('size', function (obj) {
-  panel.width = obj.width;
-  panel.height = obj.height;
+module.execute(inject);
+inject.port.on('size', function (obj) {
+  inject.width = obj.width;
+  inject.height = obj.height;
 });
 
-panel.port.on('pref', function (obj) {
+inject.port.on('pref', function (obj) {
   prefs.set(obj.pref, obj.value);
 });
-panel.port.on('command', function (obj) {
+inject.port.on('command', function (obj) {
   if (obj.cmd === 'reset') {
     obj.prefs.forEach(function (pref) {
       prefs.reset(pref);
@@ -179,7 +156,7 @@ sp.on('font', function () {
   if (sp.prefs.font > 16) {
     sp.prefs.font = 16;
   }
-  panel.port.emit('font', sp.prefs.font);
+  inject.port.emit('font', sp.prefs.font);
 });
 
 exports.main = function (options) {

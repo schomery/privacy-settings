@@ -4,8 +4,8 @@ html {
 }
 body {
   background-color: #fff;
-  margin: 0;
-  margin: 7px;
+  padding: 0 7px 0 0; /* android */
+  margin: 7px 0 7px 7px;
   min-width: 500px;
 }
 body, table, button {
