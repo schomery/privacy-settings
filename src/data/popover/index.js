@@ -38,15 +38,16 @@ self.port.on('pref', function (obj) {
     return td.textContent === obj.pref;
   }).forEach(function (td) {
     var target = td.nextSibling;
-    if (obj.value) {
-      target.classList.remove('icon-toggle-off');
-      target.classList.add('icon-toggle-on');
-      target.textContent = 'On';
-    }
-    else {
-      target.classList.add('icon-toggle-off');
-      target.classList.remove('icon-toggle-on');
-      target.textContent = 'Off';
+    target.textContent = obj.value ? 'On' : 'Off';
+    if (!obj.locked) {
+      if (obj.value) {
+        target.classList.remove('icon-toggle-off');
+        target.classList.add('icon-toggle-on');
+      }
+      else {
+        target.classList.add('icon-toggle-off');
+        target.classList.remove('icon-toggle-on');
+      }
     }
   });
 });
@@ -91,7 +92,9 @@ for (var category in self.options.ui) {
     }).textContent = pref;
     var value = self.options.values[pref] ? 'On' : 'Off';
     if (self.options.locked[pref]) {
-      html('td', tr).textContent = 'Locked, ' + (self.options.values[pref] ? 'On' : 'Off');
+      html('td', tr, {
+        'class': 'icon-locked'
+      }).textContent = self.options.values[pref] ? 'On' : 'Off';
     }
     else {
       html('td', tr, {

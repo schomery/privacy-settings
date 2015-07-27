@@ -37,7 +37,9 @@ button:active {
   cursor: pointer;
   -moz-user-select: none;
 }
-.button:before {
+.icon-toggle-off:before,
+.icon-toggle-on:before,
+.icon-locked:before {
   padding-right: 5px;
 }
 

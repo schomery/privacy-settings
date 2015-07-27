@@ -40,6 +40,6 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-info:before { content: '\e800'; } /* '' */
+.icon-locked:before { content: '\e802'; } /* '' */
 .icon-toggle-off:before { content: '\e803'; } /* '' */
 .icon-toggle-on:before { content: '\e805'; } /* '' */

@@ -1,7 +1,6 @@
 'use strict';
 
 var self = require('sdk/self');
-var prefs = require('sdk/preferences/service');
 var sp = require('sdk/simple-prefs');
 var timers = require('sdk/timers');
 var tabs = require('sdk/tabs');
@@ -12,6 +11,26 @@ var platform = require('sdk/system').platform;
 var prefService = Cc['@mozilla.org/preferences-service;1']
   .getService(Ci.nsIPrefService);
 var desktop = ['winnt', 'linux', 'darwin'].indexOf(platform) !== -1;
+
+var prefs = (function () {
+  var p = require('sdk/preferences/service');
+  return {
+    get: function (name) {
+      try {
+        return p.get(name);
+      } catch (e) {console.error(e);}
+      return false;
+    },
+    set: function (name, val) {
+      try {
+        p.set(name, val);
+      } catch (e) {console.error(e);}
+    },
+    reset: function (name) {
+      p.reset(name);
+    }
+  }
+})();
 
 // observer
 function observe (pref, callback) {
@@ -105,7 +124,8 @@ for (let category in ui) {
     observe(pref, function (p) {
       inject.port.emit('pref', {
         pref: p,
-        value: prefs.get(p)
+        value: prefs.get(p),
+        locked: locked[p]
       });
     });
   }
