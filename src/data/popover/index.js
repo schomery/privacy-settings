@@ -60,8 +60,8 @@ self.port.on('show', function () {
 
 function size () {
   self.port.emit('size', {
-    width: parseInt(window.getComputedStyle(document.getElementById('list'), null).width) + 30,
-    height: 1 + document.documentElement.offsetHeight
+    width: parseInt(window.getComputedStyle(document.getElementById('list'), null).width) + 50,
+    height: 1 + document.documentElement.offsetHeight + 5
   });
 }
 function font (f) {

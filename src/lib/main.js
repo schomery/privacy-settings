@@ -76,6 +76,7 @@ var ui = {
   },
   'browser': {
     'dom.event.clipboardevents.enabled': {type: 'bol'},
+    'dom.battery.enabled': {type: 'bol'},
     'browser.safebrowsing.enabled': {type: 'bol'},
     'browser.safebrowsing.downloads.enabled': {type: 'bol'},
     'browser.safebrowsing.malware.enabled': {type: 'bol'},
