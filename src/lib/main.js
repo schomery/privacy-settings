@@ -61,6 +61,11 @@ var suggestions = {
     'browser.safebrowsing.malware.enabled': true,
     'privacy.trackingprotection.enabled': true,
     'webgl.disabled': true
+  },
+  'compatible': {
+    'privacy.trackingprotection.enabled': true,
+    'webgl.disabled': true,
+    'network.http.sendSecureXSiteReferrer': true
   }
 };
 
@@ -158,7 +163,7 @@ inject.port.on('command', function (obj) {
       prefs.reset(pref);
     });
   }
-  if (obj.cmd === 'privacy' || obj.cmd === 'security') {
+  if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'compatible') {
     obj.prefs.forEach(function (pref) {
       if (pref in suggestions[obj.cmd]) {
         prefs.set(pref, suggestions[obj.cmd][pref]);
