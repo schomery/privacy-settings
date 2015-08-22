@@ -29,7 +29,7 @@ var prefs = (function () {
     reset: function (name) {
       p.reset(name);
     }
-  }
+  };
 })();
 
 // observer
@@ -81,6 +81,7 @@ var ui = {
     'browser.safebrowsing.downloads.enabled': {type: 'bol'},
     'browser.safebrowsing.malware.enabled': {type: 'bol'},
     'browser.send_pings': {type: 'bol'},
+    'beacon.enabled': {type: 'bol'},
   },
   'geolocation': {
     'geo.enabled': {type: 'bol'},
