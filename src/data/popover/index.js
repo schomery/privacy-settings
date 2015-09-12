@@ -49,6 +49,7 @@ self.port.on('pref', function (obj) {
         target.classList.remove('icon-toggle-on');
       }
     }
+    td.setAttribute('safe', (self.options.suggestions[obj.pref] ? true : false) === obj.value ? 'true' : 'false');
   });
 });
 
@@ -88,6 +89,7 @@ for (var category in self.options.ui) {
     var tr = html('tr', table);
     html('td', tr, {
       'class': 'pref',
+      'safe': (self.options.suggestions[pref] ? true : false) === self.options.values[pref] ? 'true' : 'false',
       'title': self.options.locale[pref],
     }).textContent = pref;
     var value = self.options.values[pref] ? 'On' : 'Off';
@@ -98,7 +100,7 @@ for (var category in self.options.ui) {
     }
     else {
       html('td', tr, {
-        'class': 'icon-toggle-' + value.toLowerCase() + ' button'
+        'class': 'icon-toggle-' + value.toLowerCase() + ' button '
       }).textContent = value;
     }
   }

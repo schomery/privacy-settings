@@ -150,7 +150,8 @@ var inject = module.panel({
     ui: ui,
     locale: locale,
     values: values,
-    locked: locked
+    locked: locked,
+    suggestions: suggestions.privacy
   },
   contentURL: self.data.url('popover/index.html'),
   contentScriptFile: self.data.url('popover/index.js')

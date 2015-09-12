@@ -45,6 +45,23 @@ button:active {
 
 .pref {
   text-indent: 15px;
+  position: relative;
+}
+.pref:after {
+  content: '✓';
+  color: green;
+  display: block;
+  width: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0.5;
+  border-radius: 5px;
+  text-align: center;
+}
+.pref[safe=false]:after{
+  content: '✗';
+  color: red;
 }
 
 #list td:first-child {
@@ -58,6 +75,9 @@ button:active {
 }
 #list>tbody>tr:nth-child(odd) {
   background-color: #eee;
+}
+#list>tbody>tr tr:hover {
+  background-color: #d3e6f3;
 }
 
 #toolbar {
