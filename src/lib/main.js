@@ -51,7 +51,8 @@ var suggestions = {
     'security.ssl.require_safe_negotiation': true,
     'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'privacy.trackingprotection.enabled': true,
-    'webgl.disabled': true
+    'webgl.disabled': true,
+    'network.dns.disablePrefetch': true
   },
   'security': {
     'security.ssl.require_safe_negotiation': true,
@@ -60,19 +61,23 @@ var suggestions = {
     'browser.safebrowsing.downloads.enabled': true,
     'browser.safebrowsing.malware.enabled': true,
     'privacy.trackingprotection.enabled': true,
-    'webgl.disabled': true
+    'webgl.disabled': true,
+    'network.dns.disablePrefetch': true
   },
   'compatible': {
     'privacy.trackingprotection.enabled': true,
     'webgl.disabled': true,
-    'network.http.sendSecureXSiteReferrer': true
+    'network.http.sendSecureXSiteReferrer': true,
+    'network.dns.disablePrefetch': true
   }
 };
 
 var ui = {
   'network': {
     'network.websocket.enabled': {type: 'bol'},
-    'network.http.sendSecureXSiteReferrer': {type: 'bol'}
+    'network.http.sendSecureXSiteReferrer': {type: 'bol'},
+    'network.dns.disablePrefetch': {type: 'bol'},
+    'network.prefetch-next': {type: 'bol'},
   },
   'browser': {
     'dom.event.clipboardevents.enabled': {type: 'bol'},
