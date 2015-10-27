@@ -79,10 +79,8 @@ self.port.on('font', font);
 
 for (var category in self.options.ui) {
   var table = (function (tr) {
-    html('h1', tr).textContent = self.options.locale[category];
-    return html('table', html('td', tr), {
-      'width': '100%'
-    });
+    html('h1', html('td', tr)).textContent = self.options.locale[category];
+    return html('table', html('td', tr));
   })(html('tr', document.querySelector('#list tbody')));
 
   for (var pref in self.options.ui[category]) {
@@ -92,6 +90,7 @@ for (var category in self.options.ui) {
       'safe': (self.options.suggestions[pref] ? true : false) === self.options.values[pref] ? 'true' : 'false',
       'title': self.options.locale[pref],
     }).textContent = pref;
+
     var value = self.options.values[pref] ? 'On' : 'Off';
     if (self.options.locked[pref]) {
       html('td', tr, {

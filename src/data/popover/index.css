@@ -20,7 +20,6 @@ table {
 }
 h1 {
   font-size: 100%;
-  padding: 10px 0 2px 0;
   margin: 0;
 }
 
@@ -48,31 +47,33 @@ button:active {
   position: relative;
 }
 .pref:after {
-  content: '✓';
+  font-family: 'fontello';
+  font-size: 80%;
+  content: '\e800';
   color: green;
   display: block;
-  width: 20px;
+  width: 30px;
   position: absolute;
   right: 0;
   top: 0;
   opacity: 0.5;
-  border-radius: 5px;
   text-align: center;
 }
 .pref[safe=false]:after{
-  content: '✗';
+  content: '\e806';
   color: red;
 }
 
+#list table td {
+  white-space: nowrap;
+}
 #list td:first-child {
-  width: 120px;
   text-indent: 5px;
 }
 #list table td:last-child {
-  text-align: right;
-  white-space: nowrap;
   width: 1%;
 }
+
 #list>tbody>tr:nth-child(odd) {
   background-color: #eee;
 }

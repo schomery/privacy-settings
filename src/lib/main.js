@@ -66,6 +66,7 @@ var suggestions = {
   },
   'compatible': {
     'privacy.trackingprotection.enabled': true,
+    'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'webgl.disabled': true,
     'network.http.sendSecureXSiteReferrer': true,
     'network.dns.disablePrefetch': true
@@ -88,10 +89,6 @@ var ui = {
     'browser.send_pings': {type: 'bol'},
     'beacon.enabled': {type: 'bol'},
   },
-  'geolocation': {
-    'geo.enabled': {type: 'bol'},
-    'geo.wifi.logging.enabled': {type: 'bol'},
-  },
   'tracking': {
     'privacy.trackingprotection.enabled': {type: 'bol'}
   },
@@ -109,6 +106,9 @@ var ui = {
     'media.eme.enabled': {type: 'bol'},
     'media.gmp-eme-adobe.enabled': {type: 'bol'},
     'webgl.disabled': {type: 'bol'}
+  },
+  'geolocation': {
+    'geo.enabled': {type: 'bol'}
   },
   'devices': {
     'camera.control.face_detection.enabled': {type: 'bol'},
