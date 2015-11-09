@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'fontello';
-  src: url('fontello-2.woff') format('woff');
+  src: url('fontello-3.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -40,8 +40,10 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-emo-happy:before { content: '\e800'; } /* '' */
+.icon-security-on:before { content: '\e800'; } /* '' */
+.icon-security-off:before { content: '\e801'; } /* '' */
 .icon-locked:before { content: '\e802'; } /* '' */
 .icon-toggle-off:before { content: '\e803'; } /* '' */
+.icon-privacy-on:before { content: '\e804'; } /* '' */
 .icon-toggle-on:before { content: '\e805'; } /* '' */
-.icon-emo-unhappy:before { content: '\e806'; } /* '' */
+.icon-privacy-off:before { content: '\e807'; } /* '' */

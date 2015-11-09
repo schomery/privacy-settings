@@ -73,85 +73,85 @@ var suggestions = {
   }
 };
 
+// 1,2: private only
+// 3,4: secure only
+// 5,6: secure and private
+// 7,8: secure but not private
+
 var ui = {
   'network': {
-    'network.websocket.enabled': {type: 'bol'},
-    'network.http.sendSecureXSiteReferrer': {type: 'bol'},
-    'network.dns.disablePrefetch': {type: 'bol'},
-    'network.prefetch-next': {type: 'bol'},
+    'network.websocket.enabled': {true: 'nsp', false: 'sp'},
+    'network.http.sendSecureXSiteReferrer': {true: 'nsp', false: 'sp'},
+    'network.dns.disablePrefetch': {true: 'p', false: 'np'},
+    'network.prefetch-next': {true: 'np', false: 'p'},
   },
   'browser': {
-    'dom.event.clipboardevents.enabled': {type: 'bol'},
-    'dom.battery.enabled': {type: 'bol'},
-    'browser.safebrowsing.enabled': {type: 'bol'},
-    'browser.safebrowsing.downloads.enabled': {type: 'bol'},
-    'browser.safebrowsing.malware.enabled': {type: 'bol'},
-    'browser.send_pings': {type: 'bol'},
-    'beacon.enabled': {type: 'bol'},
+    'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
+    'dom.battery.enabled': {true: 'np', false: 'p'},
+    'dom.storage.enabled': {true: 'nsp', false: 'sp'},
+    'browser.safebrowsing.enabled': {true: 'snp', false: 'pns'},
+    'browser.safebrowsing.downloads.enabled': {true: 'snp', false: 'pns'},
+    'browser.safebrowsing.malware.enabled': {true: 'snp', false: 'pns'},
+    'browser.send_pings': {true: 'np', false: 'p'},
+    'beacon.enabled': {true: 'np', false: 'p'},
   },
   'tracking': {
-    'privacy.trackingprotection.enabled': {type: 'bol'}
+    'privacy.trackingprotection.enabled': {true: 'sp', false: 'nsp'}
   },
   'stats-collection': {
-    'datareporting.healthreport.service.enabled': {type: 'bol'},
-    'datareporting.healthreport.uploadEnabled': {type: 'bol'},
-    'toolkit.telemetry.enabled': {type: 'bol'}
+    'datareporting.healthreport.service.enabled': {true: 'np', false: 'p'},
+    'datareporting.healthreport.uploadEnabled': {true: 'np', false: 'p'},
+    'toolkit.telemetry.enabled': {true: 'np', false: 'p'}
   },
   'integration': {
-    'loop.enabled': {type: 'bol'},
-    'browser.pocket.enabled': {type: 'bol'}
+    'loop.enabled': {true: 'nsp', false: 'sp'},
+    'browser.pocket.enabled': {true: 'nsp', false: 'sp'}
   },
   'media': {
-    'media.peerconnection.enabled': {type: 'bol'},
-    'media.eme.enabled': {type: 'bol'},
-    'media.gmp-eme-adobe.enabled': {type: 'bol'},
-    'webgl.disabled': {type: 'bol'}
+    'media.peerconnection.enabled': {true: 'nsp', false: 'sp'},
+    'media.eme.enabled': {true: 'nsp', false: 'sp'},
+    'media.gmp-eme-adobe.enabled': {true: 'nsp', false: 'sp'},
+    'webgl.disabled': {true: 'sp', false: 'nsp'}
   },
   'geolocation': {
-    'geo.enabled': {type: 'bol'}
+    'geo.enabled': {true: 'np', false: 'p'}
   },
   'devices': {
-    'camera.control.face_detection.enabled': {type: 'bol'},
-    'camera.control.autofocus_moving_callback.enabled': {type: 'bol'},
-    'device.sensors.enabled': {type: 'bol'}
+    'camera.control.face_detection.enabled': {true: 'np', false: 'p'},
+    'camera.control.autofocus_moving_callback.enabled': {true: 'np', false: 'p'},
+    'device.sensors.enabled': {true: 'np', false: 'p'}
   },
   'encryption': {
-    'security.tls.unrestricted_rc4_fallback': {type: 'bol'},
-    'security.tls.insecure_fallback_hosts.use_static_list': {type: 'bol'},
-    'security.ssl.require_safe_negotiation': {type: 'bol'},
-    'security.ssl.treat_unsafe_negotiation_as_broken': {type: 'bol'}
+    'security.tls.unrestricted_rc4_fallback': {true: 'ns', false: 's'},
+    'security.tls.insecure_fallback_hosts.use_static_list': {true: 'ns', false: 's'},
+    'security.ssl.require_safe_negotiation': {true: 's', false: 'ns'},
+    'security.ssl.treat_unsafe_negotiation_as_broken': {true: 's', false: 'ns'}
   }
 };
 
-var locale = {};
-var values = {};
-var locked = {};
+var module = desktop ? require('./desktop') : require('./android');
+
 for (let category in ui) {
-  locale[category] = _(category);
   for (let pref in ui[category]) {
-    locale[pref] = _(pref);
-    values[pref] = prefs.get(pref);
-    values[pref] = prefs.get(pref);
-    locked[pref] = prefService.getBranch(pref).prefIsLocked('');
     observe(pref, function (p) {
       inject.port.emit('pref', {
         pref: p,
         value: prefs.get(p),
-        locked: locked[p]
+        locked: prefService.getBranch(p).prefIsLocked('')
       });
     });
   }
 }
 
-var module = desktop ? require('./desktop') : require('./android');
+var names = [].concat.apply([],Object.keys(ui).map(n => ui[n]).map(o => Object.keys(o)));
 var inject = module.panel({
   contentScriptOptions: {
-    font: sp.prefs.font,
     ui: ui,
-    locale: locale,
-    values: values,
-    locked: locked,
-    suggestions: suggestions.privacy
+    font: sp.prefs.font,
+    locales: (() => {let tmp = {}; names.forEach(n => tmp[n] = _(n)); return tmp;})(),
+    values: (() => {let tmp = {}; names.forEach(n => tmp[n] = prefs.get(n)); return tmp;})(),
+    locked: (() => {let tmp = {}; names.forEach(n => tmp[n] = prefService.getBranch(n).prefIsLocked('')); return tmp;})(),
+    types: Object.keys(ui).map(n => ui[n]).reduce((p, c) => Object.assign(p, c), {})
   },
   contentURL: self.data.url('popover/index.html'),
   contentScriptFile: self.data.url('popover/index.js')

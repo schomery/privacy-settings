@@ -49,7 +49,7 @@ self.port.on('pref', function (obj) {
         target.classList.remove('icon-toggle-on');
       }
     }
-    td.setAttribute('safe', (self.options.suggestions[obj.pref] ? true : false) === obj.value ? 'true' : 'false');
+    td.dataset.type = obj.value ? self.options.types[obj.pref].true : self.options.types[obj.pref].false;
   });
 });
 
@@ -79,17 +79,18 @@ self.port.on('font', font);
 
 for (var category in self.options.ui) {
   var table = (function (tr) {
-    html('h1', html('td', tr)).textContent = self.options.locale[category];
+    html('h1', html('td', tr)).textContent = self.options.locales[category];
     return html('table', html('td', tr));
   })(html('tr', document.querySelector('#list tbody')));
 
   for (var pref in self.options.ui[category]) {
     var tr = html('tr', table);
-    html('td', tr, {
+    var td = html('td', tr, {
       'class': 'pref',
-      'safe': (self.options.suggestions[pref] ? true : false) === self.options.values[pref] ? 'true' : 'false',
-      'title': self.options.locale[pref],
-    }).textContent = pref;
+      'title': self.options.locales[pref],
+    });
+    td.dataset.type = self.options.values[pref] ? self.options.types[pref].true : self.options.types[pref].false;
+    td.textContent = pref;
 
     var value = self.options.values[pref] ? 'On' : 'Off';
     if (self.options.locked[pref]) {

@@ -46,22 +46,80 @@ button:active {
   text-indent: 15px;
   position: relative;
 }
-.pref:after {
+.pref:before,  /* security */
+.pref:after {  /* privacy */
   font-family: 'fontello';
-  font-size: 80%;
-  content: '\e800';
-  color: green;
+  font-size: 90%;
+  color: #fff;
   display: block;
-  width: 30px;
+  background-color: green;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 0;
-  opacity: 0.5;
-  text-align: center;
 }
-.pref[safe=false]:after{
-  content: '\e806';
-  color: red;
+.pref:after {
+  content: '\e804';
+  width: 20px;
+}
+.pref:before {
+  width: 18px;
+  right: 32px;
+  content: '\e800';
+}
+
+.pref[data-type=sp]:before{
+  background-color: green;
+}
+.pref[data-type=sp]:after{
+  background-color: green;
+}
+.pref[data-type=nsp]:before{
+  background-color: red;
+  content: '\e801';
+}
+.pref[data-type=nsp]:after{
+  background-color: red;
+  content: '\e807';
+}
+.pref[data-type=s]:before{
+  background-color: green;
+}
+.pref[data-type=s]:after{
+  visibility: hidden;
+}
+.pref[data-type=ns]:before{
+  background-color: red;
+  content: '\e801';
+}
+.pref[data-type=ns]:after{
+  visibility: hidden;
+}
+.pref[data-type=p]:before{
+  visibility: hidden;
+}
+.pref[data-type=p]:after{
+  background-color: green;
+}
+.pref[data-type=np]:before{
+  visibility: hidden;
+}
+.pref[data-type=np]:after{
+  background-color: red;
+  content: '\e807';
+}
+.pref[data-type=snp]:before{
+  background-color: green;
+}
+.pref[data-type=snp]:after{
+  background-color: red;
+  content: '\e807';
+}
+.pref[data-type=pns]:before{
+  background-color: red;
+  content: '\e801';
+}
+.pref[data-type=pns]:after{
+  background-color: green;
 }
 
 #list table td {
