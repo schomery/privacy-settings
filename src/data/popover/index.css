@@ -49,77 +49,47 @@ button:active {
 .pref:before,  /* security */
 .pref:after {  /* privacy */
   font-family: 'fontello';
-  font-size: 90%;
   color: #fff;
-  display: block;
-  background-color: green;
+  display: inline-block;
+  color: #448f22;
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 0;
+  width: 16px;
 }
 .pref:after {
   content: '\e804';
-  width: 20px;
 }
 .pref:before {
-  width: 18px;
-  right: 32px;
+  right: 38px;
   content: '\e800';
 }
-
-.pref[data-type=sp]:before{
-  background-color: green;
-}
-.pref[data-type=sp]:after{
-  background-color: green;
-}
-.pref[data-type=nsp]:before{
-  background-color: red;
+.pref[data-type=pns]:before,
+.pref[data-type=ns]:before,
+.pref[data-type=nsp]:before {
+  color: #9c9c9c;
   content: '\e801';
 }
-.pref[data-type=nsp]:after{
-  background-color: red;
-  content: '\e807';
+.pref[data-type=np]:after,
+.pref[data-type=snp]:after,
+.pref[data-type=nsp]:after {
+  color: #9c9c9c;
 }
-.pref[data-type=s]:before{
-  background-color: green;
+.pref[data-type=sp]:after
+.pref[data-type=sp]:before
+.pref[data-type=pns]:after,
+.pref[data-type=snp]:before,
+.pref[data-type=p]:after,
+.pref[data-type=s]:before {
+  color: #448f22;
 }
-.pref[data-type=s]:after{
-  visibility: hidden;
-}
-.pref[data-type=ns]:before{
-  background-color: red;
-  content: '\e801';
-}
-.pref[data-type=ns]:after{
-  visibility: hidden;
-}
-.pref[data-type=p]:before{
-  visibility: hidden;
-}
-.pref[data-type=p]:after{
-  background-color: green;
-}
-.pref[data-type=np]:before{
-  visibility: hidden;
-}
-.pref[data-type=np]:after{
-  background-color: red;
-  content: '\e807';
-}
-.pref[data-type=snp]:before{
-  background-color: green;
-}
-.pref[data-type=snp]:after{
-  background-color: red;
-  content: '\e807';
-}
-.pref[data-type=pns]:before{
-  background-color: red;
-  content: '\e801';
-}
-.pref[data-type=pns]:after{
-  background-color: green;
+.pref[data-type=np]:before,
+.pref[data-type=p]:before,
+.pref[data-type=ns]:after,
+.pref[data-type=s]:after {
+  content: '\e806';
+  color: #9c9c9c;
+  text-indent: 8px;
 }
 
 #list table td {
@@ -133,7 +103,7 @@ button:active {
 }
 
 #list>tbody>tr:nth-child(odd) {
-  background-color: #eee;
+  background-color: #f2f2f2;
 }
 #list>tbody>tr tr:hover {
   background-color: #d3e6f3;
