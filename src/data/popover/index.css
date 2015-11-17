@@ -58,7 +58,7 @@ button:active {
   width: 16px;
 }
 .pref:after {
-  content: '\e804';
+  content: '\e807';
 }
 .pref:before {
   right: 38px;
@@ -74,6 +74,7 @@ button:active {
 .pref[data-type=snp]:after,
 .pref[data-type=nsp]:after {
   color: #9c9c9c;
+  content: '\e804';
 }
 .pref[data-type=sp]:after
 .pref[data-type=sp]:before
@@ -89,6 +90,10 @@ button:active {
 .pref[data-type=s]:after {
   content: '\e806';
   color: #9c9c9c;
+  text-indent: 9px;
+}
+.pref[data-type=np]:before,
+.pref[data-type=p]:before {
   text-indent: 8px;
 }
 

@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'fontello';
-  src: url('fontello-4.woff') format('woff');
+  src: url('fontello-5.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -40,6 +40,7 @@
 .icon-security-off:before { content: '\e801'; } /* '' */
 .icon-locked:before { content: '\e802'; } /* '' */
 .icon-toggle-off:before { content: '\e803'; } /* '' */
-.icon-privacy:before { content: '\e804'; } /* '' */
+.icon-privacy-on:before { content: '\e804'; } /* '' */
 .icon-toggle-on:before { content: '\e805'; } /* '' */
 .icon-dot:before { content: '\e806'; } /* '' */
+.icon-privacy-off:before { content: '\e807'; } /* '' */
