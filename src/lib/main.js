@@ -68,6 +68,7 @@ var suggestions = {
     'privacy.trackingprotection.enabled': true,
     'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'webgl.disabled': true,
+    'dom.storage.enabled': true,
     'network.http.sendSecureXSiteReferrer': true,
     'network.dns.disablePrefetch': true
   }
@@ -101,7 +102,8 @@ var ui = {
   'stats-collection': {
     'datareporting.healthreport.service.enabled': {true: 'np', false: 'p'},
     'datareporting.healthreport.uploadEnabled': {true: 'np', false: 'p'},
-    'toolkit.telemetry.enabled': {true: 'np', false: 'p'}
+    'toolkit.telemetry.enabled': {true: 'np', false: 'p'},
+    'toolkit.telemetry.unified': {true: 'np', false: 'p'},
   },
   'integration': {
     'loop.enabled': {true: 'nsp', false: 'sp'},
@@ -118,7 +120,6 @@ var ui = {
   },
   'devices': {
     'camera.control.face_detection.enabled': {true: 'np', false: 'p'},
-    'camera.control.autofocus_moving_callback.enabled': {true: 'np', false: 'p'},
     'device.sensors.enabled': {true: 'np', false: 'p'}
   },
   'encryption': {
