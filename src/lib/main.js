@@ -10,7 +10,7 @@ var _ = require('sdk/l10n').get;
 var platform = require('sdk/system').platform;
 var prefService = Cc['@mozilla.org/preferences-service;1']
   .getService(Ci.nsIPrefService);
-var desktop = ['winnt', 'linux', 'darwin'].indexOf(platform) !== -1;
+var desktop = ['winnt', 'linux', 'darwin', 'openbsd'].indexOf(platform) !== -1;
 
 var prefs = (function () {
   var p = require('sdk/preferences/service');
