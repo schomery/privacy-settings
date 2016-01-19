@@ -9,13 +9,29 @@
   <body>
     <table id="list">
       <tbody>
+        <!--
+        <tr>
+          <td><h1>Test</h1></td>
+          <td><table>
+            <tr>
+              <td class="pref">smaple pref</td>
+              <td class="icon-toggle-on">on</td>
+            </tr>
+            <tr>
+              <td class="pref">smaple pref</td>
+              <td><input type="number" placeholder=""></td>
+            </tr>
+          </table></td>
+        </tr>
+        -->
       </tbody>
     </table>
     <table id="toolbar">
       <tr>
-        <td><button data-cmd="privacy" title="To bring maximum privacy (this option disables Google Safe browsing)">Full Privacy</button></td>
-        <td align="center"><button data-cmd="compatible" title="To bring maximum privacy but turning off those settings that might break some secure sites.">Privacy (compatible)</button></td>
-        <td align="center"><button data-cmd="security" title="To bring maximum privacy while keeping Google Safe Browsing enabled.">Privacy & Security</button></td>
+        <td align="center"><button data-cmd="ps-compatible" title="To bring maximum privacy without breaking secure sites and have 'Google Safe Browsing' enabled (recommended)">Privacy (compatible) &amp; Security</button></td>
+        <td align="center"><button data-cmd="p-compatible" title="To bring maximum privacy but turning off those settings that might break secure sites">Privacy (compatible)</button></td>
+        <td align="center"><button data-cmd="security" title="To bring maximum privacy while having 'Google Safe Browsing' enabled (can break secure sites)">Privacy &amp; Security</button></td>
+        <td><button data-cmd="privacy" title="To bring maximum privacy (this option disables 'Google Safe browsing') (can break secure sites)">Full Privacy</button></td>
         <td align="right"><button data-cmd="reset" title="Reset all preferences back to factory defaults">Defaults</button></td>
       </tr>
     </table>

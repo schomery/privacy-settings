@@ -22,6 +22,26 @@ document.addEventListener('click', function (e) {
     value: target.classList.contains('icon-toggle-off')
   });
 }, false);
+document.addEventListener('change', function (e) {
+  var target = e.target;
+  if ([].indexOf.call(target.classList, 'int-pref') === -1) {
+    return;
+  }
+  self.port.emit('pref', {
+    pref: target.parentNode.previousSibling.textContent,
+    value: +target.value
+  });
+}, false);
+document.addEventListener('change', function (e) {
+  var target = e.target;
+  var cmd = target.dataset.cmd;
+  if (cmd) {
+    self.port.emit('command', {
+      cmd: cmd,
+      prefs: [].map.call(document.querySelectorAll('td[class=pref]'), td => td.textContent)
+    });
+  }
+}, false);
 document.addEventListener('click', function (e) {
   var target = e.target;
   var cmd = target.dataset.cmd;
@@ -37,19 +57,30 @@ self.port.on('pref', function (obj) {
   [].filter.call(document.querySelectorAll('td[class=pref]'), function (td) {
     return td.textContent === obj.pref;
   }).forEach(function (td) {
-    var target = td.nextSibling;
-    target.textContent = obj.value ? 'On' : 'Off';
     if (!obj.locked) {
-      if (obj.value) {
-        target.classList.remove('icon-toggle-off');
-        target.classList.add('icon-toggle-on');
+      if (parseInt(obj.value) === obj.value) { // int preference
+        // badge handling
+        td.dataset.type = self.options.types[pref][obj.value] ? self.options.types[pref][obj.value] : 'npns';
+        // element
+        let target = td.nextSibling.childNodes[0];
+        target.value = obj.value;
       }
-      else {
-        target.classList.add('icon-toggle-off');
-        target.classList.remove('icon-toggle-on');
+      else {  // boolean preference
+        // badge handling
+        td.dataset.type = obj.value ? self.options.types[obj.pref].true : self.options.types[obj.pref].false;
+        // element
+        let target = td.nextSibling;
+        target.textContent = obj.value ? 'On' : 'Off';
+        if (obj.value) {
+          target.classList.remove('icon-toggle-off');
+          target.classList.add('icon-toggle-on');
+        }
+        else {
+          target.classList.add('icon-toggle-off');
+          target.classList.remove('icon-toggle-on');
+        }
       }
     }
-    td.dataset.type = obj.value ? self.options.types[obj.pref].true : self.options.types[obj.pref].false;
   });
 });
 
@@ -84,21 +115,35 @@ for (var category in self.options.ui) {
   })(html('tr', document.querySelector('#list tbody')));
 
   for (var pref in self.options.ui[category]) {
-    var tr = html('tr', table);
-    var td = html('td', tr, {
+    let value = self.options.values[pref];
+    let tr = html('tr', table);
+    let td = html('td', tr, {
       'class': 'pref',
       'title': self.options.locales[pref],
     });
-    td.dataset.type = self.options.values[pref] ? self.options.types[pref].true : self.options.types[pref].false;
     td.textContent = pref;
 
-    var value = self.options.values[pref] ? 'On' : 'Off';
     if (self.options.locked[pref]) {
       html('td', tr, {
         'class': 'icon-locked'
-      }).textContent = self.options.values[pref] ? 'On' : 'Off';
+      }).textContent = value ? 'On' : 'Off';
     }
-    else {
+    else if (parseInt(value) === value) { // int preference
+      // badge handling
+      td.dataset.type = self.options.types[pref][value] ? self.options.types[pref][value] : 'npns';
+      // element
+      html('input', html('td', tr), {
+        type: 'number',
+        class: 'int-pref',
+        min: self.options.types[pref].min,
+        max: self.options.types[pref].max
+      }).value = self.options.values[pref];
+    }
+    else { // boolean preference
+      // badge handling
+      td.dataset.type = value ? self.options.types[pref].true : self.options.types[pref].false;
+      //element
+      value = value ? 'On' : 'Off';
       html('td', tr, {
         'class': 'icon-toggle-' + value.toLowerCase() + ' button '
       }).textContent = value;

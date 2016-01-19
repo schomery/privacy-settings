@@ -28,6 +28,7 @@ button {
   padding: 3px;
   margin: 0;
   cursor: pointer;
+  height: 40px;
 }
 button:active {
   color: #888;
@@ -84,9 +85,11 @@ button:active {
 .pref[data-type=s]:before {
   color: #448f22;
 }
+.pref[data-type=npns]:before,
 .pref[data-type=np]:before,
 .pref[data-type=p]:before,
 .pref[data-type=ns]:after,
+.pref[data-type=npns]:after,
 .pref[data-type=s]:after {
   content: '\e806';
   color: #9c9c9c;
@@ -105,6 +108,12 @@ button:active {
 }
 #list table td:last-child {
   width: 1%;
+}
+#list input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  direction: rtl;
 }
 
 #list>tbody>tr:nth-child(odd) {

@@ -47,30 +47,34 @@ function observe (pref, callback) {
 }
 
 var suggestions = {
-  'privacy': {
-    'security.ssl.require_safe_negotiation': true,
-    'security.ssl.treat_unsafe_negotiation_as_broken': true,
-    'privacy.trackingprotection.enabled': true,
+  'general': {
     'webgl.disabled': true,
-    'network.dns.disablePrefetch': true
+    'network.dns.disablePrefetch': true,
+    'security.ssl.treat_unsafe_negotiation_as_broken': true,
+    'privacy.donottrackheader.enabled': true,
+    'privacy.trackingprotection.enabled': true
+  },
+  'privacy': {
+    'security.ssl.require_safe_negotiation': true
   },
   'security': {
     'security.ssl.require_safe_negotiation': true,
-    'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'browser.safebrowsing.enabled': true,
     'browser.safebrowsing.downloads.enabled': true,
-    'browser.safebrowsing.malware.enabled': true,
-    'privacy.trackingprotection.enabled': true,
-    'webgl.disabled': true,
-    'network.dns.disablePrefetch': true
+    'browser.safebrowsing.malware.enabled': true
   },
-  'compatible': {
-    'privacy.trackingprotection.enabled': true,
-    'security.ssl.treat_unsafe_negotiation_as_broken': true,
-    'webgl.disabled': true,
+  'p-compatible': {
     'dom.storage.enabled': true,
+    'dom.event.clipboardevents.enabled': true,
+    'network.http.sendSecureXSiteReferrer': true
+  },
+  'ps-compatible': {
+    'dom.storage.enabled': true,
+    'dom.event.clipboardevents.enabled': true,
     'network.http.sendSecureXSiteReferrer': true,
-    'network.dns.disablePrefetch': true
+    'browser.safebrowsing.enabled': true,
+    'browser.safebrowsing.downloads.enabled': true,
+    'browser.safebrowsing.malware.enabled': true
   }
 };
 
@@ -90,6 +94,8 @@ var ui = {
     'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
     'dom.battery.enabled': {true: 'np', false: 'p'},
     'dom.storage.enabled': {true: 'nsp', false: 'sp'},
+    'dom.enable_user_timing': {true: 'np', false: 'p'},
+    'dom.netinfo.enabled': {true: 'np', false: 'p'},
     'browser.safebrowsing.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.downloads.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.malware.enabled': {true: 'snp', false: 'pns'},
@@ -97,9 +103,11 @@ var ui = {
     'beacon.enabled': {true: 'np', false: 'p'},
   },
   'tracking': {
+    'privacy.donottrackheader.enabled': {true: 'p', false: 'np'},
     'privacy.trackingprotection.enabled': {true: 'sp', false: 'nsp'}
   },
   'stats-collection': {
+    'dom.enable_performance': {true: 'np', false: 'p'},
     'datareporting.healthreport.service.enabled': {true: 'np', false: 'p'},
     'datareporting.healthreport.uploadEnabled': {true: 'np', false: 'p'},
     'toolkit.telemetry.enabled': {true: 'np', false: 'p'},
@@ -126,7 +134,8 @@ var ui = {
     'security.tls.unrestricted_rc4_fallback': {true: 'ns', false: 's'},
     'security.tls.insecure_fallback_hosts.use_static_list': {true: 'ns', false: 's'},
     'security.ssl.require_safe_negotiation': {true: 's', false: 'ns'},
-    'security.ssl.treat_unsafe_negotiation_as_broken': {true: 's', false: 'ns'}
+    'security.ssl.treat_unsafe_negotiation_as_broken': {true: 's', false: 'ns'},
+    ////'accessibility.force_disabled': {min:0, max: 3, '1': 's', '2': 'ns', '3': 'np', '4': 'p', '5': 'sp'}
   }
 };
 
@@ -172,10 +181,11 @@ inject.port.on('command', function (obj) {
       prefs.reset(pref);
     });
   }
-  if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'compatible') {
+  if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'p-compatible' || obj.cmd === 'ps-compatible') {
+    let list = Object.assign({}, suggestions.general, suggestions[obj.cmd]);
     obj.prefs.forEach(function (pref) {
-      if (pref in suggestions[obj.cmd]) {
-        prefs.set(pref, suggestions[obj.cmd][pref]);
+      if (pref in list) {
+        prefs.set(pref, list[pref]);
       }
       else {
         prefs.set(pref, false);
