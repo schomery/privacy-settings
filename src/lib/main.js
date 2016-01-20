@@ -66,7 +66,8 @@ var suggestions = {
   'p-compatible': {
     'dom.storage.enabled': true,
     'dom.event.clipboardevents.enabled': true,
-    'network.http.sendSecureXSiteReferrer': true
+    'network.http.sendSecureXSiteReferrer': true,
+    'layout.css.visited_links_enabled': true
   },
   'ps-compatible': {
     'dom.storage.enabled': true,
@@ -74,7 +75,8 @@ var suggestions = {
     'network.http.sendSecureXSiteReferrer': true,
     'browser.safebrowsing.enabled': true,
     'browser.safebrowsing.downloads.enabled': true,
-    'browser.safebrowsing.malware.enabled': true
+    'browser.safebrowsing.malware.enabled': true,
+    'layout.css.visited_links_enabled': true
   }
 };
 
@@ -92,10 +94,11 @@ var ui = {
   },
   'browser': {
     'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
-    'dom.battery.enabled': {true: 'np', false: 'p'},
     'dom.storage.enabled': {true: 'nsp', false: 'sp'},
+    'dom.battery.enabled': {true: 'np', false: 'p'},
     'dom.enable_user_timing': {true: 'np', false: 'p'},
     'dom.netinfo.enabled': {true: 'np', false: 'p'},
+    'layout.css.visited_links_enabled': {true: 'np', false: 'p'},
     'browser.safebrowsing.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.downloads.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.malware.enabled': {true: 'snp', false: 'pns'},

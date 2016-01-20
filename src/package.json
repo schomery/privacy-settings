@@ -11,6 +11,11 @@
   "permissions": {
     "private-browsing": true
   },
+  "contributors": [
+    "amq",
+    "TheCreeper",
+    "ChrisAntaki"
+  ],
   "preferences": [{
     "type": "integer",
     "name": "font",
