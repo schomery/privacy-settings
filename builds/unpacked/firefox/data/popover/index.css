@@ -1,0 +1,128 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+  padding: 0 7px 0 0; /* android */
+  margin: 7px 0 7px 7px;
+  min-width: 500px;
+}
+body, table, button {
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #444;
+}
+table {
+  vertical-align: middle;
+  border-collapse: collapse;
+  width: 100%;
+}
+h1 {
+  font-size: 100%;
+  margin: 0;
+}
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 3px;
+  margin: 0;
+  cursor: pointer;
+  height: 40px;
+}
+button:active {
+  color: #888;
+}
+.button {
+  cursor: pointer;
+  -moz-user-select: none;
+}
+.icon-toggle-off:before,
+.icon-toggle-on:before,
+.icon-locked:before {
+  padding-right: 5px;
+}
+
+.pref {
+  text-indent: 15px;
+  position: relative;
+}
+.pref:before,  /* security */
+.pref:after {  /* privacy */
+  font-family: 'fontello';
+  color: #fff;
+  display: inline-block;
+  color: #448f22;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  width: 16px;
+}
+.pref:after {
+  content: '\e807';
+}
+.pref:before {
+  right: 38px;
+  content: '\e800';
+}
+.pref[data-type=pns]:before,
+.pref[data-type=ns]:before,
+.pref[data-type=nsp]:before {
+  color: #9c9c9c;
+  content: '\e801';
+}
+.pref[data-type=np]:after,
+.pref[data-type=snp]:after,
+.pref[data-type=nsp]:after {
+  color: #9c9c9c;
+  content: '\e804';
+}
+.pref[data-type=sp]:after
+.pref[data-type=sp]:before
+.pref[data-type=pns]:after,
+.pref[data-type=snp]:before,
+.pref[data-type=p]:after,
+.pref[data-type=s]:before {
+  color: #448f22;
+}
+.pref[data-type=npns]:before,
+.pref[data-type=np]:before,
+.pref[data-type=p]:before,
+.pref[data-type=ns]:after,
+.pref[data-type=npns]:after,
+.pref[data-type=s]:after {
+  content: '\e806';
+  color: #9c9c9c;
+  text-indent: 9px;
+}
+.pref[data-type=np]:before,
+.pref[data-type=p]:before {
+  text-indent: 8px;
+}
+
+#list table td {
+  white-space: nowrap;
+}
+#list td:first-child {
+  text-indent: 5px;
+}
+#list table td:last-child {
+  width: 1%;
+}
+#list input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  direction: rtl;
+}
+
+#list>tbody>tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+#list>tbody>tr tr:hover {
+  background-color: #d3e6f3;
+}
+
+#toolbar {
+  margin-top: 10px;
+}
