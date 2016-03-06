@@ -5,9 +5,7 @@
   "description": "Alter Firefox's built-in privacy settings with a toolbar panel.",
   "author": "Jeremy Schomery",
   "license": "MPL 2.0",
-  "version": "0.1.9b2",
-  "icon": "data/icons/32.png",
-  "icon64": "data/icons/64.png",
+  "version": "0.1.9.1",
   "main": "./lib/main.js",
   "permissions": {
     "private-browsing": true
@@ -17,6 +15,10 @@
     "TheCreeper",
     "ChrisAntaki"
   ],
+  "engines": {
+    "firefox": ">=29.0",
+    "fennec": ">=29.0"
+  },
   "preferences": [{
     "type": "integer",
     "name": "font",
