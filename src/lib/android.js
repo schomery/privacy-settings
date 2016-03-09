@@ -51,10 +51,16 @@ function close () {
     }
   }
 }
-var id = getNativeWindow().menu.add(_('name'), null, function () {
-  close();
-  tabs.open(url);
-});
+var id = (function (window) {
+  return window.menu.add({
+    name: _('name'),
+    parent: window.menu.toolsMenuID,
+    callback: () => {
+      close();
+      tabs.open(url);
+    }
+  });
+})(getNativeWindow());
 
 exports.execute = function () {
 

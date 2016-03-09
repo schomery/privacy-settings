@@ -97,6 +97,7 @@ var ui = {
     'dom.storage.enabled': {true: 'nsp', false: 'sp'},
     'dom.battery.enabled': {true: 'np', false: 'p'},
     'dom.enable_user_timing': {true: 'np', false: 'p'},
+    'dom.enable_resource_timing': {true: 'np', false: 'p'},
     'dom.netinfo.enabled': {true: 'np', false: 'p'},
     'layout.css.visited_links_enabled': {true: 'np', false: 'p'},
     'browser.safebrowsing.enabled': {true: 'snp', false: 'pns'},
