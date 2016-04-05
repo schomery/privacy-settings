@@ -6,7 +6,9 @@ var timers = require('sdk/timers');
 var tabs = require('sdk/tabs');
 var unload = require('sdk/system/unload');
 var {Cc, Ci} = require('chrome');
+var array = require('sdk/util/array');
 var _ = require('sdk/l10n').get;
+var pageMod = require('sdk/page-mod');
 var platform = require('sdk/system').platform;
 var prefService = Cc['@mozilla.org/preferences-service;1']
   .getService(Ci.nsIPrefService);
@@ -32,10 +34,19 @@ var prefs = (function () {
   };
 })();
 
+function close () {
+  for (let tab of tabs) {
+    if (tab.url.indexOf(self.data.url('')) === 0) {
+      tab.close();
+    }
+  }
+}
+unload.when(close);
+
 // observer
 function observe (pref, callback) {
-  var branch = prefService.getBranch(pref);
-  var observer = {
+  let branch = prefService.getBranch(pref);
+  let observer = {
     observe: function () {
       callback(pref);
     }
@@ -44,6 +55,7 @@ function observe (pref, callback) {
   unload.when(function () {
     branch.removeObserver('', observer);
   });
+  return true;
 }
 
 var suggestions = {
@@ -196,6 +208,11 @@ inject.port.on('command', function (obj) {
       }
     });
   }
+  if (obj.cmd === 'advanced-settings') {
+    close();
+    tabs.open(self.data.url('advanced-settings/index.html'));
+    inject.hide();
+  }
 });
 sp.on('font', function () {
   if (sp.prefs.font < 10) {
@@ -223,3 +240,40 @@ exports.main = function (options) {
     }
   }
 };
+
+// advanced settings
+(function (workers) {
+  let _prefs = {};
+  function report (name) {
+    workers.forEach(w => w.port.emit('changed', {
+      name,
+      value: prefs.get(name)
+    }));
+  }
+  function register (name) {
+    _prefs[name] = _prefs[name] || observe(name, () => report(name));
+    report(name);
+  }
+  function changed (obj) {
+    prefs.set(obj.name, obj.value);
+  }
+  function command (obj) {
+    if (obj.command === 'reset') {
+      prefs.reset(obj.name);
+    }
+  }
+
+  pageMod.PageMod({
+    include: self.data.url('advanced-settings/index.html'),
+    contentScriptFile: self.data.url('advanced-settings/index.js'),
+    attachTo: ['top', 'existing'],
+    onAttach: function (worker) {
+      worker.on('pageshow', () => array.add(workers, worker));
+      worker.on('pagehide', () => array.remove(workers, worker));
+      worker.on('detach', () => array.remove(workers, worker));
+      worker.port.on('register', register);
+      worker.port.on('changed', changed);
+      worker.port.on('cmd', command);
+    }
+  });
+})([]);

@@ -1,0 +1,49 @@
+body, table, button {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #444;
+}
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 0px 10px;
+}
+
+.h-flex {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+.v-flex {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 10px 0;
+}
+spacer {
+  display: inline;
+  flex: 1;
+}
+span {
+  display: flex;
+  align-items: center;
+}
+input[type=range] + span[type=range] {
+  width: 20px;
+  justify-content: center;
+}
+input[type=checkbox] + span[type=checkbox] {
+  width: 40px;
+  justify-content: center;
+}
+input[type=number],
+input[type=text] {
+  flex: 1;
+  margin: 0 10px;
+}
+span[type=tooltip] {
+  font-size: 90.9%;
+  color: graytext;
+  margin: .2em 0 0 1em;
+  white-space: pre-wrap;
+}

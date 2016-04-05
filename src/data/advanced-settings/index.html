@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title data-l10n-id="avdsttngs.title">Advanced Settings :: Privacy Settings</title>
+    <link rel="stylesheet" href="index.css">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../icons/32.png">
+  </head>
+  <body>
+    <div style="display: none;">
+      <span data-l10n-id="avdsttngs.network.http.sendRefererHeader.0">0: Never send the referring URL (maximum privacy; breaks some sites)</span>
+      <span data-l10n-id="avdsttngs.network.http.sendRefererHeader.1">1: Send only when links are clicked</span>
+      <span data-l10n-id="avdsttngs.network.http.sendRefererHeader.2">2: Send for links and images (default)</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.0">0: Always send referrer (default)</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.1">1: Only send if base domains match</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.2">2: Only send if hosts match</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.0">0: Send full URI (default)</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.1">1: Scheme, host, port and path</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.2">2: Scheme, host and port</span>
+      <span data-l10n-id="avdsttngs.network.cookie.cookieBehavior.0">0: All cookies are allowed (default)</span>
+      <span data-l10n-id="avdsttngs.network.cookie.cookieBehavior.1">1: Only cookies from the originating server are allowed</span>
+      <span data-l10n-id="avdsttngs.network.cookie.cookieBehavior.2">2: No cookies are allowed</span>
+      <span data-l10n-id="avdsttngs.network.cookie.cookieBehavior.3">3: Third-party cookies are allowed only if that site has stored cookies already from a previous visit</span>
+      <span data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.0">0: The cookie's lifetime is supplied by the server (default)</span>
+      <span data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.1">1: The user is prompted for the cookie's lifetime</span>
+      <span data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.2">2: The cookie expires at the end of the session (when the browser closes)</span>
+      <span data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.3">3: The cookie lasts for the number of days specified by network.cookie.lifetime.days</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.spoofSource.true">true: Spoof the referrer and use the target URI instead</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.spoofSource.false">false: Send the referrer (default)</span>
+      <span data-l10n-id="avdsttngs.network.predictor.enabled.true">true: May leak information to third-party sites through Firefox's Network Prediction features (default)</span>
+      <span data-l10n-id="avdsttngs.network.predictor.enabled.false">false: Prevents leaking information to third-party sites through Firefox's Network Prediction features</span>
+      <span data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.true">true: Third-party cookies are allowed within the limits of the general cookie acceptance settings but only retained for the current session</span>
+      <span data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.false">false: Third-party cookies are allowed within the limits of the general cookie acceptance and retention settings (default)</span>
+      <span data-l10n-id="avdsttngs.browser.search.suggest.enabled.true">true: Retrieve and display search term suggestions for search plugins that support it (default)</span>
+      <span data-l10n-id="avdsttngs.browser.search.suggest.enabled.false">false: Disable search suggestions</span>
+      <span data-l10n-id="avdsttngs.clipboard.autocopy.true">true: Automatically copy contents of selections to the clipboard (default in Linux)</span>
+      <span data-l10n-id="avdsttngs.clipboard.autocopy.false">false: Do not auto-copy selections (default everywhere else)</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.http.sendRefererHeader</span>
+        <spacer></spacer>
+        <input type="range" name="network.http.sendRefererHeader" min="0" max="2">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.sendRefererHeader.rcmd">Recommended value: 2</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.http.referer.XOriginPolicy</span>
+        <spacer></spacer>
+        <input type="range" name="network.http.referer.XOriginPolicy" min="0" max="2">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.rcmd">Recommended value: 2</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.http.referer.trimmingPolicy</span>
+        <spacer></spacer>
+        <input type="range" name="network.http.referer.trimmingPolicy" min="0" max="2">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.rcmd">Recommended value: 2</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.http.referer.spoofSource</span>
+        <spacer></spacer>
+        <input type="checkbox" name="network.http.referer.spoofSource">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.spoofSource.rcmd">Recommended value: true</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.predictor.enabled</span>
+        <spacer></spacer>
+        <input type="checkbox" name="network.predictor.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.predictor.enabled.rcmd">Recommended value: true (Disabling may slow-down your browsing)</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.http.speculative-parallel-limit</span>
+        <input type="number" name="network.http.speculative-parallel-limit">
+        <input type="button" data-cmd="reset" value="Reset">
+      </div>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.speculative-parallel-limit.descp">Prevent Firefox from making connections when you hover over links in the browser</span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.speculative-parallel-limit.rcmd">Recommended value: 0</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.cookie.cookieBehavior</span>
+        <spacer></spacer>
+        <input type="range" name="network.cookie.cookieBehavior" min="0" max="3">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.cookieBehavior.rcmd">Recommended value: 1</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.cookie.lifetimePolicy</span>
+        <spacer></spacer>
+        <input type="range" name="network.cookie.lifetimePolicy" min="0" max="3">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.rcmd">Recommended value: 2</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>network.cookie.thirdparty.sessionOnly</span>
+        <spacer></spacer>
+        <input type="checkbox" name="network.cookie.thirdparty.sessionOnly">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.rcmd">Recommended value: true</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>browser.search.suggest.enabled</span>
+        <spacer></spacer>
+        <input type="checkbox" name="browser.search.suggest.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.browser.search.suggest.enabled.rcmd">Recommended value: false</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>clipboard.autocopy</span>
+        <spacer></spacer>
+        <input type="checkbox" name="clipboard.autocopy">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.clipboard.autocopy.rcmd">Recommended value: false</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>loop.facebook.shareUrl</span>
+        <input type="text" name="loop.facebook.shareUrl">
+        <input type="button" data-cmd="reset" value="Reset">
+      </div>
+      <span type="tooltip" data-l10n-id="avdsttngs.loop.facebook.shareUrl.rcmd">Recommended value: ""</span>
+    </div>
+  </body>
+</html>

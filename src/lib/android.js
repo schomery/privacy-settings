@@ -44,27 +44,21 @@ exports.panel = function (obj) {
   };
 };
 
-function close () {
-  for (let tab of tabs) {
-    if (tab && (tab.url || '').indexOf(url) === 0) {
-      tab.close();
-    }
-  }
-}
 var id = (function (window) {
   return window.menu.add({
     name: _('name'),
     parent: window.menu.toolsMenuID,
     callback: () => {
-      close();
+      for (let tab of tabs) {
+        if (tab && (tab.url || '').indexOf(url) === 0) {
+          tab.close();
+        }
+      }
       tabs.open(url);
     }
   });
 })(getNativeWindow());
 
-exports.execute = function () {
-
-};
+exports.execute = function () {};
 
 unload.when(() => getNativeWindow().menu.remove(id));
-unload.when(close);
