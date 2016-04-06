@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../icons/32.png">
   </head>
   <body>
+    <h1 data-l10n-id="avdsttngs.title">Advanced Settings :: Privacy Settings</h1>
     <div style="display: none;">
       <span data-l10n-id="avdsttngs.network.http.sendRefererHeader.0">0: Never send the referring URL (maximum privacy; breaks some sites)</span>
       <span data-l10n-id="avdsttngs.network.http.sendRefererHeader.1">1: Send only when links are clicked</span>
@@ -36,123 +37,161 @@
       <span data-l10n-id="avdsttngs.browser.search.suggest.enabled.false">false: Disable search suggestions</span>
       <span data-l10n-id="avdsttngs.clipboard.autocopy.true">true: Automatically copy contents of selections to the clipboard (default in Linux)</span>
       <span data-l10n-id="avdsttngs.clipboard.autocopy.false">false: Do not auto-copy selections (default everywhere else)</span>
+      <span data-l10n-id="avdsttngs.loop.logDomains.true">true: Allow Firefox Hello to log domains (default)</span>
+      <span data-l10n-id="avdsttngs.loop.logDomains.false">false: Disable domain logging if Firefox Hello is not entirely disabled</span>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.http.sendRefererHeader</span>
+        <span>network.http.send<b>Referer</b>Header</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="range" name="network.http.sendRefererHeader" min="0" max="2">
         <span type="range"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.sendRefererHeader.rcmd">Recommended value: 2</span>
+      <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.http.referer.XOriginPolicy</span>
+        <span>network.http.<b>referer</b>.XOriginPolicy</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="range" name="network.http.referer.XOriginPolicy" min="0" max="2">
         <span type="range"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.rcmd">Recommended value: 2</span>
+      <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.http.referer.trimmingPolicy</span>
+        <span>network.http.<b>referer</b>.trimmingPolicy</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="range" name="network.http.referer.trimmingPolicy" min="0" max="2">
         <span type="range"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.rcmd">Recommended value: 2</span>
+      <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.http.referer.spoofSource</span>
+        <span>network.http.<b>referer</b>.spoofSource</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="checkbox" name="network.http.referer.spoofSource">
         <span type="checkbox"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.spoofSource.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
         <span>network.predictor.enabled</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="checkbox" name="network.predictor.enabled">
         <span type="checkbox"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.predictor.enabled.rcmd">Recommended value: true (Disabling may slow-down your browsing)</span>
+      <a type="tooltip" href="https://github.com/RequestPolicyContinued/requestpolicy/issues/638" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
         <span>network.http.speculative-parallel-limit</span>
+        <label>prv</label>
         <input type="number" name="network.http.speculative-parallel-limit">
         <input type="button" data-cmd="reset" value="Reset">
       </div>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.speculative-parallel-limit.descp">Prevent Firefox from making connections when you hover over links in the browser</span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.speculative-parallel-limit.rcmd">Recommended value: 0</span>
+      <a type="tooltip" href="http://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.cookie.cookieBehavior</span>
+        <span>network.<b>cookie</b>.cookieBehavior</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="range" name="network.cookie.cookieBehavior" min="0" max="3">
         <span type="range"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.cookieBehavior.rcmd">Recommended value: 1</span>
+      <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.cookieBehavior" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.cookie.lifetimePolicy</span>
+        <span>network.<b>cookie</b>.lifetimePolicy</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="range" name="network.cookie.lifetimePolicy" min="0" max="3">
         <span type="range"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.rcmd">Recommended value: 2</span>
+      <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.lifetimePolicy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>network.cookie.thirdparty.sessionOnly</span>
+        <span>network.<b>cookie</b>.thirdparty.sessionOnly</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="checkbox" name="network.cookie.thirdparty.sessionOnly">
         <span type="checkbox"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>browser.search.suggest.enabled</span>
+        <span>browser.<b>search</b>.suggest.enabled</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="checkbox" name="browser.search.suggest.enabled">
         <span type="checkbox"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.browser.search.suggest.enabled.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="http://kb.mozillazine.org/Browser.search.suggest.enabled" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>clipboard.autocopy</span>
+        <span><b>clipboard</b>.autocopy</span>
+        <label>prv</label>
         <spacer></spacer>
         <input type="checkbox" name="clipboard.autocopy">
         <span type="checkbox"></span>
       </div>
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.clipboard.autocopy.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="http://kb.mozillazine.org/Clipboard.autocopy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">
-        <span>loop.facebook.shareUrl</span>
+        <span>loop.<b>facebook</b>.shareUrl</span>
+        <label>prv</label>
         <input type="text" name="loop.facebook.shareUrl">
         <input type="button" data-cmd="reset" value="Reset">
       </div>
       <span type="tooltip" data-l10n-id="avdsttngs.loop.facebook.shareUrl.rcmd">Recommended value: ""</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/42" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span><b>loop</b>.logDomains</span>
+        <label>prv</label>
+        <spacer></spacer>
+        <input type="checkbox" name="loop.logDomains">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.loop.logDomains.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="https://github.com/pyllyukko/user.js/issues/135" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
   </body>
 </html>
