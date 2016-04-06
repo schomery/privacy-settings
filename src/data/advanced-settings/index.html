@@ -39,6 +39,20 @@
       <span data-l10n-id="avdsttngs.clipboard.autocopy.false">false: Do not auto-copy selections (default everywhere else)</span>
       <span data-l10n-id="avdsttngs.loop.logDomains.true">true: Allow Firefox Hello to log domains (default)</span>
       <span data-l10n-id="avdsttngs.loop.logDomains.false">false: Disable domain logging if Firefox Hello is not entirely disabled</span>
+      <span data-l10n-id="avdsttngs.browser.safebrowsing.downloads.enabled.true">true: Enables application reputation checks for downloaded files (default)</span>
+      <span data-l10n-id="avdsttngs.browser.safebrowsing.downloads.enabled.false">false: Disables application reputation checks for downloaded files (it is recommended to disable browser.safebrowsing.downloads.remote.enabled from the main panel instead)</span>
+    </div>
+    <div class="v-flex">
+      <div class="h-flex">
+        <span>browser.safebrowsing.<b>downloads</b>.enabled</span>
+        <label>prv</label>
+        <spacer></spacer>
+        <input type="checkbox" name="browser.safebrowsing.downloads.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.browser.safebrowsing.downloads.enabled.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/19" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex">
       <div class="h-flex">

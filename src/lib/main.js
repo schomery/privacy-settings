@@ -72,7 +72,7 @@ var suggestions = {
   'security': {
     'security.ssl.require_safe_negotiation': true,
     'browser.safebrowsing.enabled': true,
-    'browser.safebrowsing.downloads.enabled': true,
+    'browser.safebrowsing.downloads.remote.enabled': true,
     'browser.safebrowsing.malware.enabled': true
   },
   'p-compatible': {
@@ -86,7 +86,7 @@ var suggestions = {
     'dom.event.clipboardevents.enabled': true,
     'network.http.sendSecureXSiteReferrer': true,
     'browser.safebrowsing.enabled': true,
-    'browser.safebrowsing.downloads.enabled': true,
+    'browser.safebrowsing.downloads.remote.enabled': true,
     'browser.safebrowsing.malware.enabled': true,
     'layout.css.visited_links_enabled': true
   }
@@ -113,7 +113,7 @@ var ui = {
     'dom.netinfo.enabled': {true: 'np', false: 'p'},
     'layout.css.visited_links_enabled': {true: 'np', false: 'p'},
     'browser.safebrowsing.enabled': {true: 'snp', false: 'pns'},
-    'browser.safebrowsing.downloads.enabled': {true: 'snp', false: 'pns'},
+    'browser.safebrowsing.downloads.remote.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.malware.enabled': {true: 'snp', false: 'pns'},
     'browser.send_pings': {true: 'np', false: 'p'},
     'beacon.enabled': {true: 'np', false: 'p'},
