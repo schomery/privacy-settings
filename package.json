@@ -1,0 +1,48 @@
+{
+  "name": "ipsettings",
+  "title": "Privacy Settings",
+  "id": "jid1-CKHySAadH4nL6Q@jetpack",
+  "description": "Alter Firefox's built-in privacy settings with a toolbar panel.",
+  "author": "Jeremy Schomery",
+  "license": "MPL 2.0",
+  "version": "0.2.0b4",
+  "main": "./lib/main.js",
+  "permissions": {
+    "private-browsing": true
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-change": "^1.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-if": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-shell": "^0.5.2",
+    "gulp-util": "^3.0.7",
+    "gulp-wait": "0.0.2",
+    "gulp-zip": "^3.2.0",
+    "run-sequence": "^1.1.5"
+  },
+  "contributors": [
+    "amq",
+    "TheCreeper",
+    "ChrisAntaki"
+  ],
+  "engines": {
+    "firefox": ">=29.0",
+    "fennec": ">=29.0"
+  },
+  "preferences": [{
+    "type": "integer",
+    "name": "font",
+    "value": 12,
+    "title": "Font size of the panel:"
+  },
+  {
+    "type": "bool",
+    "name": "welcome",
+    "value": true,
+    "title": "Show welcome page on upgrade:"
+  }]
+}
