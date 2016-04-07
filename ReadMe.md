@@ -6,18 +6,18 @@ For FAQs and instruction on how to use the extension please visit http://firefox
 
 ## Downloads:
 Production version can be found at https://addons.mozilla.org/en-US/firefox/addon/privacy-settings/
-Developer version can be found at https://github.com/schomery/privacy-settings/blob/master/builds/packed/firefox.xpi?raw=true
+Developer version can be found at https://github.com/schomery/privacy-settings/tree/master/builds
 
 ## How to build from source code
 If you have modified the source code and want to see the modified version in action, you can simply compile the project yourself. Run the following command in the terminal
 ```bash
-gulp firefox
+cd src
+jpm xpi
 ```
+This will generate an `XPI` file for you in the src directory. Drop the file in your Firefox browser
 Notes:
 
-1. The compiler is based on [nodejs](https://nodejs.org/en/) and [gulp](http://gulpjs.com/)
-2. You also need to have these modules available, https://github.com/schomery/privacy-settings/blob/master/gulpfile.js#L3-L14
-
+1. To build this project you need to have [nodejs](https://nodejs.org/en/) installed. Also make sure `jpm` module is also globally available; [https://www.npmjs.com/package/jpm](https://www.npmjs.com/package/jpm)
 
 ## Technical notes:
 #### Temporary Locking a Preference
