@@ -41,8 +41,17 @@
       <span data-l10n-id="avdsttngs.loop.logDomains.false">false: Disable domain logging if Firefox Hello is not entirely disabled</span>
       <span data-l10n-id="avdsttngs.browser.safebrowsing.downloads.enabled.true">true: Enables application reputation checks for downloaded files (default)</span>
       <span data-l10n-id="avdsttngs.browser.safebrowsing.downloads.enabled.false">false: Disables application reputation checks for downloaded files (it is recommended to disable browser.safebrowsing.downloads.remote.enabled from the main panel instead)</span>
+      <span data-l10n-id="avdsttngs.security.ssl.enable_ocsp_stapling.true">true: Enable OCSP stapling (default)</span>
+      <span data-l10n-id="avdsttngs.security.ssl.enable_ocsp_stapling.false">false: Disable OCSP stapling</span>
+      <span data-l10n-id="avdsttngs.security.ssl.enable_ocsp_must_staple.true">true: Website owners (not the issuing CA) respond to the OCSP queries</span>
+      <span data-l10n-id="avdsttngs.security.ssl.enable_ocsp_must_staple.false">false: Issuing CA respond to the OCSP queries</span>
+      <span data-l10n-id="avdsttngs.security.OCSP.require.true">true: Check for certificate revocations (may break some websites like YouTube)</span>
+      <span data-l10n-id="avdsttngs.security.OCSP.require.false">false: Do not check for certificate revocations (default)</span>
+      <span data-l10n-id="avdsttngs.security.OCSP.enabled.0">0: Do not query OCSP from the responder server</span>
+      <span data-l10n-id="avdsttngs.security.OCSP.enabled.1">1: Validate only certificates that specify an OCSP service URL (default)</span>
+      <span data-l10n-id="avdsttngs.security.OCSP.enabled.2">2: Enable and use values in security.OCSP.URL and security.OCSP.signing</span>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>browser.safebrowsing.<b>downloads</b>.enabled</span>
         <label>prvcy</label>
@@ -55,7 +64,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.browser.safebrowsing.downloads.enabled.rcmd">Recommended value: true</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/19" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>network.http.send<b>Referer</b>Header</span>
         <label>prvcy</label>
@@ -67,7 +76,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.sendRefererHeader.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>network.http.<b>referer</b>.XOriginPolicy</span>
         <label>prvcy</label>
@@ -79,7 +88,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>network.http.<b>referer</b>.trimmingPolicy</span>
         <label>prvcy</label>
@@ -91,7 +100,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>network.http.<b>referer</b>.spoofSource</span>
         <label>prvcy</label>
@@ -103,7 +112,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.spoofSource.rcmd">Recommended value: true</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.predictor.enabled</span>
         <label>prvcy</label>
@@ -115,7 +124,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.predictor.enabled.rcmd">Recommended value: true (Disabling may slow-down your browsing)</span>
       <a type="tooltip" href="https://github.com/RequestPolicyContinued/requestpolicy/issues/638" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>network.http.speculative-parallel-limit</span>
         <label>prvcy</label>
@@ -126,7 +135,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.speculative-parallel-limit.rcmd">Recommended value: 0</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.<b>cookie</b>.cookieBehavior</span>
         <label>prvcy</label>
@@ -138,7 +147,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.cookieBehavior.rcmd">Recommended value: 1</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.cookieBehavior" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.<b>cookie</b>.lifetimePolicy</span>
         <label>prvcy</label>
@@ -150,7 +159,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.lifetimePolicy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.<b>cookie</b>.thirdparty.sessionOnly</span>
         <label>prvcy</label>
@@ -162,7 +171,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.rcmd">Recommended value: true</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>browser.<b>search</b>.suggest.enabled</span>
         <label>prvcy</label>
@@ -174,7 +183,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.browser.search.suggest.enabled.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Browser.search.suggest.enabled" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span><b>clipboard</b>.autocopy</span>
         <label>prvcy</label>
@@ -186,7 +195,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.clipboard.autocopy.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Clipboard.autocopy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>loop.<b>facebook</b>.shareUrl</span>
         <label>prvcy</label>
@@ -196,9 +205,9 @@
       <span type="tooltip" data-l10n-id="avdsttngs.loop.facebook.shareUrl.rcmd">Recommended value: ""</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/42" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex">
+    <div class="v-flex type1">
       <div class="h-flex">
-        <span><b>loop</b>.logDomains</span>
+        <span><b><abbr title="Firefox Hello">loop</abbr></b>.logDomains</span>
         <label>prvcy</label>
         <spacer></spacer>
         <input type="checkbox" name="loop.logDomains">
@@ -207,6 +216,58 @@
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.loop.logDomains.rcmd">Recommended value: false</span>
       <a type="tooltip" href="https://github.com/pyllyukko/user.js/issues/135" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span>security.ssl.enable_<b>ocsp</b>_stapling</span>
+        <label>prvcy</label>
+        <label>scrty</label>
+        <spacer></spacer>
+        <input type="checkbox" name="security.ssl.enable_ocsp_stapling">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.security.ssl.enable_ocsp_stapling.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/40" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span>security.ssl.enable_<b>ocsp</b>_must_staple</span>
+        <label>prvcy</label>
+        <label>scrty</label>
+        <spacer></spacer>
+        <input type="checkbox" name="security.ssl.enable_ocsp_must_staple">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.security.ssl.enable_ocsp_must_staple.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/40" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span>security.<b><abbr title="Online Certificate Status Protocol">OCSP</abbr></b>.require</span>
+        <label>prvcy</label>
+        <label>scrty</label>
+        <spacer></spacer>
+        <input type="checkbox" name="security.OCSP.require">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.security.OCSP.require.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/40" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span>security.<b>OCSP</b>.enabled</span>
+        <label>prvcy</label>
+        <label>scrty</label>
+        <spacer></spacer>
+        <input type="range" name="security.OCSP.enabled" min="0" max="2">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.security.OCSP.enabled.rcmd">Recommended value: 1</span>
+      <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
   </body>
 </html>

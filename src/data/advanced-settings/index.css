@@ -4,8 +4,6 @@ body, table, button {
   color: #444;
 }
 body {
-  max-width: 800px;
-  margin: auto;
   padding: 0px 10px;
 }
 h1 {
@@ -23,6 +21,7 @@ input[type=button] {
   border: solid 1px #C8C8C8;
   height: 24px;
 }
+input[type=range],
 input[type=range]:focus {
   outline: none;
 }
@@ -76,11 +75,23 @@ label {
   margin-right: 3px;
 }
 .v-flex {
+  max-width: 800px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-items: center;
-  margin: 14px 0;
+  padding: 14px 0;
 }
+.type1 {
+  padding-left: 15px;
+  border-left: solid 3px #ccc;
+}
+.type2 {
+  padding-left: 15px;
+  border-left: solid 3px #eee;
+}
+
+
 input[type=checkbox] + span[type=checkbox],
 input[type=range] + span[type=range] {
   justify-content: center;
