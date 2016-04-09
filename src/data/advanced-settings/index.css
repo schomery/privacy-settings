@@ -25,6 +25,12 @@ input[type=range],
 input[type=range]:focus {
   outline: none;
 }
+input[type=range] {
+  border: 1px solid white;
+}
+input[type=range]::-moz-focus-outer {
+  border: 0;
+}
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 1px;

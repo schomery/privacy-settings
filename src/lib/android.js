@@ -50,7 +50,7 @@ var id = (function (window) {
     parent: window.menu.toolsMenuID,
     callback: () => {
       for (let tab of tabs) {
-        if (tab && (tab.url || '').indexOf(url) === 0) {
+        if (tab && (tab.url || '').indexOf(self.data.url('')) === 0) {
           tab.close();
         }
       }
