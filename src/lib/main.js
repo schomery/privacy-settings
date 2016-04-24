@@ -41,6 +41,11 @@ function close () {
     }
   }
 }
+unload.when(function (e) {
+  if (e !== 'shutdown') {
+    close();
+  }
+});
 
 // observer
 function observe (pref, callback) {
@@ -269,10 +274,7 @@ exports.main = function (options) {
     onAttach: function (worker) {
       worker.on('pageshow', () => array.add(workers, worker));
       worker.on('pagehide', () => array.remove(workers, worker));
-      worker.on('detach', () => {
-        array.remove(workers, worker);
-        worker.tab.close();
-      });
+      worker.on('detach', () => array.remove(workers, worker));
       worker.port.on('register', register);
       worker.port.on('changed', changed);
       worker.port.on('cmd', command);

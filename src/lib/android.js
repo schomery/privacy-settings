@@ -33,7 +33,6 @@ exports.panel = function (obj) {
     });
     worker.on('detach', function () {
       array.remove(workers, this);
-      this.tab.close();
     });
     for (let name in ports) {
       worker.port.on(name, ports[name]);
