@@ -120,5 +120,5 @@ input[type=text] {
   color: graytext;
   padding: .2em 0 0 1em;
   white-space: pre-wrap;
-  background: url(r.png) no-repeat;
+  background: url(r.png) left center no-repeat;
 }

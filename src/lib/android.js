@@ -25,9 +25,16 @@ exports.panel = function (obj) {
   var pm = pageMod.PageMod(obj);
   pm.on('attach', function (worker) {
     array.add(workers, worker);
-    worker.on('pageshow', function () { array.add(workers, this); });
-    worker.on('pagehide', function () { array.remove(workers, this); });
-    worker.on('detach', function () { array.remove(workers, this); });
+    worker.on('pageshow', function () {
+      array.add(workers, this);
+    });
+    worker.on('pagehide', function () {
+      array.remove(workers, this);
+    });
+    worker.on('detach', function () {
+      array.remove(workers, this);
+      this.tab.close();
+    });
     for (let name in ports) {
       worker.port.on(name, ports[name]);
     }

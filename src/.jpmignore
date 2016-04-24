@@ -1,0 +1,4 @@
+.jpmignore
+builds/*
+.git
+*.xpi

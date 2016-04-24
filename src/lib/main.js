@@ -41,7 +41,6 @@ function close () {
     }
   }
 }
-unload.when(close);
 
 // observer
 function observe (pref, callback) {
@@ -270,7 +269,10 @@ exports.main = function (options) {
     onAttach: function (worker) {
       worker.on('pageshow', () => array.add(workers, worker));
       worker.on('pagehide', () => array.remove(workers, worker));
-      worker.on('detach', () => array.remove(workers, worker));
+      worker.on('detach', () => {
+        array.remove(workers, worker);
+        worker.tab.close();
+      });
       worker.port.on('register', register);
       worker.port.on('changed', changed);
       worker.port.on('cmd', command);
