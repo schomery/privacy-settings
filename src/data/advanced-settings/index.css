@@ -90,11 +90,11 @@ label {
 }
 .type1 {
   padding-left: 15px;
-  border-left: solid 3px #ccc;
+  border-left: solid 3px #eee;
 }
 .type2 {
   padding-left: 15px;
-  border-left: solid 3px #eee;
+  border-left: solid 3px #ccc;
 }
 
 
@@ -118,7 +118,12 @@ input[type=text] {
 [type=tooltip] {
   font-size: 90.9%;
   color: graytext;
-  padding: .2em 0 0 1em;
   white-space: pre-wrap;
-  background: url(r.png) left center no-repeat;
+}
+[type=tooltip]:before {
+  content: '\21e2';
+}
+a[type=tooltip] {
+  text-decoration: none;
+  color: #3185FB;
 }
