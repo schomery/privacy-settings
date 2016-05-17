@@ -135,7 +135,7 @@ var ui = {
   },
   'integration': {
     'loop.enabled': {true: 'nsp', false: 'sp'},
-    'browser.pocket.enabled': {true: 'nsp', false: 'sp'}
+    'extensions.pocket.enabled': {true: 'nsp', false: 'sp'}
   },
   'media': {
     'media.peerconnection.enabled': {true: 'nsp', false: 'sp'},
