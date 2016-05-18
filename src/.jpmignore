@@ -2,3 +2,4 @@
 builds/*
 .git
 *.xpi
+.DS_Store
