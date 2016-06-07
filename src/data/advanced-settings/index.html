@@ -58,6 +58,11 @@
       <span data-l10n-id="avdsttngs.dom.disable_open_during_load.true">true: The popup blocker is enabled (default)</span>
       <span data-l10n-id="avdsttngs.dom.event.contextmenu.enabled.false">false: Web pages won't be allowed to manipulate or block the context menu</span>
       <span data-l10n-id="avdsttngs.dom.event.contextmenu.enabled.true">true: Websites may manipulate the context menu (default)</span>
+      <span data-l10n-id="avdsttngs.browser.display.use_document_fonts.0">0: Never use document's fonts (set "gfx.downloadable_fonts.enabled" to true to block regular fonts, but allow downloading of glyphs/icon-fonts)</span>
+      <span data-l10n-id="avdsttngs.browser.display.use_document_fonts.1">1: Allow documents to specify fonts to use (default)</span>
+      <span data-l10n-id="avdsttngs.browser.display.use_document_fonts.2">2: Always use document's fonts (deprecated)</span>
+      <span data-l10n-id="avdsttngs.gfx.downloadable_fonts.enabled.false">false: Disabling glyphs/icon-fonts (will cause the extension to not display icons)</span>
+      <span data-l10n-id="avdsttngs.gfx.downloadable_fonts.enabled.true">true: Allowing glyphs/icon-fonts (set browser.display.use_document_fonts to 0 to block regular fonts, but allow downloading of glyphs/icon-fonts)(default)</span>
     </div>
     <div class="v-flex type2">
       <div class="h-flex">
@@ -97,8 +102,31 @@
       <span type="tooltip" data-l10n-id="avdsttngs.browser.search.suggest.enabled.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Browser.search.suggest.enabled" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span>browser.display.use_document_<b>fonts</b></span>
+        <label>prvcy</label>
+        <spacer></spacer>
+        <input type="range" name="browser.display.use_document_fonts" min="0" max="2">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.browser.display.use_document_fonts.rcmd">Recommended value: 0</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/52" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
     <div class="v-flex type1">
+      <div class="h-flex">
+        <span>gfx.downloadable_<b>fonts</b>.enabled</span>
+        <label>prvcy</label>
+        <spacer></spacer>
+        <input type="checkbox" name="gfx.downloadable_fonts.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.gfx.downloadable_fonts.enabled.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/52" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>dom.disable_<b>open_during_load</b></span>
         <label>prvcy</label>
@@ -111,7 +139,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.dom.disable_open_during_load.rcmd">Recommended value: true</span>
       <a type="tooltip" href="http://www.ghacks.net/2009/12/22/autostart-firefox-in-private-browsing-mode/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>dom.allow_scripts_to_<b>close_windows</b></span>
         <label>prvcy</label>
@@ -123,7 +151,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.dom.allow_scripts_to_close_windows.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://www.ghacks.net/2009/12/22/autostart-firefox-in-private-browsing-mode/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>dom.event.<b>contextmenu</b>.enabled</span>
         <label>prvcy</label>
@@ -135,7 +163,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.dom.event.contextmenu.enabled.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://www.ghacks.net/2009/12/22/autostart-firefox-in-private-browsing-mode/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.http.send<b>Referer</b>Header</span>
         <label>prvcy</label>
@@ -147,7 +175,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.sendRefererHeader.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.http.<b>referer</b>.XOriginPolicy</span>
         <label>prvcy</label>
@@ -159,7 +187,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.XOriginPolicy.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.http.<b>referer</b>.trimmingPolicy</span>
         <label>prvcy</label>
@@ -171,7 +199,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.trimmingPolicy.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.http.<b>referer</b>.spoofSource</span>
         <label>prvcy</label>
@@ -183,7 +211,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.spoofSource.rcmd">Recommended value: true</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.predictor.enabled</span>
         <label>prvcy</label>
@@ -195,7 +223,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.predictor.enabled.rcmd">Recommended value: true (Disabling may slow-down your browsing)</span>
       <a type="tooltip" href="https://github.com/RequestPolicyContinued/requestpolicy/issues/638" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.http.speculative-parallel-limit</span>
         <label>prvcy</label>
@@ -218,7 +246,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.cookieBehavior.rcmd">Recommended value: 1</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.cookieBehavior" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.<b>cookie</b>.lifetimePolicy</span>
         <label>prvcy</label>
@@ -230,7 +258,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.lifetimePolicy.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.lifetimePolicy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>network.<b>cookie</b>.thirdparty.sessionOnly</span>
         <label>prvcy</label>
@@ -242,7 +270,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.rcmd">Recommended value: true</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span><b>clipboard</b>.autocopy</span>
         <label>prvcy</label>
@@ -254,7 +282,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.clipboard.autocopy.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Clipboard.autocopy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span>loop.<b>facebook</b>.shareUrl</span>
         <label>prvcy</label>
@@ -264,7 +292,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.loop.facebook.shareUrl.rcmd">Recommended value: ""</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/42" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
+    <div class="v-flex type1">
       <div class="h-flex">
         <span><b><abbr title="Firefox Hello">loop</abbr></b>.logDomains</span>
         <label>prvcy</label>
@@ -276,7 +304,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.loop.logDomains.rcmd">Recommended value: false</span>
       <a type="tooltip" href="https://github.com/pyllyukko/user.js/issues/135" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>security.ssl.enable_<b>ocsp</b>_stapling</span>
         <label>prvcy</label>
@@ -289,7 +317,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.security.ssl.enable_ocsp_stapling.rcmd">Recommended value: true</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/40" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>security.ssl.enable_<b>ocsp</b>_must_staple</span>
         <label>prvcy</label>
@@ -302,7 +330,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.security.ssl.enable_ocsp_must_staple.rcmd">Recommended value: true</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/40" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>security.<b><abbr title="Online Certificate Status Protocol">OCSP</abbr></b>.require</span>
         <label>prvcy</label>
@@ -315,7 +343,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.security.OCSP.require.rcmd">Recommended value: false</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/40" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>security.<b>OCSP</b>.enabled</span>
         <label>prvcy</label>
