@@ -45,23 +45,23 @@ exports.panel = function (obj) {
 var size = {
   10: {
     width: 520,
-    height: 570
+    height: 520
   },
   11: {
     width: 530,
-    height: 600
+    height: 550
   },
   12: {
     width: 540,
-    height: 650
+    height: 590
   },
   13: {
     width: 560,
-    height: 690
+    height: 640
   },
   14: {
     width: 580,
-    height: 720
+    height: 650
   }
 };
 
@@ -79,6 +79,10 @@ button.on('change', function (state) {
     });
     panel.show({
       position: button
+    });
+    panel.port.on('size', obj => {
+      panel.width = obj.width;
+      panel.height = obj.height + 40;
     });
   }
 });

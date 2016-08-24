@@ -51,7 +51,6 @@ unload.when(e => e !== 'shutdown' && close(e));
 var suggestions = {
   'general': {
     'webgl.disabled': true,
-    'network.dns.disablePrefetch': true,
     'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'privacy.donottrackheader.enabled': true,
     'privacy.trackingprotection.enabled': true
@@ -84,6 +83,37 @@ var suggestions = {
   }
 };
 
+function proxy () {
+  let description;
+  let type = prefs.get('network.proxy.type');
+  if (type === 1) {
+    description = `
+      ${_('network.proxy.type')}: ${_('network.proxy.type.1')}
+
+      network.proxy.http: ${prefs.get('network.proxy.http')}:${prefs.get('network.proxy.http_port')}
+      network.proxy.ssl: ${prefs.get('network.proxy.ssl')}:${prefs.get('network.proxy.ssl_port')}
+      network.proxy.ftp: ${prefs.get('network.proxy.ftp')}:${prefs.get('network.proxy.ftp_port')}
+      network.proxy.socks: ${prefs.get('network.proxy.socks')}:${prefs.get('network.proxy.socks_port')}
+      -
+      ${_('network.proxy.socks_remote_dns')}: ${prefs.get('network.proxy.socks_remote_dns')}
+    `;
+  }
+  else if (type === 2) {
+    description = `
+    ${_('network.proxy.type')}: ${_('network.proxy.type.2')}
+
+    network.proxy.autoconfig_url: ${prefs.get('network.proxy.autoconfig_url')}
+    `;
+  }
+  else {
+    description = `${_('network.proxy.type')}: ${_('network.proxy.type.' + type)}`;
+  }
+  return {
+    description,
+    title: `${_('network.proxy.type')}: ${_('network.proxy.type.' + type)}`
+  };
+}
+
 // 1,2: private only
 // 3,4: secure only
 // 5,6: secure and private
@@ -93,8 +123,6 @@ var ui = {
   'network': {
     'network.websocket.enabled': {true: 'nsp', false: 'sp'},
     'network.http.sendSecureXSiteReferrer': {true: 'nsp', false: 'sp'},
-    'network.dns.disablePrefetch': {true: 'p', false: 'np'},
-    'network.prefetch-next': {true: 'np', false: 'p'},
   },
   'browser': {
     'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
@@ -121,10 +149,6 @@ var ui = {
     'datareporting.healthreport.uploadEnabled': {true: 'np', false: 'p'},
     'toolkit.telemetry.enabled': {true: 'np', false: 'p'},
     'toolkit.telemetry.unified': {true: 'np', false: 'p'},
-  },
-  'integration': {
-    'loop.enabled': {true: 'nsp', false: 'sp'},
-    'extensions.pocket.enabled': {true: 'nsp', false: 'sp'}
   },
   'media': {
     'media.peerconnection.enabled': {true: 'nsp', false: 'sp'},
@@ -186,7 +210,8 @@ inject.port.on('options', () => inject.port.emit('options', {
   },
   get types () {
     return Object.keys(ui).map(n => ui[n]).reduce((p, c) => Object.assign(p, c), {});
-  }
+  },
+  proxy: proxy()
 }));
 inject.port.on('pref', function (obj) {
   prefs.set(obj.pref, obj.value);
@@ -199,7 +224,7 @@ inject.port.on('command', function (obj) {
       sendPref(pref);
     });
   }
-  if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'p-compatible' || obj.cmd === 'ps-compatible') {
+  else if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'p-compatible' || obj.cmd === 'ps-compatible') {
     let list = Object.assign({}, suggestions.general, suggestions[obj.cmd]);
     obj.prefs.forEach(function (pref) {
       if (pref in list) {
@@ -211,9 +236,13 @@ inject.port.on('command', function (obj) {
       sendPref(pref);
     });
   }
-  if (obj.cmd === 'advanced-settings') {
+  else if (obj.cmd === 'advanced-settings') {
     close();
     tabs.open(self.data.url('advanced-settings/index.html'));
+    inject.hide();
+  }
+  else if (obj.cmd === 'open-proxy') {
+    tabs.open('about:preferences#advanced');
     inject.hide();
   }
 });
