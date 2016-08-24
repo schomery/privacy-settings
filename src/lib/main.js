@@ -69,7 +69,8 @@ var suggestions = {
     'dom.storage.enabled': true,
     'dom.event.clipboardevents.enabled': true,
     'network.http.sendSecureXSiteReferrer': true,
-    'layout.css.visited_links_enabled': true
+    'layout.css.visited_links_enabled': true,
+    'dom.indexedDB.enabled': true
   },
   'ps-compatible': {
     'dom.storage.enabled': true,
@@ -78,7 +79,8 @@ var suggestions = {
     'browser.safebrowsing.enabled': true,
     'browser.safebrowsing.downloads.remote.enabled': true,
     'browser.safebrowsing.malware.enabled': true,
-    'layout.css.visited_links_enabled': true
+    'layout.css.visited_links_enabled': true,
+    'dom.indexedDB.enabled': true
   }
 };
 
@@ -97,6 +99,7 @@ var ui = {
   'browser': {
     'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
     'dom.storage.enabled': {true: 'nsp', false: 'sp'},
+    'dom.indexedDB.enabled': {true: 'nsp', false: 'sp'},
     'dom.battery.enabled': {true: 'np', false: 'p'},
     'dom.enable_user_timing': {true: 'np', false: 'p'},
     'dom.enable_resource_timing': {true: 'np', false: 'p'},
