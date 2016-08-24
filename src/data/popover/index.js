@@ -95,6 +95,11 @@ function font (f) {
   [].forEach.call(document.querySelectorAll('button'), change);
 }
 
+function proxy (description) {
+  [].filter.call(document.querySelectorAll('td[class=pref]'), td => td.textContent === 'network.proxy.type')
+    .forEach(td => td.title = description);
+}
+
 self.port.on('options', function (o) {
   options = o;
   for (var category in options.ui) {
@@ -139,10 +144,7 @@ self.port.on('options', function (o) {
       }
     }
   }
-
-  document.querySelector('#proxy a').textContent = o.proxy.title;
-  document.querySelector('#proxy td:nth-child(2)').title = o.proxy.description;
-
+  proxy(o.proxy);
   font();
 
   self.port.emit('size', {
@@ -150,5 +152,6 @@ self.port.on('options', function (o) {
     height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight)
   });
 });
+self.port.on('proxy', proxy);
 self.port.emit('options');
 

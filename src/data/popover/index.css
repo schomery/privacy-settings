@@ -13,7 +13,7 @@ body {
 #list-container {
   flex: 1;
   overflow: auto;
-  padding: 0 0 5px 0;
+  padding: 6px 0 5px 0;
 }
 body>div:last-child {
   display: flex;
@@ -134,17 +134,4 @@ button:active {
 }
 #list>tbody>tr tr:hover {
   background-color: #d3e6f3;
-}
-
-#proxy {
-  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-  padding: 5px;
-}
-#proxy td:nth-child(2) {
-  width: 1px;
-  overflow: visible;
-    white-space: nowrap;
-}
-a:link {
-    text-decoration: none;
 }

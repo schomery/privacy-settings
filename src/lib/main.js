@@ -88,30 +88,27 @@ function proxy () {
   let type = prefs.get('network.proxy.type');
   if (type === 1) {
     description = `
-      ${_('network.proxy.type')}: ${_('network.proxy.type.1')}
+${_('network.proxy.type')}: ${_('network.proxy.type.1')}
 
-      network.proxy.http: ${prefs.get('network.proxy.http')}:${prefs.get('network.proxy.http_port')}
-      network.proxy.ssl: ${prefs.get('network.proxy.ssl')}:${prefs.get('network.proxy.ssl_port')}
-      network.proxy.ftp: ${prefs.get('network.proxy.ftp')}:${prefs.get('network.proxy.ftp_port')}
-      network.proxy.socks: ${prefs.get('network.proxy.socks')}:${prefs.get('network.proxy.socks_port')}
-      -
-      ${_('network.proxy.socks_remote_dns')}: ${prefs.get('network.proxy.socks_remote_dns')}
+network.proxy.http: ${prefs.get('network.proxy.http')}:${prefs.get('network.proxy.http_port')}
+network.proxy.ssl: ${prefs.get('network.proxy.ssl')}:${prefs.get('network.proxy.ssl_port')}
+network.proxy.ftp: ${prefs.get('network.proxy.ftp')}:${prefs.get('network.proxy.ftp_port')}
+network.proxy.socks: ${prefs.get('network.proxy.socks')}:${prefs.get('network.proxy.socks_port')}
+-
+${_('network.proxy.socks_remote_dns')} ${prefs.get('network.proxy.socks_remote_dns')}
     `;
   }
   else if (type === 2) {
     description = `
-    ${_('network.proxy.type')}: ${_('network.proxy.type.2')}
+${_('network.proxy.type')}: ${_('network.proxy.type.2')}
 
-    network.proxy.autoconfig_url: ${prefs.get('network.proxy.autoconfig_url')}
+network.proxy.autoconfig_url: ${prefs.get('network.proxy.autoconfig_url')}
     `;
   }
   else {
     description = `${_('network.proxy.type')}: ${_('network.proxy.type.' + type)}`;
   }
-  return {
-    description,
-    title: `${_('network.proxy.type')}: ${_('network.proxy.type.' + type)}`
-  };
+  return description;
 }
 
 // 1,2: private only
@@ -123,6 +120,7 @@ var ui = {
   'network': {
     'network.websocket.enabled': {true: 'nsp', false: 'sp'},
     'network.http.sendSecureXSiteReferrer': {true: 'nsp', false: 'sp'},
+    'network.proxy.type': {true: 'nsp', false: 'sp'},
   },
   'browser': {
     'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
@@ -216,6 +214,9 @@ inject.port.on('options', () => inject.port.emit('options', {
 inject.port.on('pref', function (obj) {
   prefs.set(obj.pref, obj.value);
   sendPref(obj.pref);
+  if (obj.pref === 'network.proxy.type') {
+    inject.port.emit('proxy', proxy());
+  }
 });
 inject.port.on('command', function (obj) {
   if (obj.cmd === 'reset') {
