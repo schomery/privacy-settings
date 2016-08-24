@@ -13,54 +13,40 @@ var platform = require('sdk/system').platform;
 var prefService = Cc['@mozilla.org/preferences-service;1']
   .getService(Ci.nsIPrefService);
 var desktop = ['winnt', 'linux', 'darwin', 'openbsd'].indexOf(platform) !== -1;
+var panel = desktop ? require('./desktop') : require('./android');
 
 var prefs = (function () {
-  var p = require('sdk/preferences/service');
+  let p = require('sdk/preferences/service');
   return {
     get: function (name) {
       try {
         return p.get(name);
-      } catch (e) {console.error(e);}
+      }
+      catch (e) {
+        console.error(e);
+      }
       return false;
     },
     set: function (name, val) {
       try {
         p.set(name, val);
-      } catch (e) {console.error(e);}
+      }
+      catch (e) {
+        console.error(e);
+      }
     },
-    reset: function (name) {
-      p.reset(name);
-    }
+    reset: (name) => p.reset(name)
   };
 })();
 
 function close () {
   for (let tab of tabs) {
-    if (tab.url.indexOf(self.data.url('')) === 0) {
+    if (tab && tab.url && tab.url.startsWith(self.data.url(''))) {
       tab.close();
     }
   }
 }
-unload.when(function (e) {
-  if (e !== 'shutdown') {
-    close();
-  }
-});
-
-// observer
-function observe (pref, callback) {
-  let branch = prefService.getBranch(pref);
-  let observer = {
-    observe: function () {
-      callback(pref);
-    }
-  };
-  branch.addObserver('', observer, false);
-  unload.when(function () {
-    branch.removeObserver('', observer);
-  });
-  return true;
-}
+unload.when(e => e !== 'shutdown' && close(e));
 
 var suggestions = {
   'general': {
@@ -159,46 +145,55 @@ var ui = {
   }
 };
 
-var module = desktop ? require('./desktop') : require('./android');
-
-for (let category in ui) {
-  for (let pref in ui[category]) {
-    observe(pref, function (p) {
-      inject.port.emit('pref', {
-        pref: p,
-        value: prefs.get(p),
-        locked: prefService.getBranch(p).prefIsLocked('')
-      });
-    });
-  }
-}
-
 var names = [].concat.apply([],Object.keys(ui).map(n => ui[n]).map(o => Object.keys(o)));
-var inject = module.panel({
-  contentScriptOptions: {
-    ui: ui,
-    font: sp.prefs.font,
-    locales: (() => {let tmp = {}; names.forEach(n => tmp[n] = _(n)); return tmp;})(),
-    values: (() => {let tmp = {}; names.forEach(n => tmp[n] = prefs.get(n)); return tmp;})(),
-    locked: (() => {let tmp = {}; names.forEach(n => tmp[n] = prefService.getBranch(n).prefIsLocked('')); return tmp;})(),
-    types: Object.keys(ui).map(n => ui[n]).reduce((p, c) => Object.assign(p, c), {})
-  },
+var inject = panel.panel({
   contentURL: self.data.url('popover/index.html'),
   contentScriptFile: self.data.url('popover/index.js')
 });
-module.execute(inject);
-inject.port.on('size', function (obj) {
-  inject.width = obj.width;
-  inject.height = obj.height;
-});
 
+function sendPref (pref) {
+  inject.port.emit('pref', {
+    pref,
+    value: prefs.get(pref),
+    locked: prefService.getBranch(pref).prefIsLocked('')
+  });
+}
+inject.port.on('options', () => inject.port.emit('options', {
+  ui: ui,
+  get font () {
+    return sp.prefs.font;
+  },
+  get locales () {
+    let tmp = {};
+    names.forEach(n => tmp[n] = _(n));
+    Object.keys(ui).forEach(n => tmp[n] = _(n));
+    return tmp;
+  },
+  get values () {
+    return names.reduce((p, c) => {
+      p[c] = prefs.get(c);
+      return p;
+    }, {});
+  },
+  get locked () {
+    return names.reduce((p, c) => {
+      p[c] = prefService.getBranch(c).prefIsLocked('');
+      return p;
+    }, {});
+  },
+  get types () {
+    return Object.keys(ui).map(n => ui[n]).reduce((p, c) => Object.assign(p, c), {});
+  }
+}));
 inject.port.on('pref', function (obj) {
   prefs.set(obj.pref, obj.value);
+  sendPref(obj.pref);
 });
 inject.port.on('command', function (obj) {
   if (obj.cmd === 'reset') {
     obj.prefs.forEach(function (pref) {
       prefs.reset(pref);
+      sendPref(pref);
     });
   }
   if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'p-compatible' || obj.cmd === 'ps-compatible') {
@@ -210,6 +205,7 @@ inject.port.on('command', function (obj) {
       else {
         prefs.set(pref, false);
       }
+      sendPref(pref);
     });
   }
   if (obj.cmd === 'advanced-settings') {
@@ -218,15 +214,41 @@ inject.port.on('command', function (obj) {
     inject.hide();
   }
 });
-sp.on('font', function () {
-  if (sp.prefs.font < 10) {
-    sp.prefs.font = 10;
+sp.on('font', () => sp.prefs.font = Math.min(14, Math.max(sp.prefs.font, 10)));
+
+// advanced settings
+(function (workers) {
+  function report (name) {
+    workers.forEach(w => w.port.emit('changed', {
+      name,
+      value: prefs.get(name)
+    }));
   }
-  if (sp.prefs.font > 16) {
-    sp.prefs.font = 16;
+  function changed (obj) {
+    prefs.set(obj.name, obj.value);
+    report(obj.name);
   }
-  inject.port.emit('font', sp.prefs.font);
-});
+  function command (obj) {
+    if (obj.command === 'reset') {
+      prefs.reset(obj.name);
+      report(obj.name);
+    }
+  }
+
+  pageMod.PageMod({
+    include: self.data.url('advanced-settings/index.html'),
+    contentScriptFile: self.data.url('advanced-settings/index.js'),
+    attachTo: ['top'],
+    onAttach: function (worker) {
+      worker.on('pageshow', () => array.add(workers, worker));
+      worker.on('pagehide', () => array.remove(workers, worker));
+      worker.on('detach', () => array.remove(workers, worker));
+      worker.port.on('register', report);
+      worker.port.on('changed', changed);
+      worker.port.on('cmd', command);
+    }
+  });
+})([]);
 
 exports.main = function (options) {
   if (options.loadReason === 'install' || options.loadReason === 'startup') {
@@ -244,40 +266,3 @@ exports.main = function (options) {
     }
   }
 };
-
-// advanced settings
-(function (workers) {
-  let _prefs = {};
-  function report (name) {
-    workers.forEach(w => w.port.emit('changed', {
-      name,
-      value: prefs.get(name)
-    }));
-  }
-  function register (name) {
-    _prefs[name] = _prefs[name] || observe(name, () => report(name));
-    report(name);
-  }
-  function changed (obj) {
-    prefs.set(obj.name, obj.value);
-  }
-  function command (obj) {
-    if (obj.command === 'reset') {
-      prefs.reset(obj.name);
-    }
-  }
-
-  pageMod.PageMod({
-    include: self.data.url('advanced-settings/index.html'),
-    contentScriptFile: self.data.url('advanced-settings/index.js'),
-    attachTo: ['top', 'existing'],
-    onAttach: function (worker) {
-      worker.on('pageshow', () => array.add(workers, worker));
-      worker.on('pagehide', () => array.remove(workers, worker));
-      worker.on('detach', () => array.remove(workers, worker));
-      worker.port.on('register', register);
-      worker.port.on('changed', changed);
-      worker.port.on('cmd', command);
-    }
-  });
-})([]);

@@ -63,6 +63,8 @@
       <span data-l10n-id="avdsttngs.browser.display.use_document_fonts.2">2: Always use document's fonts (deprecated)</span>
       <span data-l10n-id="avdsttngs.gfx.downloadable_fonts.enabled.false">false: Disabling glyphs/icon-fonts (will cause the extension to not display icons)</span>
       <span data-l10n-id="avdsttngs.gfx.downloadable_fonts.enabled.true">true: Allowing glyphs/icon-fonts (set browser.display.use_document_fonts to 0 to block regular fonts, but allow downloading of glyphs/icon-fonts)(default)</span>
+     <span data-l10n-id="avdsttngs.layout.css.mix-blend-mode.enabled.false">false: true: Disabling CSS engine from blending element's content with the content of the element that is below it</span>
+      <span data-l10n-id="avdsttngs.layout.css.mix-blend-mode.enabled.true">true: Allowing CSS engine to blend element's content with the content of the element that is below it and the background (can reveal browser's history)</span>
     </div>
     <div class="v-flex type2">
       <div class="h-flex">
@@ -355,6 +357,18 @@
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.security.OCSP.enabled.rcmd">Recommended value: 1</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type1">
+      <div class="h-flex">
+        <span>layout.<b>css</b>.mix-blend-mode.enabled</span>
+        <label>prvcy</label>
+        <spacer></spacer>
+        <input type="checkbox" name="layout.css.mix-blend-mode.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.layout.css.mix-blend-mode.enabled.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/62" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
   </body>
 </html>

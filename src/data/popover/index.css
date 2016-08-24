@@ -1,12 +1,24 @@
-html {
-  margin: 0;
-  padding: 0;
+html,
+body {
+  height: 100%;
 }
 body {
   background-color: #fff;
-  padding: 0 7px 0 0; /* android */
-  margin: 7px 0 7px 7px;
+  margin: 0;
   min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+body>div:first-child {
+  flex: 1;
+  overflow: auto;
+  padding: 6px 0 5px 0;
+}
+body>div:last-child {
+  display: flex;
+  align-items: center;
+  padding: 5px 6px 6px 6px;
 }
 body, table, button {
   font-family: sans-serif;
@@ -100,7 +112,6 @@ button:active {
 .pref[data-type=p]:before {
   text-indent: 8px;
 }
-
 #list table td {
   white-space: nowrap;
 }
@@ -109,6 +120,7 @@ button:active {
 }
 #list table td:last-child {
   width: 1%;
+  padding-right: 5px;
 }
 #list input {
   width: 100%;
@@ -117,13 +129,9 @@ button:active {
   direction: rtl;
 }
 
-#list>tbody>tr:nth-child(odd) {
+#list>tbody>tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 #list>tbody>tr tr:hover {
   background-color: #d3e6f3;
-}
-
-#toolbar {
-  margin-top: 10px;
 }

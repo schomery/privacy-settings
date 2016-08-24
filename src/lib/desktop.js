@@ -2,6 +2,7 @@
 
 var core = require('sdk/view/core');
 var panels = require('sdk/panel');
+var sp = require('sdk/simple-prefs');
 var _ = require('sdk/l10n').get;
 var {ToggleButton} = require('sdk/ui/button/toggle');
 
@@ -15,19 +16,69 @@ var button = new ToggleButton({
   }
 });
 
+var callbacks = [];
+var properties = {};
+var panel;
+
 exports.panel = function (obj) {
-  return panels.Panel(obj);
-};
-exports.execute = function (panel) {
-  core.getActiveView(panel).setAttribute('tooltip', 'aHTMLTooltip');
-  panel.on('hide', function () {
-    button.state('window', {checked: false});
-  });
-  button.on('change', function (state) {
-    if (state.checked) {
-      panel.show({
-        position: button
-      });
+  properties = obj;
+  //return panels.Panel(obj);
+  return {
+    set width (val) { // jshint ignore:line
+      if (panel) {
+        panel.width = val;
+      }
+    },
+    set height (val) { // jshint ignore:line
+      if (panel) {
+        panel.height = val;
+      }
+    },
+    hide: () => panel ? panel.hide() : null,
+    port: {
+      emit: (id, data) => panel ? panel.port.emit(id, data) : null,
+      on: (name, callback) => callbacks.push([name, callback])
     }
-  });
+  };
 };
+
+var size = {
+  10: {
+    width: 520,
+    height: 570
+  },
+  11: {
+    width: 530,
+    height: 600
+  },
+  12: {
+    width: 540,
+    height: 650
+  },
+  13: {
+    width: 560,
+    height: 690
+  },
+  14: {
+    width: 580,
+    height: 720
+  }
+};
+
+button.on('change', function (state) {
+  if (state.checked) {
+    properties.width = size[sp.prefs.font].width;
+    properties.height = size[sp.prefs.font].height;
+    panel = panels.Panel(properties);
+    callbacks.forEach(([name, callback]) => panel.port.on(name, callback));
+    core.getActiveView(panel).setAttribute('tooltip', 'aHTMLTooltip');
+    panel.on('hide', function () {
+      button.state('window', {checked: false});
+      panel.destroy();
+      panel = null;
+    });
+    panel.show({
+      position: button
+    });
+  }
+});
