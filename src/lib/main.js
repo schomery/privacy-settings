@@ -53,7 +53,8 @@ var suggestions = {
     'webgl.disabled': true,
     'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'privacy.donottrackheader.enabled': true,
-    'privacy.trackingprotection.enabled': true
+    'privacy.trackingprotection.enabled': true,
+    'media.peerconnection.ice.default_address_only': true
   },
   'privacy': {
     'security.ssl.require_safe_negotiation': true
@@ -69,7 +70,8 @@ var suggestions = {
     'dom.event.clipboardevents.enabled': true,
     'network.http.sendSecureXSiteReferrer': true,
     'layout.css.visited_links_enabled': true,
-    'dom.indexedDB.enabled': true
+    'dom.indexedDB.enabled': true,
+    'media.peerconnection.enabled': true
   },
   'ps-compatible': {
     'dom.storage.enabled': true,
@@ -79,7 +81,8 @@ var suggestions = {
     'browser.safebrowsing.downloads.remote.enabled': true,
     'browser.safebrowsing.malware.enabled': true,
     'layout.css.visited_links_enabled': true,
-    'dom.indexedDB.enabled': true
+    'dom.indexedDB.enabled': true,
+    'media.peerconnection.enabled': true
   }
 };
 
@@ -150,6 +153,7 @@ var ui = {
   },
   'media': {
     'media.peerconnection.enabled': {true: 'nsp', false: 'sp'},
+    'media.peerconnection.ice.default_address_only': {true: 'sp', false: 'nsp'},
     'media.eme.enabled': {true: 'nsp', false: 'sp'},
     'media.gmp-eme-adobe.enabled': {true: 'nsp', false: 'sp'},
     'webgl.disabled': {true: 'sp', false: 'nsp'}
