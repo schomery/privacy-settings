@@ -1,6 +1,7 @@
 html,
 body {
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 body {
   background-color: #fff;
@@ -29,10 +30,13 @@ table {
   vertical-align: middle;
   border-collapse: collapse;
   width: 100%;
+  box-sizing: border-box;
 }
 h1 {
   font-size: 100%;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 button {
@@ -59,6 +63,9 @@ button:active {
 .pref {
   text-indent: 15px;
   position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 42px;
 }
 .pref:before,  /* security */
 .pref:after {  /* privacy */
@@ -112,14 +119,18 @@ button:active {
 .pref[data-type=p]:before {
   text-indent: 8px;
 }
-#list table td {
+#list-container table {
+  table-layout: fixed;
+}
+#list-container td {
   white-space: nowrap;
 }
-#list td:first-child {
+#list>tbody>tr>td:first-child {
+  width: 100px;
   text-indent: 5px;
 }
 #list table td:last-child {
-  width: 1%;
+  width: 35px;
   padding-right: 5px;
 }
 #list input {
