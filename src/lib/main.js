@@ -93,10 +93,10 @@ function proxy () {
     description = `
 ${_('network.proxy.type')}: ${_('network.proxy.type.1')}
 
-network.proxy.http: ${prefs.get('network.proxy.http')}:${prefs.get('network.proxy.http_port')}
-network.proxy.ssl: ${prefs.get('network.proxy.ssl')}:${prefs.get('network.proxy.ssl_port')}
-network.proxy.ftp: ${prefs.get('network.proxy.ftp')}:${prefs.get('network.proxy.ftp_port')}
-network.proxy.socks: ${prefs.get('network.proxy.socks')}:${prefs.get('network.proxy.socks_port')}
+network.proxy.http: ${prefs.get('network.proxy.http') || '-'}:${prefs.get('network.proxy.http_port')}
+network.proxy.ssl: ${prefs.get('network.proxy.ssl') || '-'}:${prefs.get('network.proxy.ssl_port')}
+network.proxy.ftp: ${prefs.get('network.proxy.ftp') || '-'}:${prefs.get('network.proxy.ftp_port')}
+network.proxy.socks: ${prefs.get('network.proxy.socks') || '-'}:${prefs.get('network.proxy.socks_port')}
 -
 ${_('network.proxy.socks_remote_dns')} ${prefs.get('network.proxy.socks_remote_dns')}
     `;
@@ -225,8 +225,11 @@ inject.port.on('pref', function (obj) {
 inject.port.on('command', function (obj) {
   if (obj.cmd === 'reset') {
     obj.prefs.forEach(function (pref) {
-      prefs.reset(pref);
-      sendPref(pref);
+      // do not change user's proxy setting
+      if (pref !== 'network.proxy.type') {
+        prefs.reset(pref);
+        sendPref(pref);
+      }
     });
   }
   else if (obj.cmd === 'privacy' || obj.cmd === 'security' || obj.cmd === 'p-compatible' || obj.cmd === 'ps-compatible') {

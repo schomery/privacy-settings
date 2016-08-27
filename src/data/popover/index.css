@@ -113,12 +113,9 @@ button:active {
 .pref[data-type=s]:after {
   content: '\e806';
   color: #9c9c9c;
-  text-indent: 9px;
+  text-indent: 19px;
 }
-.pref[data-type=np]:before,
-.pref[data-type=p]:before {
-  text-indent: 8px;
-}
+
 #list-container table {
   table-layout: fixed;
 }
