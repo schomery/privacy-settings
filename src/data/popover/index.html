@@ -4,20 +4,51 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="fontello.css">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title data-l10n-id="name"></title>
+    <title data-l10n-id="name">Privacy Settings</title>
+    <link rel="shortcut icon" href="../icons/32.png">
   </head>
   <body>
+    <div id="list-container">
     <table id="list">
       <tbody>
+      <!--
+        <tr>
+          <td><h1>Testtttttttttttttttttttttttttttttt dsdsd</h1></td>
+          <td><table>
+            <tr>
+              <td class="pref">Sample loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong pref</td>
+              <td class="icon-toggle-on">on</td>
+            </tr>
+            <tr>
+              <td class="pref">Sample  pref</td>
+              <td class="icon-toggle-on">on</td>
+            </tr>
+            <tr>
+              <td class="pref">Sample pref</td>
+              <td><input type="number" placeholder=""></td>
+            </tr>
+            <tr>
+              <td class="pref">Sample pref</td>
+              <td><input type="number" placeholder=""></td>
+            </tr>
+          </table></td>
+        </tr>
+      -->
       </tbody>
     </table>
+    </div>
+    <div>
     <table id="toolbar">
       <tr>
-        <td><button data-cmd="privacy" title="To bring maximum privacy (this option disables Google Safe browsing)">Full Privacy</button></td>
-        <td align="center"><button data-cmd="compatible" title="To bring maximum privacy but turning off those settings that might break some secure sites.">Privacy (compatible)</button></td>
-        <td align="center"><button data-cmd="security" title="To bring maximum privacy while keeping Google Safe Browsing enabled.">Privacy & Security</button></td>
-        <td align="right"><button data-cmd="reset" title="Reset all preferences back to factory defaults">Defaults</button></td>
+        <td><button data-cmd="advanced-settings" data-l10n-id="popover-advnced">Advanced Settings</button></td>
+        <td> - </td>
+        <td align="center"><button data-cmd="ps-compatible" data-l10n-id="popover-pcs">Privacy (compatible) &amp; Security</button></td>
+        <td align="center"><button data-cmd="p-compatible" data-l10n-id="popover-pc">Privacy (compatible)</button></td>
+        <td align="center"><button data-cmd="security" data-l10n-id="popover-ps">Privacy &amp; Security</button></td>
+        <td><button data-cmd="privacy" data-l10n-id="popover-fp">Full Privacy</button></td>
+        <td align="right"><button data-cmd="reset" data-l10n-id="popover-df">Defaults</button></td>
       </tr>
     </table>
+    </div>
   </body>
 </html>

@@ -11,54 +11,51 @@ var {Cu} = require('chrome');
 var {Services} = Cu.import('resource://gre/modules/Services.jsm');
 
 var url = self.data.url('popover/index.html');
-
-function getNativeWindow() {
-  let window = Services.wm.getMostRecentWindow('navigator:browser');
-  return window.NativeWindow;
-}
+var window = Services.wm.getMostRecentWindow('navigator:browser').NativeWindow; // jshint ignore:line
 
 var ports = {};
 var workers = [];
 exports.panel = function (obj) {
   obj.include = self.data.url('popover/index.html');
   obj.attachTo = ['top', 'existing'];
-  var pm = pageMod.PageMod(obj);
+  let pm = pageMod.PageMod(obj);
   pm.on('attach', function (worker) {
     array.add(workers, worker);
-    worker.on('pageshow', function () { array.add(workers, this); });
-    worker.on('pagehide', function () { array.remove(workers, this); });
-    worker.on('detach', function () { array.remove(workers, this); });
+    worker.on('pageshow', function () {
+      array.add(workers, this);
+    });
+    worker.on('pagehide', function () {
+      array.remove(workers, this);
+    });
+    worker.on('detach', function () {
+      array.remove(workers, this);
+    });
     for (let name in ports) {
       worker.port.on(name, ports[name]);
     }
   });
   return {
     port: {
-      on: function (name, callback) {
-        ports[name] = callback;
-      },
-      emit: function (name, val) {
-        workers.forEach(w => w.port.emit(name, val));
-      }
-    }
+      on: (name, callback) => ports[name] = callback,
+      emit: (name, val) => workers.forEach(w => w.port.emit(name, val))
+    },
+    hide: function () {}
   };
 };
 
-function close () {
-  for (let tab of tabs) {
-    if (tab && (tab.url || '').indexOf(url) === 0) {
-      tab.close();
+var id = (function () {
+  return window.menu.add({
+    name: _('name'),
+    parent: window.menu.toolsMenuID,
+    callback: () => {
+      for (let tab of tabs) {
+        if (tab && tab.url && tab.url.startsWith(self.data.url('')) ) {
+          tab.close();
+        }
+      }
+      tabs.open(url);
     }
-  }
-}
-var id = getNativeWindow().menu.add(_('name'), null, function () {
-  close();
-  tabs.open(url);
-});
+  });
+})();
 
-exports.execute = function () {
-
-};
-
-unload.when(() => getNativeWindow().menu.remove(id));
-unload.when(close);
+unload.when(() => window.menu.remove(id));

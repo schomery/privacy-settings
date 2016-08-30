@@ -2,8 +2,8 @@
 'use strict';
 
 function html (name, parent, attrbs) {
-  var elem = document.createElement(name);
-  for (var i in (attrbs || {})) {
+  let elem = document.createElement(name);
+  for (let i in (attrbs || {})) {
     elem.setAttribute(i, attrbs[i]);
   }
   if (parent) {
@@ -13,7 +13,7 @@ function html (name, parent, attrbs) {
 }
 
 document.addEventListener('click', function (e) {
-  var target = e.target;
+  let target = e.target;
   if ([].indexOf.call(target.classList, 'button') === -1) {
     return;
   }
@@ -22,9 +22,29 @@ document.addEventListener('click', function (e) {
     value: target.classList.contains('icon-toggle-off')
   });
 }, false);
+document.addEventListener('change', function (e) {
+  let target = e.target;
+  if ([].indexOf.call(target.classList, 'int-pref') === -1) {
+    return;
+  }
+  self.port.emit('pref', {
+    pref: target.parentNode.previousSibling.textContent,
+    value: +target.value
+  });
+}, false);
+document.addEventListener('change', function (e) {
+  let target = e.target;
+  let cmd = target.dataset.cmd;
+  if (cmd) {
+    self.port.emit('command', {
+      cmd: cmd,
+      prefs: [].map.call(document.querySelectorAll('td[class=pref]'), td => td.textContent)
+    });
+  }
+}, false);
 document.addEventListener('click', function (e) {
-  var target = e.target;
-  var cmd = target.dataset.cmd;
+  let target = e.target;
+  let cmd = target.dataset.cmd;
   if (cmd) {
     self.port.emit('command', {
       cmd: cmd,
@@ -33,76 +53,105 @@ document.addEventListener('click', function (e) {
   }
 }, false);
 
+let options = {};
+
 self.port.on('pref', function (obj) {
   [].filter.call(document.querySelectorAll('td[class=pref]'), function (td) {
     return td.textContent === obj.pref;
   }).forEach(function (td) {
-    var target = td.nextSibling;
-    target.textContent = obj.value ? 'On' : 'Off';
     if (!obj.locked) {
-      if (obj.value) {
-        target.classList.remove('icon-toggle-off');
-        target.classList.add('icon-toggle-on');
+      if (parseInt(obj.value) === obj.value) { // int preference
+        // badge handling
+        td.dataset.type = options.types[obj.pref][obj.value] ? options.types[obj.pref][obj.value] : 'npns';
+        // element
+        let target = td.nextSibling.childNodes[0];
+        target.value = obj.value;
       }
-      else {
-        target.classList.add('icon-toggle-off');
-        target.classList.remove('icon-toggle-on');
+      else {  // boolean preference
+        // badge handling
+        td.dataset.type = obj.value ? options.types[obj.pref].true : options.types[obj.pref].false;
+        // element
+        let target = td.nextSibling;
+        target.textContent = obj.value ? 'On' : 'Off';
+        if (obj.value) {
+          target.classList.remove('icon-toggle-off');
+          target.classList.add('icon-toggle-on');
+        }
+        else {
+          target.classList.add('icon-toggle-off');
+          target.classList.remove('icon-toggle-on');
+        }
       }
     }
-    td.dataset.type = obj.value ? self.options.types[obj.pref].true : self.options.types[obj.pref].false;
   });
 });
 
-self.port.on('show', function () {
-  [].filter.call(document.querySelectorAll('td[class=pref]'), function (td) {
-    self.port.emit('update', td.textContent);
-  });
-});
-
-function size () {
-  self.port.emit('size', {
-    width: parseInt(window.getComputedStyle(document.getElementById('list'), null).width) + 50,
-    height: 1 + document.documentElement.offsetHeight + 5
-  });
-}
 function font (f) {
   function change (e) {
-    e.style['font-size'] = (f || self.options.font) + 'px';
+    e.style['font-size'] = (f || options.font) + 'px';
   }
   change(document.body);
   [].forEach.call(document.querySelectorAll('table'), change);
   [].forEach.call(document.querySelectorAll('button'), change);
-  size();
 }
 
-self.port.on('font', font);
+function proxy (description) {
+  [].filter.call(document.querySelectorAll('td[class=pref]'), td => td.textContent === 'network.proxy.type')
+    .forEach(td => td.title = description);
+}
 
-for (var category in self.options.ui) {
-  var table = (function (tr) {
-    html('h1', html('td', tr)).textContent = self.options.locales[category];
-    return html('table', html('td', tr));
-  })(html('tr', document.querySelector('#list tbody')));
+self.port.on('options', function (o) {
+  options = o;
+  for (var category in options.ui) {
+    var table = (function (tr) {
+      html('h1', html('td', tr)).textContent = options.locales[category];
+      return html('table', html('td', tr));
+    })(html('tr', document.querySelector('#list tbody')));
 
-  for (var pref in self.options.ui[category]) {
-    var tr = html('tr', table);
-    var td = html('td', tr, {
-      'class': 'pref',
-      'title': self.options.locales[pref],
-    });
-    td.dataset.type = self.options.values[pref] ? self.options.types[pref].true : self.options.types[pref].false;
-    td.textContent = pref;
+    for (var pref in options.ui[category]) {
+      let value = options.values[pref];
+      let tr = html('tr', table);
+      let td = html('td', tr, {
+        'class': 'pref',
+        'title': options.locales[pref],
+      });
+      td.textContent = pref;
 
-    var value = self.options.values[pref] ? 'On' : 'Off';
-    if (self.options.locked[pref]) {
-      html('td', tr, {
-        'class': 'icon-locked'
-      }).textContent = self.options.values[pref] ? 'On' : 'Off';
-    }
-    else {
-      html('td', tr, {
-        'class': 'icon-toggle-' + value.toLowerCase() + ' button '
-      }).textContent = value;
+      if (options.locked[pref]) {
+        html('td', tr, {
+          'class': 'icon-locked'
+        }).textContent = value ? 'On' : 'Off';
+      }
+      else if (parseInt(value) === value) { // int preference
+        // badge handling
+        td.dataset.type = options.types[pref][value] ? options.types[pref][value] : 'npns';
+        // element
+        html('input', html('td', tr), {
+          type: 'number',
+          class: 'int-pref',
+          min: options.types[pref].min,
+          max: options.types[pref].max
+        }).value = options.values[pref];
+      }
+      else { // boolean preference
+        // badge handling
+        td.dataset.type = value ? options.types[pref].true : options.types[pref].false;
+        //element
+        value = value ? 'On' : 'Off';
+        html('td', tr, {
+          'class': 'icon-toggle-' + value.toLowerCase() + ' button '
+        }).textContent = value;
+      }
     }
   }
-}
-window.setTimeout(font, 1000);
+  proxy(o.proxy);
+  font();
+
+  self.port.emit('size', {
+    width: Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.body.clientWidth, document.documentElement.clientWidth),
+    height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight)
+  });
+});
+self.port.on('proxy', proxy);
+self.port.emit('options');
+
