@@ -12,7 +12,7 @@ var pageMod = require('sdk/page-mod');
 var platform = require('sdk/system').platform;
 var prefService = Cc['@mozilla.org/preferences-service;1']
   .getService(Ci.nsIPrefService);
-var desktop = ['winnt', 'linux', 'darwin', 'openbsd'].indexOf(platform) !== -1;
+var desktop = platform !== 'android';
 var panel = desktop ? require('./desktop') : require('./android');
 
 var prefs = (function () {
