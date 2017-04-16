@@ -33,6 +33,8 @@
       <span data-l10n-id="avdsttngs.network.predictor.enabled.false">false: Prevents leaking information to third-party sites through Firefox's Network Prediction features</span>
       <span data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.true">true: Third-party cookies are allowed within the limits of the general cookie acceptance settings but only retained for the current session</span>
       <span data-l10n-id="avdsttngs.network.cookie.thirdparty.sessionOnly.false">false: Third-party cookies are allowed within the limits of the general cookie acceptance and retention settings (default)</span>
+      <span data-l10n-id="avdsttngs.network.captive-portal-service.enabled.true">true: Allow Firefox to handle Captive Portals (a router man-in-the-middle that intercepts page load) (default)</span>
+      <span data-l10n-id="avdsttngs.network.captive-portal-service.enabled.false">false: Disables handling of Captive Portals in Firefox (a router man-in-the-middle that intercepts page load)</span>
       <span data-l10n-id="avdsttngs.browser.search.suggest.enabled.true">true: Retrieve and display search term suggestions for search plugins that support it (default)</span>
       <span data-l10n-id="avdsttngs.browser.search.suggest.enabled.false">false: Disable search suggestions</span>
       <span data-l10n-id="avdsttngs.clipboard.autocopy.true">true: Automatically copy contents of selections to the clipboard (default in Linux)</span>
@@ -283,6 +285,18 @@
     </div>
     <div class="v-flex type2">
       <div class="h-flex">
+        <span>network.<b>captive-portal</b>-service.enabled</span>
+        <label>prvcy</label>
+        <div class="spacer"></div>
+        <input type="checkbox" name="network.captive-portal-service.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.captive-portal-service.enabled.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/81" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type1">
+      <div class="h-flex">
         <span><b>clipboard</b>.autocopy</span>
         <label>prvcy</label>
         <div class="spacer"></div>
@@ -293,7 +307,7 @@
       <span type="tooltip" data-l10n-id="avdsttngs.clipboard.autocopy.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Clipboard.autocopy" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type1">
+    <div class="v-flex type2">
       <div class="h-flex">
         <span>loop.<b>facebook</b>.shareUrl</span>
         <label>prvcy</label>

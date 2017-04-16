@@ -54,21 +54,22 @@ var suggestions = {
     'security.ssl.treat_unsafe_negotiation_as_broken': true,
     'privacy.donottrackheader.enabled': true,
     'privacy.trackingprotection.enabled': true,
-    'media.peerconnection.ice.default_address_only': true
+    'media.peerconnection.ice.default_address_only': true,
+    'media.peerconnection.ice.no_host': true,
+    'network.IDN_show_punycode': true
   },
   'privacy': {
     'security.ssl.require_safe_negotiation': true
   },
   'security': {
     'security.ssl.require_safe_negotiation': true,
-    'browser.safebrowsing.enabled': true,
+    'browser.safebrowsing.phishing.enabled': true,
     'browser.safebrowsing.downloads.remote.enabled': true,
     'browser.safebrowsing.malware.enabled': true
   },
   'p-compatible': {
     'dom.storage.enabled': true,
     'dom.event.clipboardevents.enabled': true,
-    'network.http.sendSecureXSiteReferrer': true,
     'layout.css.visited_links_enabled': true,
     'dom.indexedDB.enabled': true,
     'media.peerconnection.enabled': true
@@ -76,8 +77,7 @@ var suggestions = {
   'ps-compatible': {
     'dom.storage.enabled': true,
     'dom.event.clipboardevents.enabled': true,
-    'network.http.sendSecureXSiteReferrer': true,
-    'browser.safebrowsing.enabled': true,
+    'browser.safebrowsing.phishing.enabled': true,
     'browser.safebrowsing.downloads.remote.enabled': true,
     'browser.safebrowsing.malware.enabled': true,
     'layout.css.visited_links_enabled': true,
@@ -122,8 +122,8 @@ network.proxy.autoconfig_url: ${prefs.get('network.proxy.autoconfig_url')}
 var ui = {
   'network': {
     'network.websocket.enabled': {true: 'nsp', false: 'sp'},
-    'network.http.sendSecureXSiteReferrer': {true: 'nsp', false: 'sp'},
     'network.proxy.type': {true: 'nsp', false: 'sp'},
+    'network.IDN_show_punycode': {true: 'sp', false: 'nsp'},
   },
   'browser': {
     'dom.event.clipboardevents.enabled': {true: 'np', false: 'p'},
@@ -134,7 +134,7 @@ var ui = {
     'dom.enable_resource_timing': {true: 'np', false: 'p'},
     'dom.netinfo.enabled': {true: 'np', false: 'p'},
     'layout.css.visited_links_enabled': {true: 'np', false: 'p'},
-    'browser.safebrowsing.enabled': {true: 'snp', false: 'pns'},
+    'browser.safebrowsing.phishing.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.downloads.remote.enabled': {true: 'snp', false: 'pns'},
     'browser.safebrowsing.malware.enabled': {true: 'snp', false: 'pns'},
     'browser.send_pings': {true: 'np', false: 'p'},
@@ -154,6 +154,7 @@ var ui = {
   'media': {
     'media.peerconnection.enabled': {true: 'nsp', false: 'sp'},
     'media.peerconnection.ice.default_address_only': {true: 'sp', false: 'nsp'},
+    'media.peerconnection.ice.no_host': {true: 'sp', false: 'nsp'},
     'media.eme.enabled': {true: 'nsp', false: 'sp'},
     'media.gmp-eme-adobe.enabled': {true: 'nsp', false: 'sp'},
     'webgl.disabled': {true: 'sp', false: 'nsp'}
