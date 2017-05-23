@@ -53,7 +53,7 @@ var size = {
   },
   12: {
     width: 540,
-    height: 600
+    height: 620
   },
   13: {
     width: 560,
