@@ -70,11 +70,19 @@
       <span data-l10n-id="avdsttngs.network.dns.disablePrefetch.false">false: Perform DNS prefetching (default)</span>
       <span data-l10n-id="avdsttngs.network.dns.disablePrefetch.true">true: Disable DNS prefetching</span>
       <span data-l10n-id="avdsttngs.network.prefetch-next.false">false: Disable link prefetching</span>
-      <span data-l10n-id="avdsttngs.network.prefetch-next.true">true: Enable link prefetching. (default)</span>
-      <span data-l10n-id="avdsttngs.loop.enabled.false">false: Disable Firefox Hello</span>
-      <span data-l10n-id="avdsttngs.loop.enabled.true">true: Allow Firefox Hello (Firefox connects to third-party (Telefonica) servers)</span>
+      <span data-l10n-id="avdsttngs.network.prefetch-next.true">true: Enable link prefetching (default)</span>
       <span data-l10n-id="avdsttngs.extensions.pocket.enabled.false">false: Disable Pocket Integration</span>
       <span data-l10n-id="avdsttngs.extensions.pocket.enabled.true">true: Allow Pocket Integration (A third-party service for managing a reading list of articles)</span>
+      <span data-l10n-id="avdsttngs.media.navigator.enabled.false">false: Disable media device enumeration</span>
+      <span data-l10n-id="avdsttngs.media.navigator.enabled.true">true: Enable media device enumeration. This exposes unique identifiers of all audio/video devices (default)</span>
+      <span data-l10n-id="avdsttngs.browser.pagethumbnails.capturing_disabled.false">false: Enable page thumbnail collection (default)</span>
+      <span data-l10n-id="avdsttngs.browser.pagethumbnails.capturing_disabled.true">true: Disable page thumbnail collection (look in profile/thumbnails directory - you may want to clean that out)</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.userControlPolicy.0">0: no-referrer</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.userControlPolicy.1">1: same-origin</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.userControlPolicy.2">2: strict-origin-when-cross-origin</span>
+      <span data-l10n-id="avdsttngs.network.http.referer.userControlPolicy.3">3: no-referrer-when-downgrade (default)</span>
+
+
     </div>
     <div class="v-flex type2">
       <div class="h-flex">
@@ -125,6 +133,18 @@
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.browser.display.use_document_fonts.rcmd">Recommended value: 0</span>
       <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/52" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span>browser.<b>pagethumbnails</b>.capturing_disabled</span>
+        <label>prvcy</label>
+        <div class="spacer"></div>
+        <input type="checkbox" name="browser.pagethumbnails.capturing_disabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.browser.pagethumbnails.capturing_disabled.rcmd">Recommended value: true</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/42#issuecomment-298187844" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex type1">
       <div class="h-flex">
@@ -186,6 +206,18 @@
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.http.sendRefererHeader.rcmd">Recommended value: 2</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type1">
+      <div class="h-flex">
+        <span>network.http.<b>referer</b>.userControlPolicy</span>
+        <label>prvcy</label>
+        <div class="spacer"></div>
+        <input type="range" name="network.http.referer.userControlPolicy" min="0" max="3">
+        <span type="range"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.network.http.referer.userControlPolicy.rcmd">Recommended value: 1</span>
+      <a type="tooltip" href="https://github.com/schomery/privacy-settings/issues/82" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
     <div class="v-flex type1">
       <div class="h-flex">
@@ -405,18 +437,6 @@
       <span type="tooltip" data-l10n-id="avdsttngs.extensions.pocket.enabled.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://www.ghacks.net/2015/05/14/how-to-disable-pocket-in-firefox/" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
-    <div class="v-flex type2">
-      <div class="h-flex">
-        <span><b>loop</b>.enabled</span>
-        <label>prvcy</label>
-        <div class="spacer"></div>
-        <input type="checkbox" name="loop.enabled">
-        <span type="checkbox"></span>
-      </div>
-      <span type="tooltip"></span>
-      <span type="tooltip" data-l10n-id="avdsttngs.loop.enabled.rcmd">Recommended value: false</span>
-      <a type="tooltip" href="https://support.mozilla.org/en-US/questions/1043588" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
-    </div>
     <div class="v-flex type1">
       <div class="h-flex">
         <span>network.dns.disable<b>Prefetch</b></span>
@@ -440,6 +460,18 @@
       <span type="tooltip"></span>
       <span type="tooltip" data-l10n-id="avdsttngs.network.prefetch-next.rcmd">Recommended value: false</span>
       <a type="tooltip" href="http://kb.mozillazine.org/Network.prefetch-next" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
+    </div>
+    <div class="v-flex type2">
+      <div class="h-flex">
+        <span><b>media</b>.navigator.enabled</span>
+        <label>prvcy</label>
+        <div class="spacer"></div>
+        <input type="checkbox" name="media.navigator.enabled">
+        <span type="checkbox"></span>
+      </div>
+      <span type="tooltip"></span>
+      <span type="tooltip" data-l10n-id="avdsttngs.media.navigator.enabled.rcmd">Recommended value: false</span>
+      <a type="tooltip" href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices" target="_blank" data-l10n-id="avdsttngs.more">more info</a>
     </div>
   </body>
 </html>

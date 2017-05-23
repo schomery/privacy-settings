@@ -16,10 +16,6 @@
     "TheCreeper",
     "ChrisAntaki"
   ],
-  "engines": {
-    "firefox": ">=52.0",
-    "fennec": ">=52.0"
-  },
   "preferences": [{
     "type": "integer",
     "name": "font",
@@ -31,5 +27,10 @@
     "name": "welcome",
     "value": true,
     "title": "Show welcome page on upgrade:"
-  }]
+  }],
+  "engines": {
+    "firefox": ">=52.0",
+    "fennec": ">=52.0",
+    "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}": ">=27.1.0b1 <=27.*"
+  }
 }
