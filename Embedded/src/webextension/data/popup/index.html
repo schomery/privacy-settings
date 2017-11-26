@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="fontello.css">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <template id="boolean">
+      <tr data-type="boolean" data-initialized=false>
+        <td>pref.name</td>
+        <td><input type="button" value="&#xe806;"></td>
+        <td>-</td>
+        <td class="icon-privacy-off"></td>
+        <td class="icon-security-off"></td>
+        <td data-cmd="change-pref" class="icon-toggle-off">off</td>
+      </tr>
+    </template>
+    <template id="integer">
+      <tr data-type="integer" data-initialized=false>
+        <td>pref.name</td>
+        <td><input type="button" value="&#xe806;"></td>
+        <td>-</td>
+        <td class="icon-privacy-off"></td>
+        <td class="icon-security-off"></td>
+        <td><input type="number" value="1" readonly="true"></td>
+      </tr>
+    </template>
+
+    <table id="root">
+      <tr>
+        <td></td>
+        <td class="header">
+          <table>
+            <tr>
+              <td>Preference Name</td>
+              <td title="Info">I</td>
+              <td>Default</td>
+              <td title="Privacy">P</td>
+              <td title="Security">S</td>
+              <td title="status" class="center">Status</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr data-collapsed=false data-persist="cat-1">
+        <td data-toggle=true>Network</td>
+        <td data-toggle=true>
+          <table data-id="network"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=true data-persist="cat-2">
+        <td data-toggle=true>Browser</td>
+        <td data-toggle=true>
+          <table data-id="browser"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=false data-persist="cat-3">
+        <td data-toggle=true>Tracking</td>
+        <td data-toggle=true>
+          <table data-id="tracking"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=true data-persist="cat-4">
+        <td data-toggle=true>Stats Collection</td>
+        <td data-toggle=true>
+          <table data-id="stats"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=false data-persist="cat-5">
+        <td data-toggle=true>Media</td>
+        <td data-toggle=true>
+          <table data-id="media"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=false data-persist="cat-6">
+        <td data-toggle=true>Geo</td>
+        <td data-toggle=true>
+          <table data-id="geo"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=true data-persist="cat-7">
+        <td data-toggle=true>Devices</td>
+        <td data-toggle=true>
+          <table data-id="devices"></table>
+        </td>
+      </tr>
+      <tr data-collapsed=true data-persist="cat-8">
+        <td data-toggle=true>Encryption</td>
+        <td data-toggle=true>
+          <table data-id="encryption"></table>
+        </td>
+      </tr>
+    </table>
+    <div hbox align="true" justify=true id="toolbox">
+      <input flex="1" type="button" data-cmd="switch-ps-compatible" value="Privacy (compatible) & Security">
+      <input flex="1" type="button" data-cmd="switch-p-compatible" value="Privacy (compatible)">
+      <input flex="1" type="button" data-cmd="switch-security" value="Privacy & Security">
+      <input flex="1" type="button" data-cmd="switch-private" value="Full Privacy">
+      <input flex="1" type="button" data-cmd="reset" value="Defaults">
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

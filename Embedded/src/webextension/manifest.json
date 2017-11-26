@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "version": "0.1.0",
+  "name": "Privacy Settings (WebExtension)",
+  "description": "Alter Firefox's built-in privacy settings with a toolbar panel",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "persistent": false,
+    "scripts":[
+      "common.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "data/icons/16.png",
+      "32": "data/icons/32.png",
+      "64": "data/icons/64.png"
+    },
+    "default_popup": "data/popup/index.html"
+  },
+  "icons": {
+    "16": "data/icons/16.png",
+    "24": "data/icons/24.png",
+    "32": "data/icons/32.png",
+    "48": "data/icons/48.png",
+    "64": "data/icons/64.png",
+    "128": "data/icons/128.png"
+  },
+  "homepage_url": "http://firefox.add0n.com/privacy-settings.html",
+  "default_locale": "en"
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Privacy Settings (WebExtension)",
+  "name": "ipsettings",
+  "version": "0.1.0",
+  "description": "Alter Firefox's built-in privacy settings with a toolbar panel",
+  "main": "sdk.js",
+  "author": "Jeremy Schomery",
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "hasEmbeddedWebExtension": true,
+  "permissions": {
+    "multiprocess": true
+  },
+  "license": "MPLv2.0",
+  "keywords": [
+    "jetpack"
+  ]
+}

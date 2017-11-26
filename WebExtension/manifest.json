@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "version": "0.3.0",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+
+  "permissions": [
+    "privacy",
+    "storage"
+  ],
+
+  "background": {
+    "persistent": false,
+    "scripts":[
+      "background.js"
+    ]
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "16": "data/icons/16.png",
+      "24": "data/icons/24.png",
+      "32": "data/icons/32.png",
+      "48": "data/icons/48.png",
+      "64": "data/icons/64.png"
+    },
+    "default_popup": "data/popup/index.html"
+  },
+  "icons": {
+    "16": "data/icons/16.png",
+    "24": "data/icons/24.png",
+    "32": "data/icons/32.png",
+    "48": "data/icons/48.png",
+    "64": "data/icons/64.png",
+    "128": "data/icons/128.png"
+  },
+  "homepage_url": "http://add0n.com/privacy-settings.html",
+  "default_locale": "en",
+  "applications": {
+    "gecko": {
+      "id": "jid1-CKHySAadH4nL6Q@jetpack",
+      "strict_min_version": "57.0"
+    }
+  }
+}

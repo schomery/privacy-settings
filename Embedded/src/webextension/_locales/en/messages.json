@@ -1,0 +1,104 @@
+{
+  "domindexedDBenabled": {
+    "message": "IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs (can break some websites)."
+  },
+  "layoutcssvisited_links_enabled": {
+    "message": "preventing attacks on a user's history through CSS :visited selectors"
+  },
+  "domnetinfoenabled": {
+    "message": "disable giving away network info"
+  },
+  "domenable_resource_timing": {
+    "message": "disable Resource Timing API"
+  },
+  "domenable_user_timing": {
+    "message": "disable User Timing API"
+  },
+  "privacydonottrackheaderenabled": {
+    "message": "The 'Do Not Track' feature is a mechanism that allows to communicate a user's tracking preferences to websites."
+  },
+  "domenable_performance": {
+    "message": "This setting allows the browser to collect and send usage information back to Mozilla."
+  },
+  "cameracontrolface_detectionenabled": {
+    "message": "Allowing face detection if camera is accessible"
+  },
+  "devicesensorsenabled": {
+    "message": "Allowing access to device related information such as orientation"
+  },
+  "domstorageenabled": {
+    "message": "Enable client-side session and persistent storage for web pages"
+  },
+  "beaconenabled": {
+    "message": "Enables webpages to send data to a web server prior to the unloading of the document"
+  },
+  "dombatteryenabled": {
+    "message": "Enables websites to know information about the battery in your laptop or smartphone"
+  },
+  "securitytlsunrestricted_rc4_fallback": {
+    "message": "RC4 is now disabled when using TLS, except for a few specifically whitelisted Web sites. This whitelist is an interim measure until those sites are fixed (bug 1124039). This fallback is controlled by the security.tls.unrestricted_rc4_fallback preference, true by default for the moment"
+  },
+  "securitytlsinsecure_fallback_hostsuse_static_list": {
+    "message": "Web sites needing to fall back to an insecure version of TLS in order to work are now in a hardcoded whitelist which will shrink over time (bug 1114816). The whitelist can be disabled by setting security.tls.insecure_fallback_hosts.use_static_list  to false"
+  },
+  "securitysslrequire_safe_negotiation": {
+    "message": "This pref controls the behavior during the initial negotiation between client and server. If set to true, a Mozilla client will reject all connection attempts to servers that are still using the old SSL/TLS protocol and which might be vulnerable to the attack."
+  },
+  "securityssltreat_unsafe_negotiation_as_broken": {
+    "message": "This preference can be used to achieve visual feedback when connecting to a server that still utilizes the old protocol version, not yet supporting the new, enhanced protocol version(s). When set to true, when connecting to such a server, Firefox will warn about 'broken security' by displaying a red/broken padlock in its status bar. It should be noted that this indicator isn't of much help with regards to state of the connection used to retrieve the content. When you see the indicator, it's already “too late”, as a connection to that server has already been established and an attack may have already occurred."
+  },
+  "webgldisabled": {
+    "message": "WebGL is a JavaScript API for rendering interactive 3D computer graphics and 2D graphics within any compatible web browser without the use of plug-ins. WebGL is a potential security risk."
+  },
+  "mediagmpemeadobeenabled": {
+    "message": "A binary plugin that enables playback of encrypted media."
+  },
+  "mediaemeenabled": {
+    "message": "A binary plugin that enables playback of encrypted media."
+  },
+  "mediapeerconnectionenabled": {
+    "message": "WebRTC can leak a users IP address from behind a VPN or proxy."
+  },
+  "toolkittelemetryenabled": {
+    "message": "Usage statistics reports. If toolkit.telemetry.unified is off, it controls if Telemetry is enabled in Firefox. If toolkit.telemetry.unified is on, it controls whether extended data is sent to Mozilla."
+  },
+  "toolkittelemetryunified": {
+    "message": "Usage statistics reports. It controls unified behavior. If set to on, Telemetry is enabled, will record basic data, and will send additional pings."
+  },
+  "datareportinghealthreportuploadEnabled": {
+    "message": "Stability and performance reports."
+  },
+  "datareportinghealthreportserviceenabled": {
+    "message": "Stability and performance reports."
+  },
+  "privacytrackingprotectionenabled": {
+    "message": "This is Mozilla's new built in tracking protection. Note that the tracking protection list is fetched from a Mozilla Safe Browsing server."
+  },
+  "geowifiloggingenabled": {
+    "message": "Disables logging geolocation requests."
+  },
+  "geoenabled": {
+    "message": "Disables geolocation."
+  },
+  "browsersend_pings": {
+    "message": "Allows websites to track users clicks."
+  },
+  "browsersafebrowsingmalwareenabled": {
+    "message": "Disable Google Safe Browsing malware checks. Security risk, but privacy improvement."
+  },
+  "browsersafebrowsingdownloadsenabled": {
+    "message": "Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement."
+  },
+  "browsersafebrowsingphishingenabled": {
+    "message": "Disable Google Safe Browsing and phishing protection. Security risk, but privacy improvement."
+  },
+  "domeventclipboardeventsenabled": {
+    "message": "Websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected."
+  },
+  "networkhttpsendSecureXSiteReferrer": {
+    "message": "Tells the server which https page the user came from."
+  },
+  "networkwebsocketenabled": {
+    "message": "Websockets can cause some dns requests to not be send over the active proxy."
+  }
+}

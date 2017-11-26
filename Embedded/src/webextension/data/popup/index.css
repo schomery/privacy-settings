@@ -1,0 +1,145 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,sans-serif;
+  font-size: 13px;
+  user-select: none;
+  width: 600px;
+  background-color: #fff;
+}
+table {
+  width: 100%;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+td:nth-child(4),
+td:nth-child(5) {
+  text-align: center;
+}
+td:nth-child(6) {
+  text-align: right;
+}
+
+input[type=number] {
+  width: 45px;
+  border: none;
+  background-color: transparent;
+}
+input[type=button] {
+  height: 52px;
+  border: solid 1px #d8d8d8;
+  background-color: #f5f5f5;
+  white-space: pre-wrap;
+  margin: 0 5px;
+  cursor: pointer;
+}
+input[type=button]:active {
+  opacity: 0.5;
+}
+
+#root>tbody>tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+#root>tbody>tr>td:nth-child(1) {
+  width: 150px;
+  font-weight: bold;
+}
+#root>tbody>tr>td>table td:nth-child(2) {
+  width: 32px;
+  text-align: center;
+}
+#root>tbody>tr>td>table td:nth-child(3) {
+  width: 50px;
+}
+#root>tbody>tr>td>table td:nth-child(4),
+#root>tbody>tr>td>table td:nth-child(5) {
+  width: 20px;
+}
+#root>tbody>tr>td>table td:nth-child(6) {
+  width: 50px;
+}
+#root>tbody>tr>td>table tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#root input[type=button] {
+  width: 22px;
+  height: 16px;
+  font-family: fontello;
+  background-color: #fff;
+}
+
+#toolbox {
+  margin-top: 10px;
+}
+
+.icon-toggle-on,
+.icon-toggle-off {
+  cursor: pointer;
+}
+.icon-toggle-on:before,
+.icon-toggle-off:before {
+  margin-right: 5px;
+}
+.icon-security-on,
+.icon-privacy-on {
+  color: #448f22
+}
+.icon-security-off,
+.icon-privacy-off {
+  color: #9c9c9c
+}
+
+.center {
+  text-align: center;
+}
+.header {
+  pointer-events: none;
+  font-weight: bold;
+  height: 32px;
+}
+
+[data-collapsed]>td:first-child {
+  cursor: pointer;
+  height: 32px;
+}
+[data-collapsed]>td:first-child:before {
+  font-family: fontello;
+  padding: 0 7px;
+  font-size: 60%;
+  line-height: 32px;
+}
+[data-collapsed=true]>td:first-child:before {
+  content: '\e805';
+}
+[data-collapsed=true] table {
+  display: none;
+}
+[data-collapsed=true]>td:last-child {
+  cursor: pointer;
+}
+[data-collapsed=true]>td:last-child:before {
+  content: '...';
+}
+[data-collapsed=false]>td:first-child:before {
+  content: '\e804';
+}
+
+[data-initialized=false] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+[data-same=true] {
+  opacity: 0.5;
+}
+
+[hbox] {
+  display: flex;
+}
+[align=true] {
+  align-items: center;
+}
+[justify=true] {
+  justify-content: center;
+}
