@@ -1,0 +1,26 @@
+Privacy Settings extension keeps all the privacy and security related settings in one place. Each setting has a description and you can alter it right-from the extension's popup. Here is the complete list of settings that can be altered
+
+  * privacy.network.networkPredictionEnabled
+  * privacy.network.webRTCIPHandlingPolicy
+  * privacy.services.alternateErrorPagesEnabled
+  * privacy.services.autofillEnabled
+  * privacy.services.hotwordSearchEnabled
+  * privacy.services.passwordSavingEnabled
+  * privacy.services.safeBrowsingEnabled
+  * privacy.services.safeBrowsingExtendedReportingEnabled
+  * privacy.services.searchSuggestEnabled
+  * privacy.services.spellingServiceEnabled
+  * privacy.services.translationServiceEnabled
+  * privacy.websites.firstPartyIsolate
+  * privacy.websites.thirdPartyCookiesAllowed
+  * privacy.websites.hyperlinkAuditingEnabled
+  * privacy.websites.referrersEnabled
+  * privacy.websites.protectedContentEnabled
+
+Note that some of these settings might not yet be supported by your browser and hence are disabled or hidden in the UI.
+
+For FAQs and general bug reports please visit:
+https://add0n.com/privacy-settings.html
+
+For technical bug reports use:
+https://github.com/schomery/privacy-settings/
