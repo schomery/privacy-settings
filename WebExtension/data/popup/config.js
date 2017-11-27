@@ -78,21 +78,21 @@ config.websites.protectedContentEnabled = {
 };
 
 config.values = {
-  'network.networkPredictionEnabled': [true, false],
-  'network.peerConnectionEnabled': [true, true],
-  'network.webRTCIPHandlingPolicy': ['default', 'default_public_interface_only'],
-  'services.alternateErrorPagesEnabled': [true, false],
-  'services.autofillEnabled': [true, false],
-  'services.hotwordSearchEnabled': [false, false],
-  'services.passwordSavingEnabled': [true, false],
-  'services.safeBrowsingEnabled': [true, true],
-  'services.safeBrowsingExtendedReportingEnabled': [false, false],
-  'services.searchSuggestEnabled': [true, false],
-  'services.spellingServiceEnabled': [false, false],
-  'services.translationServiceEnabled': [true, false],
-  'websites.firstPartyIsolate': [false, true],
-  'websites.thirdPartyCookiesAllowed': [true, false],
-  'websites.hyperlinkAuditingEnabled': [true, false],
-  'websites.referrersEnabled': [true, false],
-  'websites.protectedContentEnabled': [true, true]
+  'network.networkPredictionEnabled': [false],
+  'network.peerConnectionEnabled': [true],
+  'network.webRTCIPHandlingPolicy': ['default_public_interface_only'],
+  'services.alternateErrorPagesEnabled': [false],
+  'services.autofillEnabled': [false],
+  'services.hotwordSearchEnabled': [false],
+  'services.passwordSavingEnabled': [false],
+  'services.safeBrowsingEnabled': [true],
+  'services.safeBrowsingExtendedReportingEnabled': [false],
+  'services.searchSuggestEnabled': [false],
+  'services.spellingServiceEnabled': [false],
+  'services.translationServiceEnabled': [false],
+  'websites.firstPartyIsolate': [true],
+  'websites.thirdPartyCookiesAllowed': [false],
+  'websites.hyperlinkAuditingEnabled': [false],
+  'websites.referrersEnabled': [false],
+  'websites.protectedContentEnabled': [true]
 };

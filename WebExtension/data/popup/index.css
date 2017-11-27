@@ -95,6 +95,8 @@ tr[data-controllable=false] td[data-type=controllable]:before {
 
 input[type=button] {
   border: solid 1px #ccc;
+  background-color: #fff;
+  color: #000;
   border-radius: 0;
   padding: 5px;
   cursor: pointer;

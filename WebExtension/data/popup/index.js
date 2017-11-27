@@ -1,6 +1,11 @@
 /* globals config */
 'use strict';
 
+var isOpera = navigator.userAgent.indexOf('OPR') !== -1;
+if (isOpera) {
+  document.querySelector('[data-id="services.hotwordSearchEnabled"]').remove();
+}
+
 var notify = msg => {
   const e = document.getElementById('msg');
   e.textContent = msg;
@@ -8,8 +13,26 @@ var notify = msg => {
   notify.id = window.setTimeout(() => e.textContent = '', 2000);
 };
 
+var methods = () => [...document.querySelectorAll('[data-id]')].map(tr => {
+  const [service, id] = tr.dataset.id.split('.');
+  const method = chrome.privacy[service][id];
+  if (method) {
+    return {
+      tr,
+      method,
+      id,
+      service
+    };
+  }
+  else {
+    tr.dataset.available = false;
+  }
+}).filter(a => a);
+methods = methods();
+
 var toggle = (e, value, isTrusted) => {
   const [service, id] = e.dataset.id.split('.');
+
   e.dataset.mode = value;
   if (value !== true && value !== false) {
     const info = e.querySelector('[data-type="info"] select');
@@ -53,31 +76,21 @@ document.addEventListener('change', e => {
   }
 });
 
-[...document.querySelectorAll('[data-id]')].forEach(e => {
-  const [service, id] = e.dataset.id.split('.');
-  const method = chrome.privacy[service][id];
-  if (method) {
-    method.get({}, d => {
-      e.dataset.controllable = d.levelOfControl !== 'controlled_by_other_extensions';
-      toggle(e, d.value);
-    });
-  }
-  else {
-    e.dataset.available = false;
-  }
+var init = () => methods.forEach(o => {
+  o.method.get({}, d => {
+    o.tr.dataset.controllable = d.levelOfControl !== 'controlled_by_other_extensions';
+    toggle(o.tr, d.value);
+  });
 });
+document.addEventListener('DOMContentLoaded', init);
 
 document.addEventListener('click', ({target}) => {
   const cmd = target.dataset.cmd;
-  if (cmd === 'reset' || cmd === 'private') {
-    [...document.querySelectorAll('[data-id]')].forEach(e => {
-      const [service, id] = e.dataset.id.split('.');
-      const method = chrome.privacy[service][id];
-      if (method) {
-        console.log(e.dataset.id)
-        toggle(e, config.values[e.dataset.id][cmd === 'reset' ? 0 : 1], true);
-      }
-    });
+  if (cmd === 'reset') {
+    Promise.all(methods.map(o => new Promise(r => o.method.clear({}, r)))).then(init);
+  }
+  else if (cmd === 'private') {
+    methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][0], true));
   }
   else if (cmd === 'faqs') {
     chrome.tabs.create({
