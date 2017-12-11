@@ -1,4 +1,4 @@
-Privacy Settings extension keeps all the privacy and security related settings in one place. Each setting has a description and you can alter it right-from the extension's popup. Here is the complete list of settings that can be altered
+La extensión «Privacy Settings» mantiene toda la configuración de privacidad y seguridad en un solo lugar. Cada configuración tiene una descripción y se puede modificar desde la ventana emergente de la extensión. Aquí está la lista completa de ajustes que se pueden modificar
 
   * privacy.network.networkPredictionEnabled
   * privacy.network.webRTCIPHandlingPolicy
@@ -17,10 +17,10 @@ Privacy Settings extension keeps all the privacy and security related settings i
   * privacy.websites.referrersEnabled
   * privacy.websites.protectedContentEnabled
 
-Note that some of these settings might not yet be supported by your browser and hence are disabled or hidden in the UI.
+Tenga en cuenta que es posible que algunas de estas configuraciones no sean compatibles con su navegador y, por lo tanto, estén desactivadas u ocultas en la interfaz de usuario.
 
-For FAQs and general bug reports please visit:
+Para preguntas frecuentes y errores en general, visita:
 https://add0n.com/privacy-settings.html
 
-For technical bug reports use:
+Para informes de errores técnicos, usa:
 https://github.com/schomery/privacy-settings/
