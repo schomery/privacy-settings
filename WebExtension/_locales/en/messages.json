@@ -40,7 +40,10 @@
         "message": "Reset to defaults"
     },
     "popupPrivate": {
-        "message": "Improve privacy"
+        "message": "Privacy"
+    },
+    "popupModerate": {
+        "message": "Privacy (compatible)"
     },
     "popupPeerDefault": {
         "message": "Default"

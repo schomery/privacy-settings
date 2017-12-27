@@ -92,6 +92,9 @@ document.addEventListener('click', ({target}) => {
   else if (cmd === 'private') {
     methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][0], true));
   }
+  else if (cmd === 'moderate') {
+    methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][1], true));
+  }
   else if (cmd === 'faqs') {
     chrome.tabs.create({
       url: chrome.runtime.getManifest().homepage_url
