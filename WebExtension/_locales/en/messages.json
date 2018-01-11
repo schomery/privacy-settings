@@ -102,6 +102,9 @@
     "websites_referrersEnabled": {
       "message": "If enabled, Chrome sends referer headers with your requests. Yes, the name of this preference doesn't match the misspelled header. No, we're not going to change it. The value of this preference is of type boolean, and the default value is true."
     },
+    "websites_resistFingerprinting": {
+      "message": "If true, the browser report generic spoofed information for data that's commonly used for fingerprinting. Such data includes the number of CPU cores, precision of JavaScript timers, and the local timezone. It will also disable features that are used in fingerprinting, such as GamePad support, and the WebSpeech and Navigator APIs."
+    },
     "websites_protectedContentEnabled": {
       "message": "If enabled, Chrome provides a unique ID to plugins in order to run protected content. The value of this preference is of type boolean, and the default value is true."
     },
@@ -116,8 +119,5 @@
     },
     "trackingProtectionModePrivateBrowsing": {
       "message": "Private Browsing"
-    },
-    "": {
-      "message": "If true, the browser report generic spoofed information for data that's commonly used for fingerprinting. Such data includes the number of CPU cores, precision of JavaScript timers, and the local timezone. It will also disable features that are used in fingerprinting, such as GamePad support, and the WebSpeech and Navigator APIs."
     }
 }
