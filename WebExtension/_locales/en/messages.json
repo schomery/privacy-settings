@@ -104,5 +104,20 @@
     },
     "websites_protectedContentEnabled": {
       "message": "If enabled, Chrome provides a unique ID to plugins in order to run protected content. The value of this preference is of type boolean, and the default value is true."
+    },
+    "websites_trackingProtectionMode": {
+      "message": "\"Tracking protection\" is a browser feature that blocks requests made to domains that are known to engage in cross-site tracking of users. Sites that track users are most commonly third-party advertising and analytics sites. This setting determines whether the browser should enable tracking protection or not on the normal and private modes"
+    },
+    "trackingProtectionModeAlways": {
+      "message": "Always"
+    },
+    "trackingProtectionModeNever": {
+      "message": "Never"
+    },
+    "trackingProtectionModePrivateBrowsing": {
+      "message": "Private Browsing"
+    },
+    "": {
+      "message": "If true, the browser report generic spoofed information for data that's commonly used for fingerprinting. Such data includes the number of CPU cores, precision of JavaScript timers, and the local timezone. It will also disable features that are used in fingerprinting, such as GamePad support, and the WebSpeech and Navigator APIs."
     }
 }

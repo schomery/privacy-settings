@@ -72,9 +72,18 @@ config.websites.referrersEnabled = {
   false: ['p', 's'],
   true: ['np', 'ns']
 };
+config.websites.resistFingerprinting = {
+  true: ['p', 's'],
+  false: ['np', 'ns']
+};
 config.websites.protectedContentEnabled = {
   false: ['np', 'ns'],
   true: ['p', 's']
+};
+config.websites.trackingProtectionMode = {
+  'always': ['p', 's'],
+  'never': ['np', 'ns'],
+  'private_browsing': ['p', 's']
 };
 
 config.values = {
@@ -94,5 +103,7 @@ config.values = {
   'websites.thirdPartyCookiesAllowed': [false, true],
   'websites.hyperlinkAuditingEnabled': [false, false],
   'websites.referrersEnabled': [false, true],
-  'websites.protectedContentEnabled': [true, true]
+  'websites.resistFingerprinting': [true, true],
+  'websites.protectedContentEnabled': [true, true],
+  'websites.trackingProtectionMode': ['always', 'private_browsing']
 };
