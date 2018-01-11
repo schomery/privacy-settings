@@ -1,6 +1,23 @@
 /* globals config */
 'use strict';
 
+var update = (mode, init = false) => {
+  if (init === false) {
+    chrome.contextMenus.update(mode, {
+      checked: true
+    });
+  }
+  const path = {
+    path: {
+      '16': `data/icons/${mode}/16.png`.replace('/defaults', ''),
+      '32': `data/icons/${mode}/32.png`.replace('/defaults', ''),
+      '48': `data/icons/${mode}/48.png`.replace('/defaults', ''),
+      '64': `data/icons/${mode}/64.png`.replace('/defaults', '')
+    }
+  };
+  chrome.browserAction.setIcon(path);
+};
+
 {
   const callback = () => {
     const get = ([service, id]) => new Promise(resolve => chrome.privacy[service][id].get({}, d => {
@@ -20,6 +37,13 @@
         const isPrivate = a.filter((v, i) => v === null || v === config.values[ar[i].join('.')][0]).length === a.length;
         const isModerate = a.filter((v, i) => v === null || v === config.values[ar[i].join('.')][1]).length === a.length;
         const isDefaults = isPrivate === false && isModerate === false;
+
+        if (isPrivate) {
+          update('private', true);
+        }
+        else if (isModerate) {
+          update('moderate', true);
+        }
 
         chrome.contextMenus.create({
           id: 'defaults',
@@ -49,6 +73,8 @@
   chrome.runtime.onStartup.addListener(callback);
 }
 chrome.contextMenus.onClicked.addListener(({menuItemId}) => {
+  update(menuItemId, true);
+
   Object.keys(config.values).forEach(name => {
     const [service, id] = name.split('.');
     const method = chrome.privacy[service][id];
@@ -64,6 +90,12 @@ chrome.contextMenus.onClicked.addListener(({menuItemId}) => {
       }
     }
   });
+});
+
+chrome.runtime.onMessage.addListener(request => {
+  if (request.method === 'change-mode') {
+    update(request.mode);
+  }
 });
 
 // FAQs & Feedback

@@ -34,6 +34,11 @@ var toggle = (e, value, isTrusted) => {
   const [service, id] = e.dataset.id.split('.');
 
   e.dataset.mode = value;
+
+  if (e.dataset.controllable === 'false') {
+    return;
+  }
+
   if (value !== true && value !== false) {
     const info = e.querySelector('[data-type="info"] select');
     info.value = value;
@@ -76,7 +81,7 @@ document.addEventListener('change', e => {
   }
 });
 
-var init = () => methods.forEach(o => {
+var init = () => methods.forEach((o, i) => {
   o.method.get({}, d => {
     o.tr.dataset.controllable = d.levelOfControl !== 'controlled_by_other_extensions';
     toggle(o.tr, d.value);
@@ -86,27 +91,24 @@ document.addEventListener('DOMContentLoaded', init);
 
 document.addEventListener('click', ({target}) => {
   const cmd = target.dataset.cmd;
-  if (cmd === 'reset') {
+  if (cmd === 'defaults') {
     Promise.all(methods.map(o => new Promise(r => o.method.clear({}, r)))).then(init);
-    chrome.contextMenus.update('defaults', {
-      checked: true
-    });
   }
   else if (cmd === 'private') {
     methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][0], true));
-    chrome.contextMenus.update('private', {
-      checked: true
-    });
   }
   else if (cmd === 'moderate') {
     methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][1], true));
-    chrome.contextMenus.update('moderate', {
-      checked: true
-    });
   }
   else if (cmd === 'faqs') {
     chrome.tabs.create({
       url: chrome.runtime.getManifest().homepage_url
+    });
+  }
+  if (cmd === 'defaults' || cmd === 'moderate' || cmd === 'private') {
+    chrome.runtime.sendMessage({
+      method: 'change-mode',
+      mode: cmd
     });
   }
 });

@@ -37,10 +37,10 @@
         "message": "Open FAQs page"
     },
     "popupReset": {
-        "message": "Reset to defaults"
+        "message": "Reset to Defaults"
     },
     "contextDefault": {
-        "message": "Mode: Normal (defaults)"
+        "message": "Mode: Default or Unknown"
     },
     "contextModerate": {
         "message": "Mode: Enhanced Privacy"
