@@ -88,12 +88,21 @@ document.addEventListener('click', ({target}) => {
   const cmd = target.dataset.cmd;
   if (cmd === 'reset') {
     Promise.all(methods.map(o => new Promise(r => o.method.clear({}, r)))).then(init);
+    chrome.contextMenus.update('defaults', {
+      checked: true
+    });
   }
   else if (cmd === 'private') {
     methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][0], true));
+    chrome.contextMenus.update('private', {
+      checked: true
+    });
   }
   else if (cmd === 'moderate') {
     methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][1], true));
+    chrome.contextMenus.update('moderate', {
+      checked: true
+    });
   }
   else if (cmd === 'faqs') {
     chrome.tabs.create({

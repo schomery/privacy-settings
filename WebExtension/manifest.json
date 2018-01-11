@@ -6,12 +6,14 @@
 
   "permissions": [
     "privacy",
-    "storage"
+    "storage",
+    "contextMenus"
   ],
 
   "background": {
     "persistent": false,
     "scripts":[
+      "/data/popup/config.js",
       "background.js"
     ]
   },
