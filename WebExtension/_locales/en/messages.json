@@ -39,14 +39,23 @@
     "popupReset": {
         "message": "Reset to defaults"
     },
-    "popupPrivate": {
-        "message": "Privacy"
+    "contextDefault": {
+        "message": "Mode: Normal (defaults)"
     },
-    "popupModerate": {
-        "message": "Privacy (compatible)"
+    "contextModerate": {
+        "message": "Mode: Enhanced Privacy"
+    },
+    "contextPrivate": {
+        "message": "Mode: Full Privacy"
     },
     "popupPeerDefault": {
-        "message": "Default"
+        "message": "Normal (defaults)"
+    },
+    "popupModerate": {
+        "message": "Enhanced Privacy"
+    },
+    "popupPrivate": {
+        "message": "Full Privacy"
     },
     "popupPeerDefault_public_and_private_interfaces": {
         "message": "Reveal both public and private interfaces"

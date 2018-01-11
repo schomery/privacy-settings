@@ -23,21 +23,21 @@
 
         chrome.contextMenus.create({
           id: 'defaults',
-          title: 'Mode: Normal',
+          title: chrome.i18n.getMessage('contextDefault'),
           contexts: ['browser_action'],
           type: 'radio',
           checked: isDefaults
         });
         chrome.contextMenus.create({
           id: 'moderate',
-          title: 'Mode: Enhanced Privacy',
+          title: chrome.i18n.getMessage('contextModerate'),
           contexts: ['browser_action'],
           type: 'radio',
           checked: isModerate
         });
         chrome.contextMenus.create({
           id: 'private',
-          title: 'Mode: Full Privacy',
+          title: chrome.i18n.getMessage('contextPrivate'),
           contexts: ['browser_action'],
           type: 'radio',
           checked: isPrivate
