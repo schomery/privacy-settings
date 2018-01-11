@@ -107,3 +107,7 @@ config.values = {
   'websites.protectedContentEnabled': [true, true],
   'websites.trackingProtectionMode': ['always', 'private_browsing']
 };
+
+if (navigator.userAgent.indexOf('OPR') !== -1) {
+  delete config.values['services.hotwordSearchEnabled'];
+}
