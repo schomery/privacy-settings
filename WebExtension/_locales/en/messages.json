@@ -25,7 +25,7 @@
         "message": "Status"
     },
     "popupControllable": {
-        "message": "Red color means this preference is controlled by another extension. Privacy settings cannot alter it"
+        "message": "Red color means this preference is controlled by another extension. Privacy Settings cannot alter it"
     },
     "popupPrivacy": {
         "message": "Privacy status. Green means privacy is protected"

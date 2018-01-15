@@ -1,0 +1,174 @@
+{
+    "websites_referrersEnabled": {
+        "message": "Om det är aktiverat skickar Chrome referensrubriker med dina önskemål. Ja, namnet på den här inställningen matchar inte den felstavade rubriken. Nej, vi kommer inte att ändra det. Värdet av denna preferens är av booleansk typ och standardvärdet är sant.",
+        "description": ""
+    },
+    "popupPeerDisable_non_proxied_udp": {
+        "message": "Inaktiverad",
+        "description": ""
+    },
+    "popupFAQs": {
+        "message": "Öppna sidan med vanliga frågor och svar",
+        "description": ""
+    },
+    "network_webRTCIPHandlingPolicy": {
+        "message": "Tillåt användare att ange mediasprestanda/integritetssavvikelser som påverkar hur WebRTC-trafik kommer att dirigeras och hur mycket lokal adressinformation exponeras. Detta preferensvärde är av typen IPHandlingPolicy, standardvärdet är standard.",
+        "description": ""
+    },
+    "services_spellingServiceEnabled": {
+        "message": "Om det är aktiverat använder Chrome en webbtjänst för att hjälpa till att rätta till stavfel. Detta preferensvärde är en booleskt, standardvärdet är falskt.",
+        "description": ""
+    },
+    "contextModerate": {
+        "message": "Läge: Förbättrad integritet",
+        "description": ""
+    },
+    "websites_firstPartyIsolate": {
+        "message": "Om sant så gör firstPartyIsolate-preferensen webbläsaren associerad med alla data (inklusive kakor, HSTS-data, cachade bilder och mer) för domäner från tredje part med domänen i adressfältet. Detta förhindrar tredje parts spårare att använda direkt lagrad information för att identifiera användaren på olika webbplatser, men kan bryta webbplatser där användaren loggar in med ett tredje part konto (som ett Facebook- eller Google-konto).",
+        "description": ""
+    },
+    "popupServices": {
+        "message": "Tjänster",
+        "description": ""
+    },
+    "services_hotwordSearchEnabled": {
+        "message": "Om det är aktiverat aktiverar Chrome \"OK, Google\" för att starta en röstsökning. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "contextPrivate": {
+        "message": "Läge: Fullständig integritet",
+        "description": ""
+    },
+    "services_translationServiceEnabled": {
+        "message": "Om det är aktiverat erbjuder Chrome att översätta sidor som inte finns på ett språk du läser. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "websites_trackingProtectionMode": {
+        "message": "\"Spårningsskydd\" är en webbläsarfunktion som blockerar förfrågningar som görs på domäner som är kända för att engagera sig i spårning av användarna. Webbplatser som spårar användare är oftast annonserings- och analyswebbplatser från tredje part. Den här inställningen avgör om webbläsaren ska aktivera spårningsskydd eller inte i normala och privata lägen",
+        "description": ""
+    },
+    "services_safeBrowsingExtendedReportingEnabled": {
+        "message": "Om det är aktiverat skickar Chrome ytterligare information till Google när SafeBrowsing blockerar en sida, till exempel innehållet på den blockerade sidan. Detta preferensvärde är en booleskt, standardvärdet är falskt.",
+        "description": ""
+    },
+    "popupReset": {
+        "message": "Återställ till standardvärden",
+        "description": ""
+    },
+    "popupPeerDefault_public_and_private_interfaces": {
+        "message": "Avslöja både offentliga och privata gränssnitt",
+        "description": ""
+    },
+    "popupNetwork": {
+        "message": "Nätverk",
+        "description": ""
+    },
+    "contextDefault": {
+        "message": "Läge: Standard eller okänd",
+        "description": ""
+    },
+    "appDesc": {
+        "message": "Ändra webbläsarens inbyggda integritetsinställningar i en verktygsfält poppupp",
+        "description": ""
+    },
+    "popupToggle": {
+        "message": "Status",
+        "description": ""
+    },
+    "websites_hyperlinkAuditingEnabled": {
+        "message": "Om det är aktiverat skickar Chrome revisionspingar när det begärs av en webbplats (<a ping>). Värdet av denna preferens är av booleansk typ och standardvärdet är sant.",
+        "description": ""
+    },
+    "trackingProtectionModePrivateBrowsing": {
+        "message": "Privat internetsurfning",
+        "description": ""
+    },
+    "services_autofillEnabled": {
+        "message": "Om det är aktiverat erbjuder Chrome automatiskt att fylla i formulär automatiskt. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "network_networkPredictionEnabled": {
+        "message": "Om det är aktiverat försöker Chrome att öka din webbsurfning genom att förhandsbesvara DNS-poster och förebyggande öppnar TCP- och SSL-anslutningar till servrar. Denna inställning påverkar bara åtgärder som vidtas av Chrome:s interna prognostjänst. Det påverkar inte webbplatsens initierade prefekter eller förbindelser. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "services_searchSuggestEnabled": {
+        "message": "Om den är aktiverad skickar Chrome den text du skriver in i Omniboxen till din standardsökmotor, som ger förutsägelser av webbplatser och sökningar som sannolikt kompletterar det du hittills har skrivit. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "appName": {
+        "message": "Privacy Settings",
+        "description": ""
+    },
+    "websites_thirdPartyCookiesAllowed": {
+        "message": "Om den är inaktiverad blockerar Chrome webbplatser från tredje part från att ställa in cookies. Värdet av denna preferens är av booleansk typ och standardvärdet är sant.",
+        "description": ""
+    },
+    "trackingProtectionModeAlways": {
+        "message": "Alltid",
+        "description": ""
+    },
+    "popupDisabled": {
+        "message": "Inaktiverad",
+        "description": ""
+    },
+    "services_alternateErrorPagesEnabled": {
+        "message": "Om det är aktiverat använder Chrome en webbtjänst för att hjälpa till att lösa navigeringsfel. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "services_safeBrowsingEnabled": {
+        "message": "Om det är aktiverat gör Chrome det bästa för att skydda dig från phishing och skadlig kod. Detta preferensvärde är en booleskt, standardvärdet sant.",
+        "description": ""
+    },
+    "websites_resistFingerprinting": {
+        "message": "Om sant rapporterar webbläsaren generiska falsk uppgifter för data som vanligen används som fingeravtryck. Sådana data inkluderar antalet CPU-kärnor, precision av JavaScript-tidtagare och den lokala tidszonen. Det kommer också att inaktivera funktioner som används vid fingeravtryck, till exempel GamePad-stöd och WebSpeech och Navigator API:er.",
+        "description": ""
+    },
+    "popupWebsites": {
+        "message": "Webbplatser",
+        "description": ""
+    },
+    "websites_protectedContentEnabled": {
+        "message": "Om det är aktiverat tillhandahåller Chrome ett unikt ID för tillägg för att kunna köra skyddat innehåll. Värdet av denna preferens är av booleansk typ och standardvärdet är sant.",
+        "description": ""
+    },
+    "popupPrivate": {
+        "message": "Fullständig integritet",
+        "description": ""
+    },
+    "popupControllable": {
+        "message": "Röd färg betyder att denna inställning styrs av ett annan tillägg. Privacy Settings kan inte ändra det",
+        "description": ""
+    },
+    "popupModerate": {
+        "message": "Förbättrad integritet",
+        "description": ""
+    },
+    "popupPeerDefault": {
+        "message": "Normal (standard)",
+        "description": ""
+    },
+    "trackingProtectionModeNever": {
+        "message": "Aldrig",
+        "description": ""
+    },
+    "popupEnabled": {
+        "message": "Aktiverad",
+        "description": ""
+    },
+    "popupSecurity": {
+        "message": "Säkerhetsstatus. Grönt betyder att säkerheten är skyddad",
+        "description": ""
+    },
+    "services_passwordSavingEnabled": {
+        "message": "Om det är aktiverat frågar lösenordshanteraren om du vill spara lösenord. Detta preferensvärde är en booleskt, standardvärdet är sant.",
+        "description": ""
+    },
+    "popupPeerDefault_public_interface_only": {
+        "message": "Avslöja endast offentligt gränssnitt",
+        "description": ""
+    },
+    "popupPrivacy": {
+        "message": "Integritetsstatus. Grön betyder att personuppgifter är skyddade",
+        "description": ""
+    }
+}

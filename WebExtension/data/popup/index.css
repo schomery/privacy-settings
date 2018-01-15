@@ -101,6 +101,9 @@ input[type=button] {
   padding: 5px;
   cursor: pointer;
   outline: none;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 input[type=button]:not(:first-child) {
   margin-left: 5px;
