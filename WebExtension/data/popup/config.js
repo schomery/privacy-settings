@@ -88,7 +88,7 @@ config.websites.trackingProtectionMode = {
 
 config.values = {
   'network.networkPredictionEnabled': [false, false],
-  'network.peerConnectionEnabled': [true, true],
+  'network.peerConnectionEnabled': [false, true],
   'network.webRTCIPHandlingPolicy': ['default_public_interface_only', 'default_public_interface_only'],
   'services.alternateErrorPagesEnabled': [false, false],
   'services.autofillEnabled': [false, false],
