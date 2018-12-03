@@ -1,0 +1,26 @@
+Privacy Settings附加元件將所有關於隱私與安全的設定置於同一處。每個設定都有一個描述，您可以直接從附加元件的彈出式視窗變更它。以下列出可以從這個附加元件調整的完整設定清單
+
+  * privacy.network.networkPredictionEnabled
+  * privacy.network.webRTCIPHandlingPolicy
+  * privacy.services.alternateErrorPagesEnabled
+  * privacy.services.autofillEnabled
+  * privacy.services.hotwordSearchEnabled
+  * privacy.services.passwordSavingEnabled
+  * privacy.services.safeBrowsingEnabled
+  * privacy.services.safeBrowsingExtendedReportingEnabled
+  * privacy.services.searchSuggestEnabled
+  * privacy.services.spellingServiceEnabled
+  * privacy.services.translationServiceEnabled
+  * privacy.websites.firstPartyIsolate
+  * privacy.websites.thirdPartyCookiesAllowed
+  * privacy.websites.hyperlinkAuditingEnabled
+  * privacy.websites.referrersEnabled
+  * privacy.websites.protectedContentEnabled
+
+注意，您的瀏覽器可能尚不支援其中的某些設定，如果是這樣，這些設定將會在介面中停用或隱藏。
+
+FAQ 與一般錯誤回報請見：
+https://add0n.com/privacy-settings.html
+
+技術問題回報請使用：
+https://github.com/schomery/privacy-settings/
