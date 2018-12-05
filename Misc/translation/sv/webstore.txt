@@ -1,0 +1,26 @@
+Tillägget Privacy Settings håller alla integritets- och säkerhetsrelaterade inställningar på ett ställe. Varje inställning har en beskrivning och du kan ändra den direkt från tilläggets poppupp. Här är en komplett lista över inställningar som kan ändras
+
+  * privacy.network.networkPredictionEnabled
+  * privacy.network.webRTCIPHandlingPolicy
+  * privacy.services.alternateErrorPagesEnabled
+  * privacy.services.autofillEnabled
+  * privacy.services.hotwordSearchEnabled
+  * privacy.services.passwordSavingEnabled
+  * privacy.services.safeBrowsingEnabled
+  * privacy.services.safeBrowsingExtendedReportingEnabled
+  * privacy.services.searchSuggestEnabled
+  * privacy.services.spellingServiceEnabled
+  * privacy.services.translationServiceEnabled
+  * privacy.websites.firstPartyIsolate
+  * privacy.websites.thirdPartyCookiesAllowed
+  * privacy.websites.hyperlinkAuditingEnabled
+  * privacy.websites.referrersEnabled
+  * privacy.websites.protectedContentEnabled
+
+Observera att vissa av dessa inställningar kanske inte stöds av din webbläsare och är därför inaktiverade eller dolda i användargränssnittet.
+
+För vanliga frågor och vanliga felrapporter besök:
+https://add0n.com/privacy-settings.html
+
+För tekniska felrapporter använd:
+https://github.com/schomery/privacy-settings/
