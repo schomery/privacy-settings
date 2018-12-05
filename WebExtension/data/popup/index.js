@@ -14,13 +14,14 @@ var notify = msg => {
 };
 
 var methods = () => [...document.querySelectorAll('[data-id]')].map(tr => {
-  const [service, id] = tr.dataset.id.split('.');
+  const [service, id, subid] = tr.dataset.id.split('.');
   const method = chrome.privacy[service][id];
   if (method) {
     return {
       tr,
       method,
       id,
+      subid,
       service
     };
   }
@@ -31,24 +32,35 @@ var methods = () => [...document.querySelectorAll('[data-id]')].map(tr => {
 methods = methods();
 
 var toggle = (e, value, isTrusted) => {
-  const [service, id] = e.dataset.id.split('.');
-
+  const [service, id, subid] = e.dataset.id.split('.');
+  if (subid && typeof value === 'object') {
+    value = value[subid];
+  }
   e.dataset.mode = value;
-
   if (e.dataset.controllable === 'false') {
     return;
   }
-
   if (value !== true && value !== false) {
     const info = e.querySelector('[data-type="info"] select');
     info.value = value;
   }
-  const arr = config[service][id][value];
-  e.dataset.private = arr.indexOf('p') !== -1 ? true : (arr.indexOf('np') === -1 ? null : false);
-  e.dataset.secure = arr.indexOf('s') !== -1 ? true : (arr.indexOf('ns') === -1 ? null : false);
+  const arr = subid ? config[service][id][subid][value] : config[service][id][value];
+  try {
+    e.dataset.private = arr.indexOf('p') !== -1 ? true : (arr.indexOf('np') === -1 ? null : false);
+    e.dataset.secure = arr.indexOf('s') !== -1 ? true : (arr.indexOf('ns') === -1 ? null : false);
+  }
+  catch (e) {
+    console.log(service, id, subid, value, arr, e);
+  }
 
   if (isTrusted) {
     const method = chrome.privacy[service][id];
+    if (service === 'websites' && id === 'cookieConfig') {
+      value = {
+        behavior: document.querySelector('[data-id="websites.cookieConfig.behavior"] select').value,
+        nonPersistentCookies: document.querySelector('[data-id="websites.cookieConfig.nonPersistentCookies"]').dataset.mode === 'true'
+      };
+    }
     method.set({
       value
     }, () => {
@@ -65,7 +77,7 @@ document.addEventListener('click', e => {
   const tr = target.closest('tr');
   if (tr) {
     const {id, mode} = tr.dataset;
-    if (id) {
+    if (id && (mode === 'false' || mode === 'true')) {
       toggle(tr, mode === 'false', e.isTrusted);
     }
   }
@@ -81,8 +93,11 @@ document.addEventListener('change', e => {
   }
 });
 
-var init = () => methods.forEach((o, i) => {
+var init = () => methods.forEach(o => {
   o.method.get({}, d => {
+    if (chrome.runtime.lastError) {
+      return o.tr.dataset.controllable = false;
+    }
     o.tr.dataset.controllable = d.levelOfControl !== 'controlled_by_other_extensions';
     toggle(o.tr, d.value);
   });
@@ -94,11 +109,13 @@ document.addEventListener('click', ({target}) => {
   if (cmd === 'defaults') {
     Promise.all(methods.map(o => new Promise(r => o.method.clear({}, r)))).then(init);
   }
-  else if (cmd === 'private') {
-    methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][0], true));
-  }
-  else if (cmd === 'moderate') {
-    methods.forEach(o => toggle(o.tr, config.values[o.service + '.' + o.id][1], true));
+  else if (cmd === 'private' || cmd === 'moderate') {
+    const index = cmd === 'private' ? 0 : 1;
+    methods.forEach(o => toggle(
+      o.tr,
+      o.subid ? config.values[o.service + '.' + o.id + '.' + o.subid][index] : config.values[o.service + '.' + o.id][index],
+      true
+    ));
   }
   else if (cmd === 'faqs') {
     chrome.tabs.create({

@@ -28,6 +28,14 @@ config.services.autofillEnabled = {
   false: ['p'],
   true: ['np']
 };
+config.services.autofillAddressEnabled = {
+  false: ['p'],
+  true: ['np']
+};
+config.services.autofillCreditCardEnabled = {
+  false: ['p'],
+  true: ['np']
+};
 config.services.hotwordSearchEnabled = {
   false: ['p'],
   true: ['np']
@@ -56,6 +64,18 @@ config.services.translationServiceEnabled = {
   false: ['p'],
   true: ['np']
 };
+config.websites.cookieConfig = {};
+config.websites.cookieConfig.behavior = {
+  'allow_all': ['np'],
+  'reject_all': ['p'],
+  'reject_third_party': ['p'],
+  'allow_visited': ['np'],
+  'reject_trackers': ['p']
+};
+config.websites.cookieConfig.nonPersistentCookies = {
+  false: ['np'],
+  true: ['p']
+};
 config.websites.firstPartyIsolate = {
   false: ['np'],
   true: ['p']
@@ -69,6 +89,10 @@ config.websites.hyperlinkAuditingEnabled = {
   true: ['np', 'ns']
 };
 config.websites.referrersEnabled = {
+  false: ['p', 's'],
+  true: ['np', 'ns']
+};
+config.websites.doNotTrackEnabled = {
   false: ['p', 's'],
   true: ['np', 'ns']
 };
@@ -89,20 +113,25 @@ config.websites.trackingProtectionMode = {
 config.values = {
   'network.networkPredictionEnabled': [false, false],
   'network.peerConnectionEnabled': [false, true],
-  'network.webRTCIPHandlingPolicy': ['default_public_interface_only', 'default_public_interface_only'],
+  'network.webRTCIPHandlingPolicy': ['disable_non_proxied_udp', 'default_public_interface_only'],
   'services.alternateErrorPagesEnabled': [false, false],
   'services.autofillEnabled': [false, false],
+  'services.autofillAddressEnabled': [false, false],
+  'services.autofillCreditCardEnabled': [false, false],
   'services.hotwordSearchEnabled': [false, false],
-  'services.passwordSavingEnabled': [false, false],
+  'services.passwordSavingEnabled': [false, true],
   'services.safeBrowsingEnabled': [true, true],
   'services.safeBrowsingExtendedReportingEnabled': [false, false],
   'services.searchSuggestEnabled': [false, false],
   'services.spellingServiceEnabled': [false, false],
   'services.translationServiceEnabled': [false, false],
+  'websites.cookieConfig.behavior': ['reject_all', 'reject_third_party'],
+  'websites.cookieConfig.nonPersistentCookies': [true, false],
   'websites.firstPartyIsolate': [true, true],
   'websites.thirdPartyCookiesAllowed': [false, true],
   'websites.hyperlinkAuditingEnabled': [false, false],
   'websites.referrersEnabled': [false, true],
+  'websites.doNotTrackEnabled': [false, false],
   'websites.resistFingerprinting': [true, true],
   'websites.protectedContentEnabled': [true, true],
   'websites.trackingProtectionMode': ['always', 'private_browsing']

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title data-i18n="appTitle">Privacy Settings</title>
+      <title>Privacy Settings</title>
       <link rel="stylesheet" type="text/css" href="fontello.css">
       <link rel="stylesheet" href="index.css">
     </head>
@@ -14,7 +14,7 @@
           <col width="24">
           <col width="24">
           <col width=24>
-          <col width=70>
+          <col width=100>
         </colgroup>
         <thead>
           <tr>
@@ -43,7 +43,7 @@
             <td class="icon-" data-type="toggle"></td>
             <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
           </tr>
-          <tr data-mode=false data-id="network.webRTCIPHandlingPolicy" data-i18n="network_webRTCIPHandlingPolicy" data-i18n-value="title">
+          <tr data-mode=invalid data-id="network.webRTCIPHandlingPolicy" data-i18n="network_webRTCIPHandlingPolicy" data-i18n-value="title">
             <td>network.webRTCIPHandlingPolicy</td>
             <td class="icon-" data-type="controllable"></td>
             <td class="icon-" data-type="privacy"></td>
@@ -74,6 +74,22 @@
           </tr>
           <tr data-mode=false data-id="services.autofillEnabled" data-i18n="services_autofillEnabled" data-i18n-value="title">
             <td>services.autofillEnabled</td>
+            <td class="icon-" data-type="controllable"></td>
+            <td class="icon-" data-type="privacy"></td>
+            <td class="icon-" data-type="security"></td>
+            <td class="icon-" data-type="toggle"></td>
+            <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+          </tr>
+          <tr data-mode=false data-id="services.autofillAddressEnabled" data-i18n="services_autofillAddressEnabled" data-i18n-value="title">
+            <td>services.autofillAddressEnabled</td>
+            <td class="icon-" data-type="controllable"></td>
+            <td class="icon-" data-type="privacy"></td>
+            <td class="icon-" data-type="security"></td>
+            <td class="icon-" data-type="toggle"></td>
+            <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+          </tr>
+          <tr data-mode=false data-id="services.autofillCreditCardEnabled" data-i18n="services_autofillCreditCardEnabled" data-i18n-value="title">
+            <td>services.autofillCreditCardEnabled</td>
             <td class="icon-" data-type="controllable"></td>
             <td class="icon-" data-type="privacy"></td>
             <td class="icon-" data-type="security"></td>
@@ -143,6 +159,29 @@
           </tr>
         </thead>
         <tbody>
+          <tr data-mode=invalid data-id="websites.cookieConfig.behavior" data-i18n="websites_cookieConfig_behavior" data-i18n-value="title">
+            <td>websites.cookieConfig.behavior</td>
+            <td class="icon-" data-type="controllable"></td>
+            <td class="icon-" data-type="privacy"></td>
+            <td class="icon-" data-type="security"></td>
+            <td data-type="info" colspan="2">
+              <select>
+                <option value="allow_all" data-i18n="cookieConfig_allow_all"></option>
+                <option value="reject_all" data-i18n="cookieConfig_reject_all"></option>
+                <option value="reject_third_party" data-i18n="cookieConfig_reject_third_party"></option>
+                <option value="allow_visited" data-i18n="cookieConfig_allow_visited"></option>
+                <option value="reject_trackers" data-i18n="cookieConfig_reject_trackers" disabled=></option>
+              </select>
+            </td>
+          </tr>
+          <tr data-mode=false data-id="websites.cookieConfig.nonPersistentCookies" data-i18n="websites_cookieConfig_nonPersistentCookies" data-i18n-value="title">
+            <td>websites.cookieConfig.nonPersistentCookies</td>
+            <td class="icon-" data-type="controllable"></td>
+            <td class="icon-" data-type="privacy"></td>
+            <td class="icon-" data-type="security"></td>
+            <td class="icon-" data-type="toggle"></td>
+            <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+          </tr>
           <tr data-mode=false data-id="websites.firstPartyIsolate" data-i18n="websites_firstPartyIsolate" data-i18n-value="title">
             <td>websites.firstPartyIsolate</td>
             <td class="icon-" data-type="controllable"></td>
@@ -169,6 +208,14 @@
           </tr>
           <tr data-mode=false data-id="websites.referrersEnabled" data-i18n="websites_referrersEnabled" data-i18n-value="title">
             <td>websites.referrersEnabled</td>
+            <td class="icon-" data-type="controllable"></td>
+            <td class="icon-" data-type="privacy"></td>
+            <td class="icon-" data-type="security"></td>
+            <td class="icon-" data-type="toggle"></td>
+            <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+          </tr>
+          <tr data-mode=false data-id="websites.doNotTrackEnabled" data-i18n="websites_doNotTrackEnabled" data-i18n-value="title">
+            <td>websites.doNotTrackEnabled</td>
             <td class="icon-" data-type="controllable"></td>
             <td class="icon-" data-type="privacy"></td>
             <td class="icon-" data-type="security"></td>

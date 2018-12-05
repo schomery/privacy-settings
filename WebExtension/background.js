@@ -21,7 +21,10 @@ var update = (mode, init = false) => {
 {
   const callback = () => {
     const get = ([service, id]) => new Promise(resolve => chrome.privacy[service][id].get({}, d => {
-      if (d.levelOfControl !== 'controlled_by_other_extensions') {
+      if (chrome.runtime.lastError || !d) {
+        resolve(null);
+      }
+      else if (d.levelOfControl !== 'controlled_by_other_extensions') {
         resolve(d.value);
       }
       else {
@@ -29,44 +32,64 @@ var update = (mode, init = false) => {
       }
     }));
 
-    const ar = Object.keys(config.values).map(name => name.split('.'))
+    const ar = Object.keys(config.values)
+      .map(name => name.split('.').slice(0, 2).join('.'))
+      // remove duplicates (when there is subid)
+      .filter((s, i, l) => l.indexOf(s) === i)
+      .map(name => name.split('.'))
       .filter(([service, id]) => chrome.privacy[service][id]);
 
-    Promise.all(
-      ar.map(get)).then(a => {
-        const isPrivate = a.filter((v, i) => v === null || v === config.values[ar[i].join('.')][0]).length === a.length;
-        const isModerate = a.filter((v, i) => v === null || v === config.values[ar[i].join('.')][1]).length === a.length;
-        const isDefaults = isPrivate === false && isModerate === false;
 
-        if (isPrivate) {
-          update('private', true);
+    Promise.all(ar.map(get)).then(a => {
+      const compare = index => a.filter((v, i) => {
+        if (v === null) {
+          return true;
         }
-        else if (isModerate) {
-          update('moderate', true);
+        if (typeof v === 'object') {
+          for (const [key, value] of Object.entries(v)) {
+            if (config.values[[...ar[i], key].join('.')][index] !== value) {
+              return false;
+            }
+          }
+          return true;
         }
+        return v === config.values[ar[i].join('.')][index];
+      }).length === a.length;
 
-        chrome.contextMenus.create({
-          id: 'defaults',
-          title: chrome.i18n.getMessage('contextDefault'),
-          contexts: ['browser_action'],
-          type: 'radio',
-          checked: isDefaults
-        });
-        chrome.contextMenus.create({
-          id: 'moderate',
-          title: chrome.i18n.getMessage('contextModerate'),
-          contexts: ['browser_action'],
-          type: 'radio',
-          checked: isModerate
-        });
-        chrome.contextMenus.create({
-          id: 'private',
-          title: chrome.i18n.getMessage('contextPrivate'),
-          contexts: ['browser_action'],
-          type: 'radio',
-          checked: isPrivate
-        });
+      const isPrivate = compare(0);
+      const isModerate = compare(1);
+      const isDefaults = isPrivate === false && isModerate === false;
+
+
+      if (isPrivate) {
+        update('private', true);
+      }
+      else if (isModerate) {
+        update('moderate', true);
+      }
+
+      chrome.contextMenus.create({
+        id: 'defaults',
+        title: chrome.i18n.getMessage('contextDefault'),
+        contexts: ['browser_action'],
+        type: 'radio',
+        checked: isDefaults
       });
+      chrome.contextMenus.create({
+        id: 'moderate',
+        title: chrome.i18n.getMessage('contextModerate'),
+        contexts: ['browser_action'],
+        type: 'radio',
+        checked: isModerate
+      });
+      chrome.contextMenus.create({
+        id: 'private',
+        title: chrome.i18n.getMessage('contextPrivate'),
+        contexts: ['browser_action'],
+        type: 'radio',
+        checked: isPrivate
+      });
+    });
   };
 
   chrome.runtime.onInstalled.addListener(callback);
@@ -80,13 +103,13 @@ chrome.contextMenus.onClicked.addListener(({menuItemId}) => {
     const method = chrome.privacy[service][id];
     if (method) {
       switch (menuItemId) {
-        case 'defaults':
-          method.clear({});
-          break;
-        default:
-          method.set({
-            value: config.values[name][menuItemId === 'private' ? 0 : 1]
-          });
+      case 'defaults':
+        method.clear({});
+        break;
+      default:
+        method.set({
+          value: config.values[name][menuItemId === 'private' ? 0 : 1]
+        });
       }
     }
   });
@@ -102,7 +125,7 @@ chrome.runtime.onMessage.addListener(request => {
 chrome.storage.local.get({
   'version': null,
   'faqs': navigator.userAgent.indexOf('Firefox') === -1,
-  'last-update': 0,
+  'last-update': 0
 }, prefs => {
   const version = chrome.runtime.getManifest().version;
 
