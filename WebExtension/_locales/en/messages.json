@@ -1,7 +1,7 @@
 {
     "appDesc": {
         "description": "",
-        "message": "Alter browser's built-in privacy settings in a toolbar popup"
+        "message": "Alter the browser's built-in privacy settings in a toolbar popup"
     },
     "appName": {
         "message": "Privacy Settings"
