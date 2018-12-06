@@ -1,132 +1,218 @@
 {
-    "appDesc": {
-        "description": "",
-        "message": "在工具列的彈出式視窗中更改瀏覽器內建的隱私設定"
-    },
     "appName": {
-        "message": "Privacy Settings"
+        "message": "Privacy Settings",
+        "description": ""
     },
     "popupNetwork": {
-        "message": "網路"
+        "message": "網路",
+        "description": ""
     },
     "popupServices": {
-        "message": "服務"
+        "message": "服務",
+        "description": ""
     },
     "popupWebsites": {
-        "message": "網頁"
+        "message": "網頁",
+        "description": ""
     },
     "popupEnabled": {
-        "message": "啟用"
+        "message": "啟用",
+        "description": ""
     },
     "popupDisabled": {
-        "message": "停用"
+        "message": "停用",
+        "description": ""
     },
     "popupToggle": {
-        "message": "狀態"
+        "message": "狀態",
+        "description": ""
     },
     "popupControllable": {
-        "message": "紅色代表此偏好設定由其他附加元件所控制。Privacy Settings 無法變更它"
+        "message": "紅色代表此偏好設定由其他附加元件所控制。Privacy Settings 無法變更它",
+        "description": ""
     },
     "popupPrivacy": {
-        "message": "隱私狀態。綠色代表隱私已受保護"
+        "message": "隱私狀態。綠色代表隱私已受保護",
+        "description": ""
     },
     "popupSecurity": {
-        "message": "安全狀態。綠色代表安全已受保護"
+        "message": "安全狀態。綠色代表安全已受保護",
+        "description": ""
     },
     "popupFAQs": {
-        "message": "開啟 FAQ 頁面"
+        "message": "開啟 FAQ 頁面",
+        "description": ""
     },
     "popupReset": {
-        "message": "重設為預設值"
+        "message": "重設為預設值",
+        "description": ""
     },
     "contextDefault": {
-        "message": "模式：預設或未知"
+        "message": "模式：預設或未知",
+        "description": ""
     },
     "contextModerate": {
-        "message": "模式：增強隱私"
+        "message": "模式：增強隱私",
+        "description": ""
     },
     "contextPrivate": {
-        "message": "模式：完整隱私"
+        "message": "模式：完整隱私",
+        "description": ""
     },
     "popupPeerDefault": {
-        "message": "一般（預設）"
+        "message": "一般（預設）",
+        "description": ""
     },
     "popupModerate": {
-        "message": "增強隱私"
+        "message": "增強隱私",
+        "description": ""
     },
     "popupPrivate": {
-        "message": "完整隱私"
+        "message": "完整隱私",
+        "description": ""
     },
     "popupPeerDefault_public_and_private_interfaces": {
-        "message": "同時揭露公開與私有介面"
+        "message": "同時揭露公開與私有介面",
+        "description": ""
     },
     "popupPeerDefault_public_interface_only": {
-        "message": "僅揭露公開介面"
+        "message": "僅揭露公開介面",
+        "description": ""
     },
     "popupPeerDisable_non_proxied_udp": {
-        "message": "已停用"
+        "message": "已停用",
+        "description": ""
     },
     "network_networkPredictionEnabled": {
-      "message": "若啟用，Chrome 會透過預先解析 DNS 項目並預先打開到伺服器的 TCP 與 SSL 連線來加快您的網路瀏覽體驗。此偏好設定僅影響 Chrome 內部的預測服務執行的動作。它不會影響網頁的預先處理或預先連線。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會透過預先解析 DNS 項目並預先打開到伺服器的 TCP 與 SSL 連線來加快您的網路瀏覽體驗。此偏好設定僅影響 您的瀏覽器內部的預測服務執行的動作。它不會影響網頁的預先處理或預先連線。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
+    },
+    "network_peerConnectionEnabled": {
+        "message": "若停用，RTCPeerConnection 介面會停用。注意，getUserMedia() 並不受此設定影響。",
+        "description": ""
     },
     "network_webRTCIPHandlingPolicy": {
-      "message": "讓使用者可以指定媒體效能／隱私間的平衡，這將會影響 WebRTC 的路由與公開的本機位置訊息量。此偏好設定的值為 IPHandlingPolicy 的類型，預設值為 default。"
+        "message": "讓使用者可以指定媒體效能／隱私間的平衡，這將會影響 WebRTC 的路由與公開的本機位置訊息量。此偏好設定的值為 IPHandlingPolicy 的類型，預設值為 default。",
+        "description": ""
     },
     "services_alternateErrorPagesEnabled": {
-      "message": "若啟用，Chrome 會使用網路服務來解決瀏覽錯誤。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會使用網路服務來解決瀏覽錯誤。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "services_autofillEnabled": {
-      "message": "若啟用，Chrome 會提供自動填表的功能。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會提供自動填表的功能。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
+    },
+    "services_autofillAddressEnabled": {
+        "message": "若啟用，您的瀏覽器會提供自動填入地址與其他表單的功能。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
+    },
+    "services_autofillCreditCardEnabled": {
+        "message": "若啟用，您的瀏覽器會提供自動填入信用卡號表單的功能。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "services_hotwordSearchEnabled": {
-      "message": "若啟用，Chrome 將會啟用說出「OK, Google」來啟動語音搜尋的功能。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器將會啟用說出「OK, Google」來啟動語音搜尋的功能。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "services_passwordSavingEnabled": {
-      "message": "若啟用，密碼管理員將會詢問您是否要儲存密碼。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，密碼管理員將會詢問您是否要儲存密碼。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "services_safeBrowsingEnabled": {
-      "message": "若啟用，Chrome 將會盡可能保護您免於網路釣魚和惡意軟體的攻擊。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器將會盡可能保護您免於網路釣魚和惡意軟體的攻擊。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "services_safeBrowsingExtendedReportingEnabled": {
-      "message": "若啟用，Chrome 將會在安全瀏覽功能阻擋頁面時傳送額外的資訊給 Google，如被阻擋網頁的內容等。此偏好設定的值為真假值，預設為 false。"
+        "message": "若啟用，您的瀏覽器將會在安全瀏覽功能阻擋頁面時傳送額外的資訊給 Google，如被阻擋網頁的內容等。此偏好設定的值為真假值，預設為 false。",
+        "description": ""
     },
     "services_searchSuggestEnabled": {
-      "message": "若啟用，Chrome 會傳送您輸入的文字到您預設的搜尋引擎，其將會提供您可能想要的網頁與搜尋預測以自動完成搜尋。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會傳送您輸入的文字到您預設的搜尋引擎，其將會提供您可能想要的網頁與搜尋預測以自動完成搜尋。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "services_spellingServiceEnabled": {
-      "message": "若啟用，Chrome 會使用網路服務來解決拼字錯誤。此偏好設定的值為真假值，預設為 false。"
+        "message": "若啟用，您的瀏覽器會使用網路服務來解決拼字錯誤。此偏好設定的值為真假值，預設為 false。",
+        "description": ""
     },
     "services_translationServiceEnabled": {
-      "message": "若啟用，Chrome 會在網頁不是您可以閱讀的語言時提供翻譯功能。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會在網頁不是您可以閱讀的語言時提供翻譯功能。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
+    },
+    "websites_cookieConfig_behavior": {
+        "message": "瀏覽器如何處理 cookies",
+        "description": ""
+    },
+    "cookieConfig_allow_all": {
+        "message": "接受所有 cookies",
+        "description": ""
+    },
+    "cookieConfig_reject_all": {
+        "message": "拒絕所有 cookies",
+        "description": ""
+    },
+    "cookieConfig_reject_third_party": {
+        "message": "拒絕所有第三方 cookies",
+        "description": ""
+    },
+    "cookieConfig_allow_visited": {
+        "message": "僅在造訪過的頁面接受第三方 cookie",
+        "description": ""
+    },
+    "cookieConfig_reject_trackers": {
+        "message": "拒絕有追蹤行為的 cookies",
+        "description": ""
+    },
+    "websites_cookieConfig_nonPersistentCookies": {
+        "message": "若為 true，所有 cookies 都將被視為工作階段 cookies。",
+        "description": ""
     },
     "websites_firstPartyIsolate": {
-      "message": "若為 true，firstPartyIsolate 偏好設定會讓瀏覽器將任何第三方網域的所有資料（包含 cookies、HSTS 資料、快取圖片等等）與網址列中的網域相關聯。這可以避免第三方追蹤器使用直接儲存的資訊來識別不同網站上的使用者，但可能會導致使用第三方帳號（如 Facebook 或 Google 帳號）登入的網站損壞。"
+        "message": "若為 true，firstPartyIsolate 偏好設定會讓瀏覽器將任何第三方網域的所有資料（包含 cookies、HSTS 資料、快取圖片等等）與網址列中的網域相關聯。這可以避免第三方追蹤器使用直接儲存的資訊來識別不同網站上的使用者，但可能會導致使用第三方帳號（如 Facebook 或 Google 帳號）登入的網站損壞。",
+        "description": ""
     },
     "websites_thirdPartyCookiesAllowed": {
-      "message": "若停用，Chrome 會設定 cookies 以阻擋第三方頁面。此偏好設定的值為真假值，預設為 true。"
+        "message": "若停用，您的瀏覽器會設定 cookies 以阻擋第三方頁面。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "websites_hyperlinkAuditingEnabled": {
-      "message": "若啟用，Chrome 會在網站請求時發送審核 ping (<a ping>)。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會在網站請求時發送審核 ping (<a ping>)。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "websites_referrersEnabled": {
-      "message": "若啟用，Chrome 會根據您的請求來傳送 referer 標頭。是的，此偏好設定的名稱與拼寫錯誤的標頭不相符。不過我們不會變更它。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會根據您的請求來傳送 referer 標頭。是的，此偏好設定的名稱與拼寫錯誤的標頭不相符。不過我們不會變更它。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
+    },
+    "websites_doNotTrackEnabled": {
+        "message": "若啟用，您的瀏覽器將會在您的請求中傳送「不追蹤」(DNT: 1)。此偏好設定的值為真假值，預設為 false。 ",
+        "description": ""
     },
     "websites_resistFingerprinting": {
-      "message": "若為真，瀏覽器將會回報通常用於指紋識別的通用欺騙訊息。此類資料包含了 CPU 核心數、JavaScript 計時器的精度以及本機時區。它將會停用用於指紋識別的功能，如 GamePad 支援，WebSpeech 與 Navigator API。"
+        "message": "若為真，瀏覽器將會回報通常用於指紋識別的通用欺騙訊息。此類資料包含了 CPU 核心數、JavaScript 計時器的精度以及本機時區。它將會停用用於指紋識別的功能，如 GamePad 支援，WebSpeech 與 Navigator API。",
+        "description": ""
     },
     "websites_protectedContentEnabled": {
-      "message": "若啟用，Chrome 會提供獨特的 ID 給外掛掛程式以執行受保護的內容。此偏好設定的值為真假值，預設為 true。"
+        "message": "若啟用，您的瀏覽器會提供獨特的 ID 給外掛掛程式以執行受保護的內容。此偏好設定的值為真假值，預設為 true。",
+        "description": ""
     },
     "websites_trackingProtectionMode": {
-      "message": "「追蹤保護」是一個會阻擋已知會跨網站追蹤使用者的請求的瀏覽器功能。追蹤使用者的網頁大多數是第三方的廣告與分析頁面。這個設定會決定瀏覽器是否應該在一般與隱私瀏覽模式中啟用追蹤保護"
+        "message": "「追蹤保護」是一個會阻擋已知會跨網站追蹤使用者的請求的瀏覽器功能。追蹤使用者的網頁大多數是第三方的廣告與分析頁面。這個設定會決定瀏覽器是否應該在一般與隱私瀏覽模式中啟用追蹤保護",
+        "description": ""
     },
     "trackingProtectionModeAlways": {
-      "message": "總是"
+        "message": "總是",
+        "description": ""
     },
     "trackingProtectionModeNever": {
-      "message": "從不"
+        "message": "從不",
+        "description": ""
     },
     "trackingProtectionModePrivateBrowsing": {
-      "message": "隱私瀏覽"
+        "message": "隱私瀏覽",
+        "description": ""
+    },
+    "appDesc": {
+        "message": "在工具列的彈出式視窗中更改瀏覽器內建的隱私設定",
+        "description": ""
     }
 }
