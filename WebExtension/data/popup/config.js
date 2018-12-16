@@ -125,8 +125,13 @@ config.values = {
   'services.searchSuggestEnabled': [false, false],
   'services.spellingServiceEnabled': [false, false],
   'services.translationServiceEnabled': [false, false],
-  'websites.cookieConfig.behavior': ['reject_all', 'reject_third_party'],
-  'websites.cookieConfig.nonPersistentCookies': [true, false],
+  'websites.cookieConfig': [{
+    'behavior': 'reject_all',
+    'nonPersistentCookies': true
+  }, {
+    'behavior': 'reject_third_party',
+    'nonPersistentCookies': false
+  }],
   'websites.firstPartyIsolate': [true, true],
   'websites.thirdPartyCookiesAllowed': [false, true],
   'websites.hyperlinkAuditingEnabled': [false, false],

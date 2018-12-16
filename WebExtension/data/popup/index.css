@@ -5,6 +5,8 @@ body {
   width: 600px;
   background-color: #fff;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 select {
   outline: none;
@@ -42,9 +44,21 @@ th {
 }
 th:first-child {
   text-align: left;
+  text-indent: 5px;
+}
+th {
+  background-color: rgba(0, 0, 0, 0.01);
+  color: #806f6f;
+  font-weight: 500;
 }
 tr th[data-type=info]::before {
   content: '\e806';
+}
+tr th[data-type=privacy]::before {
+  content: '\e801';
+}
+tr th[data-type=security]::before {
+  content: '\e802';
 }
 td {
   overflow: hidden;
@@ -100,10 +114,10 @@ tr[data-controllable=false] td[data-type=controllable]::before {
 
 input[type=button] {
   border: solid 1px #ccc;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.05);
   color: #000;
   border-radius: 0;
-  padding: 5px;
+  padding: 6px;
   cursor: pointer;
   outline: none;
   max-width: 130px;
@@ -111,7 +125,10 @@ input[type=button] {
   text-overflow: ellipsis;
 }
 input[type=button]:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+input[type=button]:active {
+  opacity: 0.5;
 }
 input[type=button]:not(:first-child) {
   margin-left: 5px;

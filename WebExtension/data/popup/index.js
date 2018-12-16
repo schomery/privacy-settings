@@ -64,6 +64,9 @@ var toggle = (e, value, isTrusted) => {
     method.set({
       value
     }, () => {
+      chrome.runtime.sendMessage({
+        method: 'update'
+      });
       if (chrome.runtime.lastError) {
         notify(chrome.runtime.lastError.message);
         method.get({}, d => toggle(e, d.value));
@@ -113,19 +116,19 @@ document.addEventListener('click', ({target}) => {
     const index = cmd === 'private' ? 0 : 1;
     methods.forEach(o => toggle(
       o.tr,
-      o.subid ? config.values[o.service + '.' + o.id + '.' + o.subid][index] : config.values[o.service + '.' + o.id][index],
+      o.subid ? config.values[o.service + '.' + o.id][index][o.subid] : config.values[o.service + '.' + o.id][index],
       true
     ));
   }
   else if (cmd === 'faqs') {
     chrome.tabs.create({
       url: chrome.runtime.getManifest().homepage_url
-    });
+    }, () => window.close());
   }
-  if (cmd === 'defaults' || cmd === 'moderate' || cmd === 'private') {
+
+  if (cmd === 'defaults' || cmd === 'private' || cmd === 'moderate') {
     chrome.runtime.sendMessage({
-      method: 'change-mode',
-      mode: cmd
+      method: 'update'
     });
   }
 });

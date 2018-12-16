@@ -1,72 +1,55 @@
 /* globals config */
 'use strict';
 
-var update = (mode, init = false) => {
-  if (init === false) {
-    chrome.contextMenus.update(mode, {
-      checked: true
-    });
-  }
-  const path = {
-    path: {
-      '16': `data/icons/${mode}/16.png`.replace('/defaults', ''),
-      '32': `data/icons/${mode}/32.png`.replace('/defaults', ''),
-      '48': `data/icons/${mode}/48.png`.replace('/defaults', ''),
-      '64': `data/icons/${mode}/64.png`.replace('/defaults', '')
+const mode = install => {
+  const get = ([service, id]) => new Promise(resolve => chrome.privacy[service][id].get({}, d => {
+    if (chrome.runtime.lastError || !d) {
+      resolve(null);
     }
-  };
-  chrome.browserAction.setIcon(path);
-};
+    else if (d.levelOfControl !== 'controlled_by_other_extensions') {
+      resolve(d.value);
+    }
+    else {
+      resolve(null);
+    }
+  }));
 
-{
-  const callback = () => {
-    const get = ([service, id]) => new Promise(resolve => chrome.privacy[service][id].get({}, d => {
-      if (chrome.runtime.lastError || !d) {
-        resolve(null);
-      }
-      else if (d.levelOfControl !== 'controlled_by_other_extensions') {
-        resolve(d.value);
-      }
-      else {
-        resolve(null);
-      }
-    }));
+  const ar = Object.keys(config.values)
+    .map(name => name.split('.'))
+    .filter(([service, id]) => chrome.privacy[service][id]);
 
-    const ar = Object.keys(config.values)
-      .map(name => name.split('.').slice(0, 2).join('.'))
-      // remove duplicates (when there is subid)
-      .filter((s, i, l) => l.indexOf(s) === i)
-      .map(name => name.split('.'))
-      .filter(([service, id]) => chrome.privacy[service][id]);
-
-    Promise.all(ar.map(get)).then(a => {
-      const compare = index => a.filter((v, i) => {
-        if (v === null) {
-          return true;
-        }
-        if (typeof v === 'object') {
-          for (const [key, value] of Object.entries(v)) {
-            if (config.values[[...ar[i], key].join('.')][index] !== value) {
-              return false;
-            }
+  Promise.all(ar.map(get)).then(a => {
+    const compare = index => a.filter((v, i) => {
+      if (v === null) {
+        return true;
+      }
+      if (typeof v === 'object') {
+        for (const [key, value] of Object.entries(config.values[ar[i].join('.')][index])) {
+          if (value !== v[key]) {
+            return false;
           }
-          return true;
         }
-        return v === config.values[ar[i].join('.')][index];
-      }).length === a.length;
-
-      const isPrivate = compare(0);
-      const isModerate = compare(1);
-      const isDefaults = isPrivate === false && isModerate === false;
-
-
-      if (isPrivate) {
-        update('private', true);
+        return true;
       }
-      else if (isModerate) {
-        update('moderate', true);
-      }
+      return v === config.values[ar[i].join('.')][index];
+    }).length === a.length;
 
+    const isPrivate = compare(0);
+    const isModerate = compare(1);
+    const isDefaults = isPrivate === false && isModerate === false;
+
+
+    const type = isPrivate ? '/private' : (isModerate ? '/moderate' : '');
+    chrome.browserAction.setIcon({
+      path: {
+        '16': `data/icons${type}/16.png`.replace('/defaults', ''),
+        '32': `data/icons${type}/32.png`.replace('/defaults', ''),
+        '48': `data/icons${type}/48.png`.replace('/defaults', ''),
+        '64': `data/icons${type}/64.png`.replace('/defaults', '')
+      }
+    });
+
+    if (install) {
       chrome.contextMenus.create({
         id: 'defaults',
         title: chrome.i18n.getMessage('contextDefault'),
@@ -88,15 +71,30 @@ var update = (mode, init = false) => {
         type: 'radio',
         checked: isPrivate
       });
-    });
-  };
+    }
+    else {
+      chrome.contextMenus.update('defaults', {
+        checked: isDefaults
+      });
+      chrome.contextMenus.update('moderate', {
+        checked: isModerate
+      });
+      chrome.contextMenus.update('private', {
+        checked: isPrivate
+      });
+    }
+  });
+};
 
-  chrome.runtime.onInstalled.addListener(callback);
-  chrome.runtime.onStartup.addListener(callback);
-}
+chrome.runtime.onInstalled.addListener(() => mode(true));
+chrome.runtime.onStartup.addListener(() => mode(true));
+chrome.runtime.onMessage.addListener(request => {
+  if (request.method === 'update') {
+    window.setTimeout(mode, 100, false);
+  }
+});
+
 chrome.contextMenus.onClicked.addListener(({menuItemId}) => {
-  update(menuItemId, true);
-
   Object.keys(config.values).forEach(name => {
     const [service, id] = name.split('.');
     const method = chrome.privacy[service][id];
@@ -112,12 +110,7 @@ chrome.contextMenus.onClicked.addListener(({menuItemId}) => {
       }
     }
   });
-});
-
-chrome.runtime.onMessage.addListener(request => {
-  if (request.method === 'change-mode') {
-    update(request.mode);
-  }
+  window.setTimeout(mode, 100, false);
 });
 
 {
