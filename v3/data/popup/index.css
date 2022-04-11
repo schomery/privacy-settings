@@ -1,0 +1,154 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 13px;
+  user-select: none;
+  width: 600px;
+  background-color: #fff;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+select {
+  outline: none;
+  border: none;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+table {
+  width: 100%;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+tbody tr {
+  cursor: pointer;
+}
+tr[data-available=false] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+  display: none;
+}
+tr[data-controllable=false] {
+  color: red;
+  pointer-events: none;
+}
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+th {
+  line-height: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.01);
+  color: #806f6f;
+  font-weight: 500;
+}
+th:first-child {
+  text-align: left;
+  text-indent: 5px;
+}
+tr th[data-type=info]::before {
+  content: '\e806';
+}
+tr th[data-type=privacy]::before {
+  content: '\e801';
+}
+tr th[data-type=security]::before {
+  content: '\e802';
+}
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+td[data-type=info] {
+  padding: 5px;
+}
+tr td[data-type=toggle] {
+  text-align: right;
+}
+tr td[data-type=toggle]::before {
+  content: '\f204';
+}
+tr[data-mode=true] td[data-type=toggle]::before {
+  content: '\f205';
+}
+tr[data-mode=true] span[data-i18n="popupDisabled"] {
+  display: none;
+}
+tr[data-mode=false] span[data-i18n="popupEnabled"] {
+  display: none;
+}
+tr td[data-type=info],
+tr td[data-type=privacy],
+tr td[data-type=security] {
+  text-align: center;
+}
+tr td[data-type=privacy],
+tr td[data-type=security] {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+tr[data-private=true] td[data-type=privacy]::before {
+  content: '\e801';
+  color: green;
+}
+tr[data-private=false] td[data-type=privacy]::before {
+  content: '\e800';
+  color: #ccc;
+}
+tr[data-secure=true] td[data-type=security]::before {
+  content: '\e802';
+  color: green;
+}
+tr[data-secure=false] td[data-type=security]::before {
+  content: '\e802';
+  color: #ccc;
+}
+tr[data-controllable=false] td[data-type=controllable]::before {
+  content: '\e833';
+}
+
+input[type=button] {
+  border: solid 1px #ccc;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000;
+  border-radius: 0;
+  padding: 6px;
+  cursor: pointer;
+  outline: none;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+input[type=button]:hover {
+  background-color: #fff;
+}
+input[type=button]:active {
+  opacity: 0.5;
+}
+input[type=button]:not(:first-child) {
+  margin-left: 5px;
+}
+
+#msg {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  background-color: #fff9e2;
+  color: #b26019;
+  border: solid 1px #feedce;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+#msg:empty {
+  display: none;
+}
+
+[hbox] {
+  display: flex;
+}
+[flex="1"] {
+  flex: 1;
+}

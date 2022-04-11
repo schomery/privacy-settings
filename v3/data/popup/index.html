@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Privacy Settings</title>
+  <link rel="stylesheet" type="text/css" href="fontello.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <table width="100%">
+    <colgroup>
+      <col>
+      <col width="24">
+      <col width="24">
+      <col width="24">
+      <col width=24>
+      <col width=100>
+    </colgroup>
+    <thead>
+      <tr>
+        <th data-i18n="popupNetwork"></th>
+        <th data-i18n="popupControllable" data-i18n-value="title" class="icon-" data-type="info"></th>
+        <th data-i18n="popupPrivacy" data-i18n-value="title" class="icon-" data-type="privacy"></th>
+        <th data-i18n="popupSecurity" data-i18n-value="title" class="icon-" data-type="security"></th>
+        <th></th>
+        <th data-i18n="popupToggle"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-mode=false data-id="network.networkPredictionEnabled" data-i18n="network_networkPredictionEnabled" data-i18n-value="title">
+        <td>network.networkPredictionEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="network.peerConnectionEnabled" data-i18n="network_peerConnectionEnabled" data-i18n-value="title">
+        <td>network.peerConnectionEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=invalid data-id="network.webRTCIPHandlingPolicy" data-i18n="network_webRTCIPHandlingPolicy" data-i18n-value="title">
+        <td>network.webRTCIPHandlingPolicy</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td data-type="info" colspan="2">
+          <select>
+            <option value="default" data-i18n="popupPeerDefault"></option>
+            <option value="default_public_and_private_interfaces" data-i18n="popupPeerDefault_public_and_private_interfaces"></option>
+            <option value="default_public_interface_only" data-i18n="popupPeerDefault_public_interface_only"></option>
+            <option value="disable_non_proxied_udp" data-i18n="popupPeerDisable_non_proxied_udp"></option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th data-i18n="popupServices" colspan="6"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-mode=false data-id="services.alternateErrorPagesEnabled" data-i18n="services_alternateErrorPagesEnabled" data-i18n-value="title">
+        <td>services.alternateErrorPagesEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.autofillEnabled" data-i18n="services_autofillEnabled" data-i18n-value="title">
+        <td>services.autofillEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.autofillAddressEnabled" data-i18n="services_autofillAddressEnabled" data-i18n-value="title">
+        <td>services.autofillAddressEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.autofillCreditCardEnabled" data-i18n="services_autofillCreditCardEnabled" data-i18n-value="title">
+        <td>services.autofillCreditCardEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.hotwordSearchEnabled" data-i18n="services_hotwordSearchEnabled" data-i18n-value="title">
+        <td>services.hotwordSearchEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.passwordSavingEnabled" data-i18n="services_passwordSavingEnabled" data-i18n-value="title">
+        <td>services.passwordSavingEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.safeBrowsingEnabled" data-i18n="services_safeBrowsingEnabled" data-i18n-value="title">
+        <td>services.safeBrowsingEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.safeBrowsingExtendedReportingEnabled" data-i18n="services_safeBrowsingExtendedReportingEnabled" data-i18n-value="title">
+        <td>services.safeBrowsingExtendedReportingEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.searchSuggestEnabled" data-i18n="services_searchSuggestEnabled" data-i18n-value="title">
+        <td>services.searchSuggestEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.spellingServiceEnabled" data-i18n="services_spellingServiceEnabled" data-i18n-value="title">
+        <td>services.spellingServiceEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="services.translationServiceEnabled" data-i18n="services_translationServiceEnabled" data-i18n-value="title">
+        <td>services.translationServiceEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th data-i18n="popupWebsites" colspan="6"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-mode=invalid data-id="websites.cookieConfig.behavior" data-i18n="websites_cookieConfig_behavior" data-i18n-value="title">
+        <td>websites.cookieConfig.behavior</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td data-type="info" colspan="2">
+          <select>
+            <option value="allow_all" data-i18n="cookieConfig_allow_all"></option>
+            <option value="reject_all" data-i18n="cookieConfig_reject_all"></option>
+            <option value="reject_third_party" data-i18n="cookieConfig_reject_third_party"></option>
+            <option value="allow_visited" data-i18n="cookieConfig_allow_visited"></option>
+            <option value="reject_trackers" data-i18n="cookieConfig_reject_trackers" disabled=></option>
+          </select>
+        </td>
+      </tr>
+      <tr data-mode=false data-id="websites.cookieConfig.nonPersistentCookies" data-i18n="websites_cookieConfig_nonPersistentCookies" data-i18n-value="title">
+        <td>websites.cookieConfig.nonPersistentCookies</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.firstPartyIsolate" data-i18n="websites_firstPartyIsolate" data-i18n-value="title">
+        <td>websites.firstPartyIsolate</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.thirdPartyCookiesAllowed" data-i18n="websites_firstPartyIsolate" data-i18n-value="title">
+        <td>websites.thirdPartyCookiesAllowed</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.hyperlinkAuditingEnabled" data-i18n="websites_hyperlinkAuditingEnabled" data-i18n-value="title">
+        <td>websites.hyperlinkAuditingEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.referrersEnabled" data-i18n="websites_referrersEnabled" data-i18n-value="title">
+        <td>websites.referrersEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.doNotTrackEnabled" data-i18n="websites_doNotTrackEnabled" data-i18n-value="title">
+        <td>websites.doNotTrackEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.resistFingerprinting" data-i18n="websites_resistFingerprinting" data-i18n-value="title">
+        <td>websites.resistFingerprinting</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.protectedContentEnabled" data-i18n="websites_protectedContentEnabled" data-i18n-value="title">
+        <td>websites.protectedContentEnabled</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td class="icon-" data-type="toggle"></td>
+        <td data-type="info"><span data-i18n="popupEnabled"></span><span data-i18n="popupDisabled"></span></td>
+      </tr>
+      <tr data-mode=false data-id="websites.trackingProtectionMode" data-i18n="websites_trackingProtectionMode" data-i18n-value="title">
+        <td>websites.trackingProtectionMode</td>
+        <td class="icon-" data-type="controllable"></td>
+        <td class="icon-" data-type="privacy"></td>
+        <td class="icon-" data-type="security"></td>
+        <td data-type="info" colspan="2">
+          <select>
+            <option value="always" data-i18n="trackingProtectionModeAlways"></option>
+            <option value="never" data-i18n="trackingProtectionModeNever"></option>
+            <option value="private_browsing" data-i18n="trackingProtectionModePrivateBrowsing"></option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p hbox>
+    <input type="button" data-i18n="popupFAQs" data-i18n-value="value,title" data-cmd="faqs">
+    <span flex=1></span>
+    <input type="button" data-i18n="popupReset" data-i18n-value="value,title" data-cmd="defaults">
+    <input type="button" data-i18n="popupPrivate" data-i18n-value="value,title" data-cmd="private">
+    <input type="button" data-i18n="popupModerate" data-i18n-value="value,title" data-cmd="moderate">
+  </p>
+  <div id="msg"></div>
+  <script src="/locale.js"></script>
+  <script src="config.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

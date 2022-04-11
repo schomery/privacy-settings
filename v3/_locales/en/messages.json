@@ -1,0 +1,165 @@
+{
+    "appDesc": {
+        "description": "",
+        "message": "Alter the browser's built-in privacy settings in a toolbar popup"
+    },
+    "appName": {
+        "message": "Privacy Settings"
+    },
+    "popupNetwork": {
+        "message": "Network"
+    },
+    "popupServices": {
+        "message": "Services"
+    },
+    "popupWebsites": {
+        "message": "Websites"
+    },
+    "popupEnabled": {
+        "message": "Enabled"
+    },
+    "popupDisabled": {
+        "message": "Disabled"
+    },
+    "popupToggle": {
+        "message": "Status"
+    },
+    "popupControllable": {
+        "message": "Red color means this preference is controlled by another extension. Privacy Settings cannot alter it"
+    },
+    "popupPrivacy": {
+        "message": "Privacy status. Green means privacy is protected"
+    },
+    "popupSecurity": {
+        "message": "Security status. Green means security is protected"
+    },
+    "popupFAQs": {
+        "message": "Open FAQs page"
+    },
+    "popupReset": {
+        "message": "Reset to Defaults"
+    },
+    "contextDefault": {
+        "message": "Mode: Default or Unknown"
+    },
+    "contextModerate": {
+        "message": "Mode: Enhanced Privacy"
+    },
+    "contextPrivate": {
+        "message": "Mode: Full Privacy"
+    },
+    "popupPeerDefault": {
+        "message": "Normal (defaults)"
+    },
+    "popupModerate": {
+        "message": "Enhanced Privacy"
+    },
+    "popupPrivate": {
+        "message": "Full Privacy"
+    },
+    "popupPeerDefault_public_and_private_interfaces": {
+        "message": "Reveal both public and private interfaces"
+    },
+    "popupPeerDefault_public_interface_only": {
+        "message": "Reveal public interface only"
+    },
+    "popupPeerDisable_non_proxied_udp": {
+        "message": "Disabled"
+    },
+    "network_networkPredictionEnabled": {
+      "message": "If enabled, your browser attempts to speed up your web browsing experience by pre-resolving DNS entries and preemptively opening TCP and SSL connections to servers. This preference only affects actions taken by Chrome's internal prediction service. It does not affect webpage-initiated prefectches or preconnects. This preference's value is a boolean, defaulting to true."
+    },
+    "network_peerConnectionEnabled": {
+      "message": "If disabled, the RTCPeerConnection interface is disabled. Note that getUserMedia() is not affected by this setting."
+    },
+    "network_webRTCIPHandlingPolicy": {
+      "message": "Allow users to specify the media performance/privacy tradeoffs which impacts how WebRTC traffic will be routed and how much local address information is exposed. This preference's value is of type IPHandlingPolicy, defaulting to default."
+    },
+    "services_alternateErrorPagesEnabled": {
+      "message": "If enabled, your browser uses a web service to help resolve navigation errors. This preference's value is a boolean, defaulting to true."
+    },
+    "services_autofillEnabled": {
+      "message": "If enabled, your browser offers to automatically fill in forms. This preference's value is a boolean, defaulting to true."
+    },
+    "services_autofillAddressEnabled": {
+      "message": "If enabled, your browser offers to automatically fill in addresses and other form data. This preference's value is a boolean, defaulting to true."
+    },
+    "services_autofillCreditCardEnabled": {
+      "message": "If enabled, your browser offers to automatically fill in credit card forms. This preference's value is a boolean, defaulting to true."
+    },
+    "services_hotwordSearchEnabled": {
+      "message": "If enabled, your browser will enable 'OK, Google' to start a voice search. This preference's value is a boolean, defaulting to true."
+    },
+    "services_passwordSavingEnabled": {
+      "message": "If enabled, the password manager will ask if you want to save passwords. This preference's value is a boolean, defaulting to true."
+    },
+    "services_safeBrowsingEnabled": {
+      "message": "If enabled, your browser does its best to protect you from phishing and malware. This preference's value is a boolean, defaulting to true."
+    },
+    "services_safeBrowsingExtendedReportingEnabled": {
+      "message": "If enabled, your browser will send additional information to Google when SafeBrowsing blocks a page, such as the content of the blocked page. This preference's value is a boolean, defaulting to false."
+    },
+    "services_searchSuggestEnabled": {
+      "message": "If enabled, your browser sends the text you type into the Omnibox to your default search engine, which provides predictions of websites and searches that are likely completions of what you've typed so far. This preference's value is a boolean, defaulting to true."
+    },
+    "services_spellingServiceEnabled": {
+      "message": "If enabled, your browser uses a web service to help correct spelling errors. This preference's value is a boolean, defaulting to false."
+    },
+    "services_translationServiceEnabled": {
+      "message": "If enabled, your browser offers to translate pages that aren't in a language you read. This preference's value is a boolean, defaulting to true."
+    },
+    "websites_cookieConfig_behavior": {
+      "message": "How the browser handles cookies"
+    },
+    "cookieConfig_allow_all": {
+      "message": "Accept all cookies"
+    },
+    "cookieConfig_reject_all": {
+      "message": "Reject all cookies"
+    },
+    "cookieConfig_reject_third_party": {
+      "message": "Reject all third-party cookies"
+    },
+    "cookieConfig_allow_visited": {
+      "message": "Accept a third-party cookie only for visited pages"
+    },
+    "cookieConfig_reject_trackers": {
+      "message": "Reject tracking cookies"
+    },
+    "websites_cookieConfig_nonPersistentCookies": {
+      "message": "If true, all cookies will be treated as session cookies."
+    },
+    "websites_firstPartyIsolate": {
+      "message": "If true, the firstPartyIsolate preference makes the browser associate all data (including cookies, HSTS data, cached images, and more) for any third party domains with the domain in the address bar. This prevents third party trackers from using directly stored information to identify the user across different websites, but may break websites where the user logs in with a third party account (such as a Facebook or Google account)."
+    },
+    "websites_thirdPartyCookiesAllowed": {
+      "message": "If disabled, your browser blocks third-party sites from setting cookies. The value of this preference is of type boolean, and the default value is true."
+    },
+    "websites_hyperlinkAuditingEnabled": {
+      "message": "If enabled, your browser sends auditing pings when requested by a website (<a ping>). The value of this preference is of type boolean, and the default value is true."
+    },
+    "websites_referrersEnabled": {
+      "message": "If enabled, your browser sends referer headers with your requests. Yes, the name of this preference doesn't match the misspelled header. No, we're not going to change it. The value of this preference is of type boolean, and the default value is true."
+    },
+    "websites_doNotTrackEnabled": {
+      "message": "If enabled, your browser sends 'Do Not Track' (DNT: 1) header with your requests. The value of this preference is of type boolean, and the default value is false."
+    },
+    "websites_resistFingerprinting": {
+      "message": "If true, the browser report generic spoofed information for data that's commonly used for fingerprinting. Such data includes the number of CPU cores, precision of JavaScript timers, and the local timezone. It will also disable features that are used in fingerprinting, such as GamePad support, and the WebSpeech and Navigator APIs."
+    },
+    "websites_protectedContentEnabled": {
+      "message": "If enabled, your browser provides a unique ID to plugins in order to run protected content. The value of this preference is of type boolean, and the default value is true."
+    },
+    "websites_trackingProtectionMode": {
+      "message": "\"Tracking protection\" is a browser feature that blocks requests made to domains that are known to engage in cross-site tracking of users. Sites that track users are most commonly third-party advertising and analytics sites. This setting determines whether the browser should enable tracking protection or not on the normal and private modes"
+    },
+    "trackingProtectionModeAlways": {
+      "message": "Always"
+    },
+    "trackingProtectionModeNever": {
+      "message": "Never"
+    },
+    "trackingProtectionModePrivateBrowsing": {
+      "message": "Private Browsing"
+    }
+}
