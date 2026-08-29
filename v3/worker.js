@@ -1,5 +1,8 @@
 /* global config */
-self.importScripts('/data/popup/config.js');
+
+if (typeof importScripts !== 'undefined') {
+  self.importScripts('/data/popup/config.js');
+}
 
 const mode = install => {
   const get = ([service, id]) => new Promise(resolve => chrome.privacy[service][id].get({}, d => {
@@ -85,31 +88,40 @@ const mode = install => {
   });
 };
 
-chrome.runtime.onInstalled.addListener(() => mode(true));
-chrome.runtime.onStartup.addListener(() => mode(true));
+{
+  const once = () => {
+    if (once.done) {
+      return;
+    }
+    once.done = true;
+    mode(true);
+  };
+  chrome.runtime.onInstalled.addListener(once);
+  chrome.runtime.onStartup.addListener(once);
+}
 chrome.runtime.onMessage.addListener(request => {
   if (request.method === 'update') {
-    setTimeout(mode, 100, false);
+    mode(false);
   }
 });
 
-chrome.contextMenus.onClicked.addListener(({menuItemId}) => {
-  Object.keys(config.values).forEach(name => {
+chrome.contextMenus.onClicked.addListener(async ({menuItemId}) => {
+  const ops = Object.keys(config.values).map(name => {
     const [service, id] = name.split('.');
     const method = chrome.privacy[service][id];
     if (method) {
       switch (menuItemId) {
       case 'defaults':
-        method.clear({});
-        break;
+        return method.clear({});
       default:
-        method.set({
+        return method.set({
           value: config.values[name][menuItemId === 'private' ? 0 : 1]
         });
       }
     }
-  });
-  setTimeout(mode, 100, false);
+  }).filter(op => op);
+  await Promise.allSettled(ops);
+  mode(false);
 });
 
 /* FAQs & Feedback */

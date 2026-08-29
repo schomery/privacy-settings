@@ -25,7 +25,7 @@ const methods = [...document.querySelectorAll('[data-id]')].map(tr => {
   }
 }).filter(a => a);
 
-const toggle = (e, value, isTrusted) => {
+const toggle = (e, value, isTrusted, update = true) => {
   const [service, id, subid] = e.dataset.id.split('.');
   if (subid && typeof value === 'object') {
     value = value[subid];
@@ -55,17 +55,20 @@ const toggle = (e, value, isTrusted) => {
         nonPersistentCookies: document.querySelector('[data-id="websites.cookieConfig.nonPersistentCookies"]').dataset.mode === 'true'
       };
     }
-    method.set({
+    return new Promise(resolve => method.set({
       value
     }, () => {
-      chrome.runtime.sendMessage({
-        method: 'update'
-      });
+      if (update) {
+        chrome.runtime.sendMessage({
+          method: 'update'
+        }, () => chrome.runtime.lastError);
+      }
       if (chrome.runtime.lastError) {
         notify(chrome.runtime.lastError.message);
         method.get({}, d => toggle(e, d.value));
       }
-    });
+      resolve();
+    }));
   }
 };
 
@@ -103,26 +106,26 @@ document.addEventListener('DOMContentLoaded', init);
 
 document.addEventListener('click', ({target}) => {
   const cmd = target.dataset.cmd;
+  const sendUpdate = () => chrome.runtime.sendMessage({
+    method: 'update'
+  }, () => chrome.runtime.lastError);
   if (cmd === 'defaults') {
-    Promise.all(methods.map(o => new Promise(r => o.method.clear({}, r)))).then(init);
+    Promise.all(methods.map(o => new Promise(r => o.method.clear({}, r))))
+      .then(init)
+      .then(sendUpdate);
   }
   else if (cmd === 'private' || cmd === 'moderate') {
     const index = cmd === 'private' ? 0 : 1;
-    methods.forEach(o => toggle(
+    Promise.all(methods.map(o => toggle(
       o.tr,
       o.subid ? config.values[o.service + '.' + o.id][index][o.subid] : config.values[o.service + '.' + o.id][index],
-      true
-    ));
+      true,
+      false
+    ))).then(sendUpdate);
   }
   else if (cmd === 'faqs') {
     chrome.tabs.create({
       url: chrome.runtime.getManifest().homepage_url
     }, () => window.close());
-  }
-
-  if (cmd === 'defaults' || cmd === 'private' || cmd === 'moderate') {
-    chrome.runtime.sendMessage({
-      method: 'update'
-    }, () => chrome.runtime.lastError);
   }
 });

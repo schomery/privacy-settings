@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <div id="content">
   <table width="100%">
     <colgroup>
       <col>
@@ -18,12 +19,15 @@
     </colgroup>
     <thead>
       <tr>
-        <th data-i18n="popupNetwork"></th>
+        <th data-i18n="popupCategory"></th>
         <th data-i18n="popupControllable" data-i18n-value="title" class="icon-" data-type="info"></th>
         <th data-i18n="popupPrivacy" data-i18n-value="title" class="icon-" data-type="privacy"></th>
         <th data-i18n="popupSecurity" data-i18n-value="title" class="icon-" data-type="security"></th>
         <th></th>
         <th data-i18n="popupToggle"></th>
+      </tr>
+      <tr>
+        <th colspan="6" data-i18n="popupNetwork"></th>
       </tr>
     </thead>
     <tbody>
@@ -301,13 +305,14 @@
       </tr>
     </tbody>
   </table>
-  <p hbox>
+  </div>
+  <footer hbox>
     <input type="button" data-i18n="popupFAQs" data-i18n-value="value,title" data-cmd="faqs">
     <span flex=1></span>
     <input type="button" data-i18n="popupReset" data-i18n-value="value,title" data-cmd="defaults">
     <input type="button" data-i18n="popupPrivate" data-i18n-value="value,title" data-cmd="private">
     <input type="button" data-i18n="popupModerate" data-i18n-value="value,title" data-cmd="moderate">
-  </p>
+  </footer>
   <div id="msg"></div>
   <script src="/locale.js"></script>
   <script src="config.js"></script>

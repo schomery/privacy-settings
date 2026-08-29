@@ -6,6 +6,9 @@
     "appName": {
         "message": "Privacy Settings"
     },
+    "popupCategory": {
+        "message": "Category"
+    },
     "popupNetwork": {
         "message": "Network"
     },

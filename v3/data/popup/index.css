@@ -3,10 +3,21 @@ body {
   font-size: 13px;
   user-select: none;
   width: 600px;
+  max-height: 600px;
   background-color: #fff;
   overflow: hidden;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr min-content;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+#content {
+  min-height: 0;
+  overflow: hidden auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  padding: 0 5px;
 }
 select {
   outline: none;
@@ -43,7 +54,7 @@ th {
   height: 32px;
   background-color: rgba(0, 0, 0, 0.01);
   color: #806f6f;
-  font-weight: 500;
+  font-weight: bold;
 }
 th:first-child {
   text-align: left;
@@ -109,29 +120,31 @@ tr[data-secure=false] td[data-type=security]::before {
 tr[data-controllable=false] td[data-type=controllable]::before {
   content: '\e833';
 }
-
+select,
+button,
+input[type=submit],
 input[type=button] {
-  border: solid 1px #ccc;
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #000;
-  border-radius: 0;
-  padding: 6px;
+  padding: 5px;
+  color: #444;
+  background-image: linear-gradient(rgb(237, 237, 237), rgb(237, 237, 237) 38%, rgb(222, 222, 222));
+  box-shadow: rgba(0, 0, 0, 0.08) 0 1px 0, rgba(255, 255, 255, 0.75) 0 1px 2px inset;
+  text-shadow: rgb(240, 240, 240) 0 1px 0;
   cursor: pointer;
-  outline: none;
-  max-width: 130px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-input[type=button]:hover {
-  background-color: #fff;
+select,
+button,
+textarea,
+input {
+  border: solid 1px rgba(0, 0, 0, 0.25);
 }
-input[type=button]:active {
+input[type=button]:disabled {
   opacity: 0.5;
 }
-input[type=button]:not(:first-child) {
-  margin-left: 5px;
+footer {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 10px 5px;
+  gap: 5px;
 }
-
 #msg {
   position: absolute;
   left: 5px;
