@@ -72,6 +72,12 @@
     "network_peerConnectionEnabled": {
       "message": "If disabled, the RTCPeerConnection interface is disabled. Note that getUserMedia() is not affected by this setting."
     },
+    "network_globalPrivacyControlEnabled": {
+      "message": "If enabled, the browser sends a signal to websites indicating that the user does not want to be tracked. This is part of the Global Privacy Control (GPC) initiative. This preference's value is a boolean, defaulting to true."
+    },
+    "network_httpsOnlyMode": {
+      "message": "If enabled, the browser will attempt to load all websites over HTTPS and will show a warning before loading a site that does not support it. This preference's value is a boolean, defaulting to false."
+    },
     "network_webRTCIPHandlingPolicy": {
       "message": "Allow users to specify the media performance/privacy tradeoffs which impacts how WebRTC traffic will be routed and how much local address information is exposed. This preference's value is of type IPHandlingPolicy, defaulting to default."
     },
@@ -128,6 +134,18 @@
     },
     "websites_cookieConfig_nonPersistentCookies": {
       "message": "If true, all cookies will be treated as session cookies."
+    },
+    "websites_topicsEnabled": {
+      "message": "If enabled, the browser can infer your interests from your browsing history and share them with third parties for the purpose of showing you relevant ads. This is part of Chrome's Privacy Sandbox. This preference's value is a boolean, defaulting to true."
+    },
+    "websites_fledgeEnabled": {
+      "message": "If enabled, the browser can store information about your interests and use it to show you relevant ads from sites you've visited. This is part of Chrome's Privacy Sandbox. This preference's value is a boolean, defaulting to true."
+    },
+    "websites_adMeasurementEnabled": {
+      "message": "If enabled, the browser can provide information to advertisers about how their ads are performing without identifying you personally. This is part of Chrome's Privacy Sandbox. This preference's value is a boolean, defaulting to true."
+    },
+    "websites_queryParametersStripEnabled": {
+      "message": "If enabled, the browser will strip known tracking parameters from URLs when navigating between sites. This preference's value is a boolean, defaulting to false."
     },
     "websites_firstPartyIsolate": {
       "message": "If true, the firstPartyIsolate preference makes the browser associate all data (including cookies, HSTS data, cached images, and more) for any third party domains with the domain in the address bar. This prevents third party trackers from using directly stored information to identify the user across different websites, but may break websites where the user logs in with a third party account (such as a Facebook or Google account)."

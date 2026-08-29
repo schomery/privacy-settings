@@ -14,6 +14,14 @@ config.network.peerConnectionEnabled = {
   false: ['p', 's'],
   true: ['np', 'ns']
 };
+config.network.globalPrivacyControlEnabled = {
+  true: ['p'],
+  false: ['np']
+};
+config.network.httpsOnlyMode = {
+  true: ['p', 's'],
+  false: ['np', 'ns']
+};
 config.network.webRTCIPHandlingPolicy = {
   'default': ['np', 'ns'],
   'default_public_and_private_interfaces': ['np', 'ns'],
@@ -76,6 +84,22 @@ config.websites.cookieConfig.nonPersistentCookies = {
   false: ['np'],
   true: ['p']
 };
+config.websites.topicsEnabled = {
+  false: ['p'],
+  true: ['np']
+};
+config.websites.fledgeEnabled = {
+  false: ['p'],
+  true: ['np']
+};
+config.websites.adMeasurementEnabled = {
+  false: ['p'],
+  true: ['np']
+};
+config.websites.queryParametersStripEnabled = {
+  true: ['p'],
+  false: ['np']
+};
 config.websites.firstPartyIsolate = {
   false: ['np'],
   true: ['p']
@@ -113,6 +137,8 @@ config.websites.trackingProtectionMode = {
 config.values = {
   'network.networkPredictionEnabled': [false, false],
   'network.peerConnectionEnabled': [false, true],
+  'network.globalPrivacyControlEnabled': [true, true],
+  'network.httpsOnlyMode': [true, true],
   'network.webRTCIPHandlingPolicy': ['disable_non_proxied_udp', 'default_public_interface_only'],
   'services.alternateErrorPagesEnabled': [false, false],
   'services.autofillEnabled': [false, false],
@@ -132,6 +158,10 @@ config.values = {
     'behavior': 'reject_third_party',
     'nonPersistentCookies': false
   }],
+  'websites.topicsEnabled': [false, false],
+  'websites.fledgeEnabled': [false, false],
+  'websites.adMeasurementEnabled': [false, false],
+  'websites.queryParametersStripEnabled': [true, true],
   'websites.firstPartyIsolate': [true, true],
   'websites.thirdPartyCookiesAllowed': [false, true],
   'websites.hyperlinkAuditingEnabled': [false, false],
